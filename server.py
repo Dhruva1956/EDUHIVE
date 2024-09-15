@@ -15,6 +15,13 @@ _users_in_room = {} # stores room wise user list
 _room_of_sid = {} # stores room joined by an used
 _name_of_sid = {} # stores display name of users
 
+@app.route("/explore", methods=["GET", "POST"])
+def explore():
+    return render_template("explore.html")
+
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    return render_template("profile.html")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
