@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribed Classes</title>
+</head>
+<body>
+    <h1>Subscribed Classes</h1>
+
+    {% if tutors %}
+        <ul>
+            {% for tutor in tutors %}
+                <li>
+                    <strong>{{ tutor.name }}</strong> - {{ tutor.subject }} - {{ tutor.cost }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't subscribed to any classes yet.</p>
+    {% endif %}
+
+    <a href="{{ url_for('explore', user_id=session['id']) }}">Explore More Tutors</a>
+</body>
+</html>

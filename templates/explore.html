@@ -1,49 +1,49 @@
-<!--EXPLORE CLASSES/TUTORS AND SUBSCRIBE-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- icon -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- custom css -->
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDU-HIVE</title>
+    <title>EDU-HIVE | Explore Tutors</title>
 </head>
 <body>
+    {% extends 'base.html' %}
 
-    <div class="heading mb-4">
+    {% block title %}Explore Dashboard{% endblock %}
+
+    {% block content %}
+    <h1>Welcome to your dashboard, {{ name }}!</h1>
+    <p>Here you can explore tutors, manage sessions, and more.</p>
+    <!-- Add any dashboard-specific content here -->
+
+    <!-- Heading -->
+    <div class="heading text-center my-4">
         <h1 class="display-4">EDU-HIVE</h1>
+        <p class="lead">Explore Tutors and Find the Right One for You!</p>
     </div>
-    <div class="container text-center mt-5">
-        <h4>Welcome to EDU-HIVE!</h4>
-        <p>
-            Enter a custom room name, and click join! <br> 
-            Share the room name with your friends, so that they can join too!
-        </p>
 
-        <form id="room_form" method="POST" class="form shadow" style="max-width:400px; margin-left: auto; margin-right: auto;">
-            <div class="input-group mb-3">
-                <input type="text" name="room_id" id="room_id" class="form-control" placeholder="Custom Room Name" autofocus required>
-                <div class="invalid-feedback">Please fill out this field.</div>
-                <div class="input-group-append">
-                    <input type="submit" value="Join" class="btn btn-primary">
+    <!-- Container for Tutor Cards -->
+    <div class="container mt-5">
+        <div class="row">
+            {% for tutor in tutors %}
+            <!-- Tutor Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Tutor Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ tutor.name }}</h5>
+                        <p class="card-text">Subject: {{ tutor.subject }}</p>
+                        <p class="card-text">Cost: {{ tutor.cost }}</p>
+                        <a href="{{ url_for('tutor_profile', tutor_id=tutor.id) }}" class="btn btn-primary">Know More</a>
+                    </div>
                 </div>
-                
             </div>
-        </form>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('subscribed') }}">View Subscribed Classes</a>
     </div>
-    
+    {% endblock %}
 </body>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>{{ tutor.name }}'s Profile</title>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{ tutor.name }}</h2>
+                <p class="card-text"><strong>Subject:</strong> {{ tutor.subject }}</p>
+                <p class="card-text"><strong>Cost:</strong> {{ tutor.cost }}</p>
+                <p class="card-text">Additional details about the tutor can go here.</p>
+                <a href="/" class="btn btn-secondary">Back to Explore</a>
+            </div>
+        </div>
+        <form action="{{ url_for('subscribed', tutor_id= session['id']) }}" method="post">
+
+
+            <button type="submit">Subscribe</button>
+        </form>
+        
+    </div>
+
+</body>
+</html>
