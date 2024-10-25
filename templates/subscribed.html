@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subscribed Classes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>All Subscriptions</title>
 </head>
 <body>
-    <h1>Subscribed Classes</h1>
-
-    {% if tutors %}
-        <ul>
-            {% for tutor in tutors %}
-                <li>
-                    <strong>{{ tutor.name }}</strong> - {{ tutor.subject }} - {{ tutor.cost }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>You haven't subscribed to any classes yet.</p>
-    {% endif %}
-
-    <a href="{{ url_for('explore', user_id=session['id']) }}">Explore More Tutors</a>
+    <div class="container mt-5">
+        <h2 class="mb-4">Student Subscriptions</h2>
+        {% if subscriptions and subscriptions | length > 0 %}
+            <ul class="list-group">
+                {% for sub in subscriptions %}
+                    <li class="list-group-item">
+                        <p><strong>Student Name:</strong> {{ sub.username }}</p>
+                        <p><strong>Student Email:</strong> {{ sub.email }}</p>
+                        <p><strong>Tutor Name:</strong> {{ sub.tutor_name }}</p>
+                        <p><strong>Tuition Subject:</strong> {{ sub.tuition_subject }}</p>
+                        <p><strong>Tutor Email:</strong> {{ sub.tutor_email }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">No subscriptions found.</p>
+        {% endif %}
+        <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
 </body>
 </html>

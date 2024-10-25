@@ -21,9 +21,15 @@
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div>
                                     <strong>Subject:</strong> {{ tutor.subject }} <br>
-                                    <strong>Cost:</strong> {{ tutor.cost }}
+                                    <strong>Cost:</strong> {{ tutor.cost }} <br>
+                                    <strong>email:</strong> {{ tutor.email }}
                                 </div>
-                                <form action="{{ url_for('subscribed', tutor_id=tutor.id, tutor=tutor.username, subject=tutor.subject) }}" method="post">
+                                <form action="{{ url_for('subscribed') }}" method="post">
+                                    <input type="hidden" name="username" value="{{ current_user.username }}">  <!-- Assuming username is stored in session -->
+                                    <input type="hidden" name="email" value="{{ current_user.email }}">      <!-- Assuming email is stored in session -->
+                                    <input type="hidden" name="tutor_name" value="{{ tutor.username }}">
+                                    <input type="hidden" name="tuition_subject" value="{{ tutor.subject }}">
+                                    <input type="hidden" name="tutor_email" value="{{ tutor.email }}">
                                     <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
                                 </form>
                             </li>

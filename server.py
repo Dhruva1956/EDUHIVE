@@ -6,7 +6,7 @@ from pymongo.errors import DuplicateKeyError
 from datetime import datetime
 from cords import crossdomain
 from flask_cors import CORS, cross_origin
-from db import get_tutor_id, get_all_tutors, save_or_update_tutor, get_tutor, get_user, save_user, save_room, add_room_members, get_rooms_for_user, get_room, is_room_member, \
+from db import get_all_students, get_all_subscriptions, subscribe, get_tutor_id, get_all_tutors, save_or_update_tutor, get_tutor, get_user, save_user, save_room, add_room_members, get_rooms_for_user, get_room, is_room_member, \
     get_room_members, is_room_admin, update_room, remove_room_members, save_message, get_messages
 
 
@@ -153,13 +153,26 @@ def explore(user_id):
     return render_template('explore.html', all_tutors=all_tutors, name=current_user.username)
 
 # Route to show the subscribed classes
-@app.route('/subscribed')
+@app.route('/subscribed', methods=["GET", "POST"])
 def subscribed():
-    if 'subscribed_classes' not in session:
-        session['subscribed_classes'] = []
+    username = request.form.get('username')
+    email = request.form.get('email')
+    tutor_name = request.form.get('tutor_name')
+    tuition_subject = request.form.get('tuition_subject')
+    tutor_email = request.form.get('tutor_email')
+    subscribe(username, email, tutor_name, tuition_subject, tutor_email)
 
-    subscribed_tutors = [tutor for tutor in tutors if tutor['id'] in session['subscribed_classes']]
-    return render_template('subscribed.html', tutors=subscribed_tutors)
+    return redirect(url_for("display_subscriptions", id=current_user.id))
+
+@app.route('/subscriptions/<string:id>')
+def display_subscriptions(id):
+    if current_user.role=="student":
+        all_subscriptions = get_all_subscriptions(current_user.username)
+    if current_user.role=="tutor":
+        all_subscriptions = get_all_students(current_user.username)
+    print("qwertty")
+    print(all_subscriptions)
+    return render_template('subscribed.html', subscriptions=all_subscriptions)
 
 # Dynamic route to show tutor profile based on ID
 @app.route('/tutor/<string:tutor_id>')

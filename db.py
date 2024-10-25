@@ -13,6 +13,7 @@ rooms_collection = chat_db.get_collection("rooms")
 tutors_collection = chat_db.get_collection("tutors")
 room_members_collection = chat_db.get_collection("room_members")
 messages_collection = chat_db.get_collection("messages")
+subscriptions_collection = chat_db.get_collection("subscriptions")
 
 def save_user(username, email, password, role):
     password_hash = generate_password_hash(password)
@@ -38,7 +39,8 @@ def get_tutor_id(tutor_id):
                     'username': tutor['username'],
                     'subject': tutor['subject'],  # Handle case with no subjects
                     'cost': tutor['cost'],                    # Handle case with no subjects
-                    'id': str(tutor['_id'])           # Include the tutor's unique ID for profile linking
+                    'id': str(tutor['_id']),      # Include the tutor's unique ID for profile linking
+                    'email': str(tutor['email'])
                 })
             else:  # There are subjects
                 for subject_entry in subjects:
@@ -46,7 +48,8 @@ def get_tutor_id(tutor_id):
                         'username': tutor['username'],
                         'subject': subject_entry['subject'],  # Subject name from the subject object
                         'cost': subject_entry['cost'],        # Cost from the subject object
-                        'id': str(tutor['_id'])               # Include the tutor's unique ID for profile linking
+                        'id': str(tutor['_id']),               # Include the tutor's unique ID for profile linking
+                        'email': str(tutor['email'])
                     })
 
             print("HANUMAN!!!!!!!")
@@ -65,6 +68,78 @@ def get_tutor(username):
     print("db.py tutors data")
     print(tutor_data)
     return Tutors(tutor_data['_id'], tutor_data['username'], tutor_data['email'], tutor_data['subject'], tutor_data['cost']) if tutor_data else None
+
+def subscribe(username, email, tutor_name, tuition_subject, tutor_email):
+    # Check if the student is already subscribed to this tutor and subject
+    existing_subscription = subscriptions_collection.find_one({
+        'username': username,
+        'tutor_name': tutor_name,
+        'tuition_subject': tuition_subject
+    })
+    
+    # If no existing subscription, add a new one
+    if not existing_subscription:
+        subscriptions_collection.insert_one({
+            'username': username,
+            'email': email,
+            'tutor_name': tutor_name,
+            'tuition_subject': tuition_subject,
+            'tutor_email': tutor_email
+        })
+    else:
+        print("Student is already subscribed to this tutor and subject.")
+
+def get_all_subscriptions(username):
+    try:
+        # Retrieve all subscription records from the collection
+        subscriptions = list(subscriptions_collection.find({'username': username}))
+        if not subscriptions:
+            print("No subscriptions found in the database.")
+        else:
+            print("Subscriptions found:", subscriptions)
+
+        # Format data to be sent to template
+        subscription_list = [
+            {
+                'username': sub.get('username', 'N/A'),
+                'email': sub.get('email', 'N/A'),
+                'tutor_name': sub.get('tutor_name', 'N/A'),
+                'tuition_subject': sub.get('tuition_subject', 'N/A'),
+                'tutor_email': sub.get('tutor_email', 'N/A')
+            }
+            for sub in subscriptions
+        ]
+        return subscription_list
+
+    except Exception as e:
+        print("Error fetching subscriptions:", str(e))
+        return []
+
+def get_all_students(username):
+    try:
+        # Retrieve all subscription records from the collection
+        subscriptions = list(subscriptions_collection.find({'tutor_name': username}))
+        if not subscriptions:
+            print("No subscriptions found in the database.")
+        else:
+            print("Subscriptions found:", subscriptions)
+
+        # Format data to be sent to template
+        subscription_list = [
+            {
+                'username': sub.get('username', 'N/A'),
+                'email': sub.get('email', 'N/A'),
+                'tutor_name': sub.get('tutor_name', 'N/A'),
+                'tuition_subject': sub.get('tuition_subject', 'N/A'),
+                'tutor_email': sub.get('tutor_email', 'N/A')
+            }
+            for sub in subscriptions
+        ]
+        return subscription_list
+
+    except Exception as e:
+        print("Error fetching subscriptions:", str(e))
+        return []
 
 def get_all_tutors():
     # Retrieve all tutors from the database
