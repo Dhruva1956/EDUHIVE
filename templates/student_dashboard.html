@@ -12,22 +12,15 @@
 {% block title %}Student Dashboard{% endblock %}
 
 {% block content %}
-<h1>Welcome to your dashboard, {{ student.name }}!</h1>
+<h1>Welcome to your dashboard, {{ current_user.username }}!</h1>
 <p>Here you can explore tutors, manage sessions, and more.</p>
 <!-- Add any dashboard-specific content here -->
 <ul>
-    {% for tutor in tutors %}
-        <li>{{ tutor.name }} - <a href="{{ url_for('inbox', tutor_id=tutor.id) }}">Message</a></li>
+    {% for room in rooms %}
+        <li><a href="/rooms/{{ room._id.room_id }}">{{ room.room_name }}</a></li>
     {% endfor %}
 </ul>
-{% endblock %}
 
-    <div class="container mt-5">
-        <h1>Welcome, {{ student.name }}!</h1>
-        <div class="mt-4">
-            <a href="#" class="btn btn-primary">Edit Profile</a>
-            <a href="{{ url_for('explore') }}" class="btn btn-success">Explore Tutors</a>
-        </div>
-    </div>
+{% endblock %}
 </body>
 </html>

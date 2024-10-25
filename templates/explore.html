@@ -14,7 +14,7 @@
     {% block title %}Explore Dashboard{% endblock %}
 
     {% block content %}
-    <h1>Welcome to your dashboard, {{ name }}!</h1>
+    <h1>Welcome to your dashboard, {{ current_user.username }}!</h1>
     <p>Here you can explore tutors, manage sessions, and more.</p>
     <!-- Add any dashboard-specific content here -->
 
@@ -27,13 +27,13 @@
     <!-- Container for Tutor Cards -->
     <div class="container mt-5">
         <div class="row">
-            {% for tutor in tutors %}
+            {% for tutor in all_tutors %}
             <!-- Tutor Card -->
             <div class="col-md-4 mb-4">
                 <div class="card shadow">
                     <img src="https://via.placeholder.com/300" class="card-img-top" alt="Tutor Image">
                     <div class="card-body text-center">
-                        <h5 class="card-title">{{ tutor.name }}</h5>
+                        <h5 class="card-title">{{ tutor.username }}</h5>
                         <p class="card-text">Subject: {{ tutor.subject }}</p>
                         <p class="card-text">Cost: {{ tutor.cost }}</p>
                         <a href="{{ url_for('tutor_profile', tutor_id=tutor.id) }}" class="btn btn-primary">Know More</a>

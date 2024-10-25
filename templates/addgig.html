@@ -12,23 +12,23 @@
     {% block title %}Add Gigs{% endblock %}
 
 {% block content %}
-<h1>Welcome to your Add Gigs dashboard, {{ tutor.name }}!</h1>
+<h1>Welcome to your Add Gigs dashboard, {{ tutor.username }}!</h1>
 <p>Here you can manage your gigs</p>
 <!-- Add any dashboard-specific content here -->
     <div class="container mt-5">
         <h1>Add New Gig</h1>
-        <form method="POST" action="{{ url_for('add_gig', tutor_id =tutor_id) }}">
+        <form method="POST" action="{{ url_for('add_gig', tutor_id =tutor.id) }}">
             <div class="form-group">
                 <label for="name">Your Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name" value="{{ tutor.username}}" readonly required>
             </div>
             <div class="form-group">
                 <label for="subject">Subject</label>
                 <input type="text" class="form-control" id="subject" name="subject" required>
             </div>
             <div class="form-group">
-                <label for="cost">Cost (e.g. $30/hour)</label>
-                <input type="text" class="form-control" id="cost" name="cost" required>
+                <label for="cost">Cost (e.g. 30 if $30/hour)</label>
+                <input type="number" class="form-control" id="cost" name="cost" required>
             </div>
             <button type="submit" class="btn btn-primary">Add Gig</button>
         </form>

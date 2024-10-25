@@ -12,22 +12,11 @@
 {% block title %}Tutor Dashboard{% endblock %}
 
 {% block content %}
-<h1>Welcome to your dashboard, {{ tutor.name }}!</h1>
+<h1>Welcome to your dashboard, {{ current_user.username}}!</h1>
 <p>Here you can manage your gigs, view students, and more.</p>
 <!-- Add any dashboard-specific content here -->
-<ul>
-    {% for tutor in tutors %}
-        <li>{{ tutor.name }} - <a href="{{ url_for('inbox', tutor_id=tutor.id) }}">Message</a></li>
-    {% endfor %}
-</ul>
+
 {% endblock %}
 
-    <div class="container mt-5">
-        <h1>Welcome, {{ tutor.name }}!</h1>
-        <div class="mt-4">
-            <a href="{{ url_for('edit_tutor', tutor_id=tutor.id) }}" class="btn btn-primary">Edit Profile</a>
-            <a href="{{ url_for('add_gig') }}" class="btn btn-success">Add Gig</a>
-        </div>
-    </div>
 </body>
 </html>

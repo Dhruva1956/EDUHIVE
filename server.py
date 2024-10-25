@@ -1,15 +1,26 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from engineio.payload import Payload
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from pymongo.errors import DuplicateKeyError
+from datetime import datetime
+from cords import crossdomain
+from flask_cors import CORS, cross_origin
+from db import get_tutor_id, get_all_tutors, save_or_update_tutor, get_tutor, get_user, save_user, save_room, add_room_members, get_rooms_for_user, get_room, is_room_member, \
+    get_room_members, is_room_admin, update_room, remove_room_members, save_message, get_messages
+
 
 # Set the maximum number of packets to be decoded
 Payload.max_decode_packets = 200
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "thisismys3cr3tk3y"
-
-# Initialize SocketIO
-socketio = SocketIO(app)
+CORS(app)
+app.secret_key = "GoldenLetter"
+socketio = SocketIO(app, cors_allowed_origins="*")
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.init_app(app)
 
 # Dummy data for tutors and students
 tutors = [
@@ -27,10 +38,15 @@ _users_in_room = {}  # Stores users in each room
 _room_of_sid = {}    # Maps socket IDs to rooms
 _name_of_sid = {}    # Maps socket IDs to user display names
 
+@app.route('/home')
+def home():
+    return "hello home"
+
 # Route to login page
 @app.route('/login', methods=['GET', 'POST'])
 @app.route("/", methods=["GET", "POST"])
 def login():
+    '''
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -45,40 +61,96 @@ def login():
             return redirect(url_for('tutor_dashboard', tutor_id=user['id']) if session['role'] == 'tutor' else url_for('student_dashboard', student_id=user['id']))
         else:
             return "Invalid username or password", 401
+    '''
+    rooms = []
+    if current_user.is_authenticated:
+        print(current_user.username)
+        return redirect(url_for('tutor_dashboard', tutor_id=current_user.id) if current_user.role == 'tutor' else url_for('student_dashboard', student_id=current_user.id))
+    
+    message = ''
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password_input = request.form.get('password')
+        user = get_user(username)
 
-    return render_template('login.html')
+        if user and user.check_password(password_input):
+            login_user(user)
+            print(user.id)
+            return redirect(url_for('tutor_dashboard', tutor_id=user.id) if user.role == 'tutor' else url_for('student_dashboard', student_id=user.id))
+        else:
+            message = 'Failed to Login!'
+    return render_template('login.html', message=message)
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    message = ''
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        role = request.form.get('role')
+        try:
+            save_user(username, email, password, role)
+            return redirect(url_for('login'))
+        except DuplicateKeyError:
+            message = "User Already Exists!!"
+    return render_template('signup.html', message=message)
 
 # Tutor dashboard
-@app.route('/tutor/dashboard/<int:tutor_id>')
+@app.route('/tutor/dashboard/<string:tutor_id>')
 def tutor_dashboard(tutor_id):
-    tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
-    return render_template('tutor_dashboard.html', tutor=tutor, tutor_id=tutor_id) if tutor else "Tutor not found", 404
+    #tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
+    rooms = []
+    if current_user.is_authenticated:
+        rooms = get_rooms_for_user(current_user.username)
+        return render_template('tutor_dashboard.html', rooms=rooms, tutor_id=current_user.id)
+    else: 
+        return "Tutor not found"
 
 # Student dashboard
-@app.route('/student/dashboard/<int:student_id>')
+@app.route('/student/dashboard/<string:student_id>')
 def student_dashboard(student_id):
-    student = next((student for student in students if student['id'] == student_id), None)
-    return render_template('student_dashboard.html', student=student, student_id=student_id) if student else "Student not found", 404
+    #student = next((student for student in students if student['id'] == student_id), None)
+    rooms = []
+    if current_user.is_authenticated:
+        rooms = get_rooms_for_user(current_user.username)
+        print(current_user.username)
+        return render_template('student_dashboard.html', rooms=rooms, student_id=current_user.id) 
+    else:
+        return "Student not found"
 
 # Route to add a new gig (course)
-@app.route('/addgig/<int:tutor_id>', methods=['GET', 'POST'])
+@app.route('/addgig/<string:tutor_id>', methods=['GET', 'POST'])
 def add_gig(tutor_id):
+    tutors = get_tutor(current_user.username)
     if request.method == 'POST':
+        '''
         new_course = {
             'id': len(tutors) + 1,
             'name': request.form['name'],
             'subject': request.form['subject'],
             'cost': request.form['cost']
         }
+        
         tutors.append(new_course)
-        return redirect(url_for('explore', user_id=tutor_id))
+        '''
+        name= tutors.username
+        email= tutors.email
+        subject= request.form['subject']
+        cost= request.form['cost']
+        save_or_update_tutor(name, email, subject, cost)
+        return redirect(url_for('explore', user_id=tutors.id))
 
-    tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
-    return render_template('addgig.html', tutor=tutor, tutor_id=tutor_id) if tutor else "Tutor not found", 404
+    #tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
+    return render_template('addgig.html', tutor=tutors)
 
-@app.route("/explore/<int:user_id>", methods=["GET", "POST"])
+@app.route("/explore/<string:user_id>", methods=["GET", "POST"])
 def explore(user_id):
-    return render_template('explore.html', tutors=tutors, user_id=user_id, name=session['username'])
+    all_tutors = get_all_tutors() # returned list of tutors_collection
+    print(all_tutors)
+    return render_template('explore.html', all_tutors=all_tutors, name=current_user.username)
 
 # Route to show the subscribed classes
 @app.route('/subscribed')
@@ -90,25 +162,31 @@ def subscribed():
     return render_template('subscribed.html', tutors=subscribed_tutors)
 
 # Dynamic route to show tutor profile based on ID
-@app.route('/tutor/<int:tutor_id>')
+@app.route('/tutor/<string:tutor_id>')
 def tutor_profile(tutor_id):
-    tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
-    return render_template('tutorprofile.html', tutor=tutor) if tutor else "Tutor not found", 404
+    tutors = get_tutor_id(tutor_id)
+    return render_template('tutorprofile.html', tutors=tutors) 
 
 # Route to edit tutor profile
-@app.route('/tutor/edit/<int:tutor_id>', methods=['GET', 'POST'])
+@app.route('/tutor/edit/<string:tutor_id>', methods=['GET', 'POST'])
 def edit_tutor(tutor_id):
-    tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
-    if not tutor:
-        return "Tutor not found", 404
-
+    #tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
+    #if not tutor:
+     #   return "Tutor not found", 404
+    print("RAM RAM")
+    print(current_user.username)
+    print("RAM RAM")
+    tutors = get_tutor(current_user.username)
+    print("JAI HANUMAN")
+    print(tutors.email)
+    
     if request.method == 'POST':
-        tutor['name'] = request.form['name']
-        tutor['subject'] = request.form['subject']
-        tutor['cost'] = request.form['cost']
-        return redirect(url_for('tutor_profile', tutor_id=tutor_id))
-
-    return render_template('edit_tutor.html', tutor=tutor)
+        subject = request.form['subject']
+        cost = request.form['cost']
+        save_or_update_tutor(tutors.username, tutors.email, subject, cost)
+        return render_template('tutorprofile.html', tutors=tutors)
+    
+    return render_template('edit_tutor.html', tutors=tutors)
 
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
@@ -116,11 +194,10 @@ def profile():
 
 @app.route("/videocall", methods=["GET", "POST"])
 def index():
-    if session.get('role'):
-        if request.method == "POST":
-            room_id = request.form['room_id']
-            return redirect(url_for("entry_checkpoint", room_id=room_id))
-        return render_template("home.html")
+    if request.method == "POST":
+        room_id = request.form['room_id']
+        print(room_id)
+        return redirect(url_for("entry_checkpoint", room_id=room_id))
     return render_template("home.html")
 
 @app.route("/room/<string:room_id>/")
@@ -192,12 +269,156 @@ def on_data(data):
         print('{} message from {} to {}'.format(data["type"], sender_sid, target_sid))
 
     socketio.emit("data", data, room=target_sid)
-
+'''
 # Route to logout
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('login'))
+'''
+@app.route("/logout/")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+#MESSAGES RELATED METHODS BELOW
+@app.route('/create-room/', methods=['GET', 'POST'])
+@login_required
+def create_room():
+    message = ''
+    if request.method == 'POST':
+        room_name = request.form.get('room_name')
+        usernames = [username.strip() for username in request.form.get('members').split(',')]
+
+        if len(room_name) and len(usernames):
+            room_id = save_room(room_name, current_user.username)
+            if current_user.username in usernames:
+                usernames.remove(current_user.username)
+            add_room_members(room_id, room_name, usernames, current_user.username)
+            return redirect(url_for('view_room', room_id=room_id))
+        else:
+            message = "Failed to create room"
+    return render_template('create_room.html', message=message)
+
+@app.route('/rooms/<room_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_room(room_id):
+    room = get_room(room_id)
+    if room and is_room_admin(room_id, current_user.username):
+        existing_room_members = [member['_id']['username'] for member in get_room_members(room_id)]
+        room_members_str = ",".join(existing_room_members)
+        message = ''
+        if request.method == 'POST':
+            room_name = request.form.get('room_name')
+            room['name'] = room_name
+            update_room(room_id, room_name)
+
+            new_members = usernames = [username.strip() for username in request.form.get('members').split(',')]
+            members_to_add = list(set(new_members) - set(existing_room_members))
+            members_to_remove = list(set(existing_room_members) - set(new_members))
+
+            if len(members_to_add):
+                add_room_members(room_id, room_name, members_to_add, current_user.username)
+
+            if len(members_to_remove):
+                remove_room_members(room_id, members_to_remove)
+            message = 'Room Edited Succesfully'
+            room_members_str = ",".join(new_members)
+        return render_template('edit_room.html', room=room, room_members_str=room_members_str, message=message)
+    else:
+        return "Room Not Found", 404
+
+@app.route("/rooms/<room_id>/send_message", methods=['POST'])
+@login_required
+def send_message(room_id):
+    room = get_room(room_id)
+    if room and is_room_member(room_id, current_user.username):
+        message = request.form.get('message')
+
+        # Check if message is not empty
+        if message:
+            save_message(room_id, message, current_user.username)
+
+        # Redirect back to the room after saving the message
+        return redirect(url_for('view_room', room_id=room_id))
+    else:
+        return "Room Not Found", 404
+
+@app.route("/inbox/<string:id>")
+@login_required
+def inbox(id):
+    rooms = get_rooms_for_user(current_user.username)
+    return render_template('inbox.html', rooms=rooms)
+
+@app.route("/rooms/<room_id>/")
+@login_required
+def view_room(room_id):
+    room = get_room(room_id)
+    if room and is_room_member(room_id, current_user.username):
+        room_members = get_room_members(room_id)
+        messages = get_messages(room_id)
+        return render_template('view_room.html', username=current_user.username, room=room, room_members=room_members, messages=messages)
+    else:
+        return "Room Not Found", 404
+
+'''
+@app.route("/rooms/<room_id>/")
+@login_required
+def view_room(room_id):
+    print("Send message function activated")
+    room = get_room(room_id)
+    print(room)
+    if room and is_room_member(room_id, current_user.username):
+        room_members = get_room_members(room_id)
+        messages = get_messages(room_id)
+        print(messages)
+        return render_template('view_room.html', username=current_user.username, room=room, room_members=room_members, messages=messages)
+    else:
+        return "Room Not Found", 404
+'''
+
+
+@socketio.on('send_message')
+def handle_send_message_event(data):
+    print("hello boss: AT THE FUNCTION")
+    app.logger.info("{} has sent message to the room {}: {}".format(data['username'],
+                                                                    data['room'],
+                                                                    data['message']))
+    print("hello boss: "+data['message'])
+    data['created_at'] = datetime.now().strftime("%d %b, %H:%M")
+    save_message(data['room'], data['message'], data['username'])
+    socketio.emit('receive_message', data, room=data['room'])
+
+'''
+def test_save_message():
+    data = {
+        "room": "test_room_id",
+        "message": "Test message",
+        "username": "test_user"
+    }
+    try:
+        save_message(data['room'], data['message'], data['username'])
+        print("Message saved successfully")
+    except Exception as e:
+        print("Failed to save message:", e)
+
+test_save_message()
+'''
+
+
+
+@socketio.on('join_room')
+def handle_join_room_event(data):
+    app.logger.info("{} has joined the room {}".format(data['username'], data['room']))
+    join_room(data['room'])
+    socketio.emit('join_room_announcement', data)
+
+
+
+@login_manager.user_loader
+def load_user(username):
+    return get_user(username)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)

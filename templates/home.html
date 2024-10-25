@@ -21,7 +21,14 @@
     <title>EDU-HIVE</title>
 </head>
 <body>
+    {% extends 'base.html' %}
 
+    {% block title %}Student Dashboard{% endblock %}
+    
+    {% block content %}
+    <h1>Welcome to your dashboard, {{ current_user.username }}!</h1>
+    <p>Here you can explore tutors, manage sessions, and more.</p>
+    <!-- Add any dashboard-specific content here -->
     <div class="heading mb-4">
         <h1 class="display-4">EDU-HIVE</h1>
     </div>
@@ -43,6 +50,9 @@
             </div>
         </form>
     </div>
+    
+    {% endblock %}
+    
     
 </body>
 </html>

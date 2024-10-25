@@ -11,14 +11,15 @@
     <!-- Navigation Bar -->
     <nav>
         <ul>
-            <li><a href="{{ url_for('explore', user_id=session['id'])}}">Explore Tutors</a></li>
-            {% if session['role'] == 'tutor' %}
-                <li><a href="{{ url_for('tutor_dashboard', tutor_id=session['id']) }}">Dashboard</a></li>
-                <li><a href="{{ url_for('add_gig', tutor_id =session['id']) }}">Add Gig</a></li>
-                <li><a href="{{ url_for('edit_tutor', tutor_id=session['id']) }}">Edit Profile</a></li>
-            {% elif session['role'] == 'student' %}
-                <li><a href="{{ url_for('student_dashboard', student_id=session['id']) }}">Dashboard</a></li>
+            <li><a href="{{ url_for('explore', user_id=current_user.id)}}">Explore Tutors</a></li>
+            {% if current_user.role == 'tutor' %}
+                <li><a href="{{ url_for('tutor_dashboard', tutor_id=current_user.id) }}">Dashboard</a></li>
+                <li><a href="{{ url_for('add_gig', tutor_id =current_user.id) }}">Add Gig</a></li>
+                <li><a href="{{ url_for('edit_tutor', tutor_id=current_user.id) }}">Edit Profile</a></li>
+            {% elif current_user.role == 'student' %}
+                <li><a href="{{ url_for('student_dashboard', student_id=current_user.id) }}">Dashboard</a></li>
             {% endif %}
+            <li><a href="{{ url_for('inbox', id=current_user.id) }}">Inbox</a></li>
             <li><a href="{{ url_for('index') }}">Video Call</a></li>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
