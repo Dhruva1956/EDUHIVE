@@ -6,7 +6,7 @@ from pymongo.errors import DuplicateKeyError
 from datetime import datetime
 from cords import crossdomain
 from flask_cors import CORS, cross_origin
-from db import get_all_students, get_all_subscriptions, subscribe, get_tutor_id, get_all_tutors, save_or_update_tutor, get_tutor, get_user, save_user, save_room, add_room_members, get_rooms_for_user, get_room, is_room_member, \
+from db import get_subscription_room_id, remove_room_member, un_subscribe, get_all_students, get_all_subscriptions, subscribe, get_tutor_id, get_all_tutors, save_or_update_tutor, get_tutor, get_user, save_user, save_room, add_room_members, get_rooms_for_user, get_room, is_room_member, \
     get_room_members, is_room_admin, update_room, remove_room_members, save_message, get_messages
 
 
@@ -23,6 +23,7 @@ login_manager.login_view = 'login'
 login_manager.init_app(app)
 
 # Dummy data for tutors and students
+'''
 tutors = [
     {'id': 1, 'name': 'John Doe', 'subject': 'Mathematics', 'cost': '$30/hour', 'username': 'johndoe', 'password': 'math123'},
     {'id': 2, 'name': 'Jane Smith', 'subject': 'English', 'cost': '$25/hour', 'username': 'janesmith', 'password': 'english123'},
@@ -33,7 +34,7 @@ students = [
     {'id': 101, 'name': 'Student One', 'username': 'student1', 'password': 'studentpass'},
     {'id': 102, 'name': 'Student Two', 'username': 'student2', 'password': 'studentpass'}
 ]
-
+'''
 _users_in_room = {}  # Stores users in each room
 _room_of_sid = {}    # Maps socket IDs to rooms
 _name_of_sid = {}    # Maps socket IDs to user display names
@@ -162,7 +163,7 @@ def subscribed():
     tuition_subject = request.form.get('tuition_subject')
     tutor_email = request.form.get('tutor_email')
     subscribe(username, email, tutor_name, tuition_subject, tutor_email)
-    
+
     return redirect(url_for("display_subscriptions", id=current_user.id))
 
 @app.route('/subscriptions/<string:id>')
@@ -170,10 +171,26 @@ def display_subscriptions(id):
     if current_user.role=="student":
         all_subscriptions = get_all_subscriptions(current_user.username)
     if current_user.role=="tutor":
+        #all_subscriptions = get_all_subscriptions(current_user.username)
         all_subscriptions = get_all_students(current_user.username)
     print("qwertty")
     print(all_subscriptions)
     return render_template('subscribed.html', subscriptions=all_subscriptions)
+
+@app.route('/unsubscribe', methods=['POST'])
+def unsubscribe():
+    subscription_username = request.form.get('subscription_username')
+    subscription_name = request.form.get('subscription_name')
+    subscription_subject = request.form.get('subscription_subject')
+    #room_name= f"{subscription_name}_{subscription_subject}"
+    subscription_id=get_subscription_room_id(subscription_name, subscription_subject)
+    print("retrieved SUB ID")
+    print(subscription_id)
+    if subscription_id:
+        print("INITIATED UN SUBSCRIBE")
+        # Code to remove subscription from database
+        un_subscribe(subscription_id, subscription_username, subscription_name, subscription_subject)
+    return redirect(url_for('display_subscriptions', id=current_user.id))
 
 # Dynamic route to show tutor profile based on ID
 @app.route('/tutor/<string:tutor_id>')

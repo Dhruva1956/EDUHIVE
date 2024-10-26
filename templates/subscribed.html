@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4">Student Subscriptions</h2>
+        <h2 class="mb-4">Subscriptions</h2>
         {% if subscriptions and subscriptions | length > 0 %}
             <ul class="list-group">
                 {% for sub in subscriptions %}
@@ -18,6 +18,15 @@
                         <p><strong>Tutor Name:</strong> {{ sub.tutor_name }}</p>
                         <p><strong>Tuition Subject:</strong> {{ sub.tuition_subject }}</p>
                         <p><strong>Tutor Email:</strong> {{ sub.tutor_email }}</p>
+                        
+                        <!-- Unsubscribe Button -->
+                        <form action="{{ url_for('unsubscribe') }}" method="POST" class="mt-2">
+                            <input type="hidden" name="subscription_id" value="{{ sub.id }}">
+                            <input type="hidden" name="subscription_username" value="{{ sub.username }}">
+                            <input type="hidden" name="subscription_name" value="{{ sub.tutor_name }}">
+                            <input type="hidden" name="subscription_subject" value="{{ sub.tuition_subject }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Unsubscribe</button>
+                        </form>
                     </li>
                 {% endfor %}
             </ul>

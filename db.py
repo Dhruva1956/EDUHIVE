@@ -127,6 +127,25 @@ def get_all_subscriptions(username):
     except Exception as e:
         print("Error fetching subscriptions:", str(e))
         return []
+    
+def un_subscribe(id, name, tutor_name, tuition_subject):
+    print("SUBSCRIPTION DELETED")
+    subscriptions_collection.delete_one({'_id': ObjectId(id)})
+    print("DELETING ROOM")
+    room_name= f"{tutor_name}_{tuition_subject}"
+    room_id=get_room_id(room_name)
+    print("GOT THE ROOM ID")
+    print(room_id)
+    remove_room_member(room_id, name)
+    print("ROOM DELETED")
+
+def get_subscription_room_id(tutor_name, tuition_subject):
+    subscription = subscriptions_collection.find_one(
+        {'tutor_name': tutor_name, 'tuition_subject': tuition_subject},
+        {'_id': 1}
+    )
+    return subscription['_id'] if subscription else None
+
 
 def get_all_students(username):
     try:
@@ -158,28 +177,29 @@ def get_all_tutors():
     # Retrieve all tutors from the database
     tutors = tutors_collection.find()
     tutor_profiles = []
-    
+
     for tutor in tutors:
         # Extract the subjects list from the tutor document
         subjects = tutor.get('subjects', [])
         
         if not subjects:  # No subjects at all
             tutor_profiles.append({
-                'username': tutor['username'],
-                'subject': tutor['subject'],
-                'cost': tutor['cost'],
-                'id': str(tutor['_id'])  # Include the tutor's unique ID for profile linking
+                'username': tutor.get('username', 'Unknown'),   # Default to 'Unknown' if username is missing
+                'subject': tutor.get('subject', ''),            # Default to empty string if subject is missing
+                'cost': tutor.get('cost', 0),                   # Default to 0 if cost is missing
+                'id': str(tutor['_id'])                         # Include the tutor's unique ID for profile linking
             })
         else:  # There are subjects
             for subject_entry in subjects:
                 tutor_profiles.append({
-                    'username': tutor['username'],
-                    'subject': subject_entry['subject'],  # Subject name from the subject object
-                    'cost': subject_entry['cost'],        # Cost from the subject object
-                    'id': str(tutor['_id'])  # Include the tutor's unique ID for profile linking
+                    'username': tutor.get('username', 'Unknown'),
+                    'subject': subject_entry.get('subject', ''),  # Subject name with default empty string
+                    'cost': subject_entry.get('cost', 0),         # Cost with default 0
+                    'id': str(tutor['_id'])
                 })
     
     return tutor_profiles
+
 
 
 
@@ -244,6 +264,17 @@ def get_room_id(room_name):
     room = rooms_collection.find_one({'name': room_name}, {'_id': 1})
     return room['_id'] if room else None
 
+def get_room_id_room_members_collection(room_name, username):
+    # Find the member document based on room_name and username
+    member = room_members_collection.find_one({'room_name': room_name, 'username': username}, {'_id': 1})
+    
+    # Check if a document is found and return its ID
+    if member and '_id' in member:
+        return member['_id']  # This returns the ObjectId of the member
+    
+    # Return None if no document is found
+    return None
+
 def add_room_member(room_id, room_name, username, added_by, is_room_admin=False):
     room_members_collection.insert_one(
         {'_id': {'room_id': ObjectId(room_id), 'username': username}, 'room_name': room_name, 'added_by': added_by,
@@ -257,6 +288,24 @@ def add_room_members(room_id, room_name, usernames, added_by):
 def remove_room_members(room_id, usernames):
     room_members_collection.delete_many(
         {'_id': {'$in': [{'room_id': ObjectId(room_id), 'username': username} for username in usernames]}})
+
+def remove_room_member(room_id, username):
+    # Delete a single room member from the room_members_collection
+    # Ensure room_id is converted to ObjectId only if it is not None
+    if room_id is not None:
+        result = room_members_collection.delete_one({
+            '_id': {
+                'room_id': ObjectId(room_id),  # Convert room_id to ObjectId
+                'username': username            # Match the username
+            }
+        })
+
+        if result.deleted_count > 0:
+            print(f"Successfully removed member with username: {username} and ID: {room_id}.")
+        else:
+            print(f"No member found with username: {username} and ID: {room_id}.")
+    else:
+        print("Invalid room_id provided, cannot remove room member.")
 
 def get_room_members(room_id):
     return list(room_members_collection.find({'_id.room_id': ObjectId(room_id)}))
