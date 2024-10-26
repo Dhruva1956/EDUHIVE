@@ -7,8 +7,14 @@
     <title>All Subscriptions</title>
 </head>
 <body>
+    {% extends 'base.html' %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<h1>Welcome to your Subscriptions dashboard, {{ current_user.username }}!</h1>
+<!-- Add any dashboard-specific content here -->
     <div class="container mt-5">
-        <h2 class="mb-4">Subscriptions</h2>
         {% if subscriptions and subscriptions | length > 0 %}
             <ul class="list-group">
                 {% for sub in subscriptions %}
@@ -35,5 +41,6 @@
         {% endif %}
         <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
     </div>
+    {% endblock %}
 </body>
 </html>

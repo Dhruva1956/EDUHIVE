@@ -2,7 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDU-HIVE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            padding: 1rem;
+            background-color: #3a3a3a;
+            color: #ffcf99;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px; /* Increased font size for header */
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px; /* Limit the width of the container */
+            margin: 20px auto; /* Center the container */
+            padding: 20px; /* Padding for the container */
+            background-color: #fff; /* White background for content */
+            border-radius: 8px; /* Rounded corners for the container */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+
+        /* Welcome Message */
+        .welcome {
+            font-size: 20px; /* Font size for welcome message */
+            margin-bottom: 15px; /* Space below welcome message */
+        }
+
+        /* Rooms List Styles */
+        .rooms-list {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+            margin: 0; /* Remove margin */
+        }
+
+        .rooms-list li {
+            margin-bottom: 10px; /* Space between room items */
+        }
+
+        .rooms-list a {
+            display: block; /* Make links block level for better click area */
+            padding: 15px; /* Padding inside links */
+            background-color: #e2e2e2; /* Light gray background */
+            border-radius: 5px; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+            color: #333; /* Dark text color */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .rooms-list a:hover {
+            background-color: #ffcf99; /* Highlight background on hover */
+            color: #000; /* Change text color on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px; /* Reduce padding on smaller screens */
+            }
+
+            h1 {
+                font-size: 20px; /* Decrease font size for smaller screens */
+            }
+        }
+    </style>
 </head>
 <body>
     {% extends 'base.html' %}
@@ -10,15 +88,22 @@
     {% block title %}Student Dashboard{% endblock %}
     
     {% block content %}
-    <h1>Welcome to your dashboard, {{ current_user.username }}!</h1>
-    <p>Below are open rooms</p>
-    <!-- Add any dashboard-specific content here -->
-    <ul>
-        {% for room in rooms %}
-            <li><a href="/rooms/{{ room._id.room_id }}">{{ room.room_name }}</a></li>
-        {% endfor %}
-    </ul>
+    <header>
+        <h1>Welcome to your dashboard, {{ current_user.username }}!</h1>
+    </header>
     
+    <div class="container">
+        <p class="welcome">Below are your subscribed rooms:</p>
+        <ul class="rooms-list">
+            {% for room in rooms %}
+                <li>
+                    <a href="/rooms/{{ room._id.room_id }}">{{ room.room_name }}</a>
+                </li>
+            {% else %}
+                <li>No rooms subscribed yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
     {% endblock %}
-    </body>
+</body>
 </html>

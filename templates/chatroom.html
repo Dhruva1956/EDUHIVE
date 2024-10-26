@@ -39,7 +39,13 @@
     <title>EDU-HIVE [{{room_id}}]</title>
 </head>
 <body>
-    
+    {% extends 'base.html' %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<!-- Add any dashboard-specific content here -->
+
     <div class="heading mb-4">
         <h1 class="display-4">EDU-HIVE</h1>
         <div class="room-info">
@@ -79,5 +85,6 @@
             </div>
         </div>
     </div>    
+    {% endblock %}
 </body>
 </html>

@@ -2,101 +2,192 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Chat App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            background-color: rgb(144, 128, 87);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            padding: 1rem;
+            background-color: rgb(49, 46, 42);
+            color: rgb(255, 207, 149);
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px; /* Increased font size for header */
+        }
+
+        /* Messages Container */
+        #messages {
+            max-height: 400px; /* Set max height for scrolling */
+            overflow-y: auto; /* Enable vertical scrolling */
+            background-color: white; /* Background color for message box */
+            border: 1px solid #ccc; /* Border around message box */
+            border-radius: 8px; /* Rounded corners */
+            padding: 15px; /* Padding inside the message box */
+            margin: 20px 0; /* Margin above and below the message box */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+        }
+
+        /* Message Styles */
+        .message {
+            margin-bottom: 15px; /* Space between messages */
+            padding: 10px; /* Padding inside message */
+            border-radius: 5px; /* Rounded corners for messages */
+            position: relative; /* For absolute positioning of timestamps */
+        }
+
+        .message b {
+            color: rgb(49, 46, 42); /* Color for sender's name */
+            font-weight: bold; /* Make sender's name bold */
+        }
+
+        .message:nth-child(odd) {
+            background-color: rgb(235, 235, 235); /* Light gray background for odd messages */
+        }
+
+        .message:nth-child(even) {
+            background-color: rgb(220, 240, 255); /* Light blue background for even messages */
+        }
+
+        /* Message Timestamp */
+        .message span {
+            font-size: 12px; /* Smaller font for timestamp */
+            color: gray; /* Gray color for timestamps */
+            position: absolute; /* Position it at the top right */
+            right: 10px; /* Distance from the right */
+            top: 10px; /* Distance from the top */
+        }
+
+        /* Message Input Form */
+        form {
+            display: flex; /* Use flexbox for aligning items */
+            margin-top: 10px; /* Margin above form */
+        }
+
+        input[type="text"] {
+            flex: 1; /* Allow input to take available space */
+            padding: 10px; /* Padding inside input */
+            border: 1px solid #ccc; /* Border for input */
+            border-radius: 5px; /* Rounded corners for input */
+            margin-right: 10px; /* Space between input and button */
+            font-size: 16px; /* Font size for input text */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Light shadow for input */
+        }
+
+        button {
+            background-color: rgb(49, 46, 42); /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners for button */
+            padding: 10px 15px; /* Padding inside button */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 16px; /* Font size for button text */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Light shadow for button */
+        }
+
+        button:hover {
+            background-color: rgb(240, 174, 120); /* Lighten button color on hover */
+            color: #000000;
+        }
+
+        /* Member List Styles */
+        .members {
+            background-color: rgb(49, 46, 42);
+            color: white; /* Text color for members */
+            padding: 15px; /* Padding for member list */
+            border-radius: 8px; /* Rounded corners for member list */
+            margin-top: 20px; /* Margin above member list */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+
+        .members h2 {
+            margin: 0 0 10px 0; /* Margin for member list header */
+            font-size: 20px; /* Increased font size for member list title */
+        }
+
+        ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+            margin: 0; /* Remove margin */
+        }
+
+        ul li {
+            padding: 10px; /* Padding inside list items */
+            background-color: rgb(49, 46, 42); /* Darker background for members */
+            border-radius: 5px; /* Rounded corners for list items */
+            margin-bottom: 5px; /* Space between members */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+
+        ul li:hover {
+            background-color: rgb(255, 207, 149); /* Lighten background on hover */
+            color: #000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            form {
+                flex-direction: column; /* Stack items vertically on small screens */
+            }
+
+            input[type="text"] {
+                margin-right: 0; /* Remove right margin */
+                margin-bottom: 10px; /* Add bottom margin for spacing */
+            }
+        }
+    </style>
 </head>
 <body>
     {% extends 'base.html' %}
     {% block title %}Student Dashboard{% endblock %}
-    
+
     {% block content %}
-    <!-- Add any dashboard-specific content here -->
-    <h1>Welcome to chat room: {{ room.name }}</h1>
+    <header>
+        <h1>Welcome to chat room: {{ room.name }}</h1>
+    </header>
 
     <div id="messages">
         {% for message in messages %}
-            <div><b>{{message.sender}}&nbsp;[{{ message.created_at }}]:&nbsp;</b>{{message.text}}</div>
+            <div class="message">
+                <b>{{ message.sender }}</b>
+                <span>[{{ message.created_at }}]</span>
+                <div>{{ message.text }}</div>
+            </div>
         {% endfor %}
     </div>
-    <!-- Form to send message via POST request -->
+
     <form action="{{ url_for('send_message', room_id=room._id) }}" method="POST">
-        <input type="text" name="message" placeholder="Enter your message here">
+        <input type="text" name="message" placeholder="Enter your message here" required>
         <button type="submit">Send</button>
     </form>
-    
-    <ul>
-        {% for member in room_members %}
-            <li>{{ member._id.username }}</li>
-        {% endfor %}
-    </ul>
+
+    <div class="members">
+        <h2>Room Members ({{ room_members | length }})</h2>
+        <ul>
+            {% for member in room_members %}
+                <li>{{ member._id.username }}</li>
+            {% endfor %}
+        </ul>
+    </div>
     {% endblock %}
-
+    
+    <script>
+        setInterval(function() {
+            location.reload();
+        }, 5000); // Refresh every 5 seconds
+    </script>
 </body>
-<script>
-    setInterval(function() {
-        location.reload();
-    }, 5000); // Refresh every 5 seconds
-</script>
-
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
--->
-<!--
-<script src="https://cdn.socket.io/4.8.0/socket.io.min.js" integrity="sha384-OoIbkvzsFFQAG88r+IqMAjyOtYDPGO0cqK5HF5Uosdy/zUEGySeAzytENMDynREd" crossorigin="anonymous"></script>
-<script>
-    const socket = io.connect("http://127.0.0.1:5000");
-
-    socket.on('connect', function () {
-        socket.emit('join_room', {
-            username: "{{ username }}",
-            room: "{{ room._id }}"
-        });
-
-        let message_input = document.getElementById('message_input');
-
-        document.getElementById('message_input_form').onsubmit = function (e) {
-            e.preventDefault();
-            let message = message_input.value.trim();
-            console.log(message);
-            if (message.length) {
-                socket.emit('send_message', {
-                    username: "{{ username }}",
-                    room: "{{ room._id }}",
-                    message: message
-                })
-            }
-            message_input.value = '';
-            message_input.focus();
-        }
-    });
-
-    window.onbeforeunload = function () {
-        socket.emit('leave_room', {
-            username: "{{ username }}",
-            room: "{{ room._id }}"
-        })
-    };
-
-    socket.on('receive_message', function (data) {
-        console.log(data);
-        const newNode = document.createElement('div');
-        newNode.innerHTML = `<b>${data.username}&nbsp;[${data.created_at}]:&nbsp;</b>${data.message}`;
-        document.getElementById('messages').appendChild(newNode);
-    });
-
-    socket.on('join_room_announcement', function (data) {
-        console.log(data);
-        if (data.username !== "{{ username }}") {
-            const newNode = document.createElement('div');
-            newNode.innerHTML = `<b>${data.username}</b> has joined the room`;
-            document.getElementById('messages').appendChild(newNode);
-        }
-    });
-
-    socket.on('leave_room_announcement', function (data) {
-        console.log(data);
-        const newNode = document.createElement('div');
-        newNode.innerHTML = `<b>${data.username}</b> has left the room`;
-        document.getElementById('messages').appendChild(newNode);
-    });
-</script>-->
 </html>
