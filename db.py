@@ -18,6 +18,8 @@ subscriptions_collection = chat_db.get_collection("subscriptions")
 def save_user(username, email, password, role):
     password_hash = generate_password_hash(password)
     users_collection.insert_one({'username': username, 'email': email, 'password': password_hash, 'role':role})
+    if role=="tutor":
+        tutors_collection.insert_one({'username': username, 'email': email})
 
 def get_user(username):
     user_data = users_collection.find_one({'username': username})
@@ -67,7 +69,14 @@ def get_tutor(username):
     tutor_data = tutors_collection.find_one({'username': username})
     print("db.py tutors data")
     print(tutor_data)
-    return Tutors(tutor_data['_id'], tutor_data['username'], tutor_data['email'], tutor_data['subject'], tutor_data['cost']) if tutor_data else None
+    return Tutors(
+        tutor_data['_id'],
+        tutor_data['username'],
+        tutor_data['email'],
+        tutor_data.get('subject', ''),  # Default to an empty string if 'subject' is missing
+        tutor_data.get('cost', 0)       # Default to 0 if 'cost' is missing
+    ) if tutor_data else None
+    #return Tutors(tutor_data['_id'], tutor_data['username'], tutor_data['email'], tutor_data['subject'], tutor_data['cost']) if tutor_data else None
 
 def subscribe(username, email, tutor_name, tuition_subject, tutor_email):
     # Check if the student is already subscribed to this tutor and subject
@@ -86,6 +95,10 @@ def subscribe(username, email, tutor_name, tuition_subject, tutor_email):
             'tuition_subject': tuition_subject,
             'tutor_email': tutor_email
         })
+        room_name= f"{tutor_name}_{tuition_subject}"
+        room_id=get_room_id(room_name)
+        add_room_member(room_id, room_name, username, "Admin")
+                
     else:
         print("Student is already subscribed to this tutor and subject.")
 
@@ -185,11 +198,16 @@ def save_or_update_tutor(username, email=None, subject=None, cost=None):
                 # Update the cost if the subject already exists
                 subj['cost'] = cost
                 found_subject = True
+                
                 break
 
         if not found_subject and subject and cost is not None:
             # Subject does not exist; add it to the subjects list
             subjects.append({'subject': subject, 'cost': cost})
+            #ADD ROOM FOR EVERY SUBJECT
+            room_name= f"{username}_{subject}"
+            room_id = save_room(room_name, username)
+            #add_room_member(room_id, room_name, username, username)
 
         # Update the subjects list in the tutor's profile
         tutors_collection.update_one(
@@ -209,7 +227,6 @@ def save_or_update_tutor(username, email=None, subject=None, cost=None):
             print("Insufficient data to create a new tutor profile. Provide all fields.")
 
 
-
 def save_room(room_name, created_by):
     room_id = rooms_collection.insert_one(
         {'name': room_name, 'created_by': created_by, 'created_at': datetime.now()}).inserted_id
@@ -222,6 +239,10 @@ def update_room(room_id, room_name):
 
 def get_room(room_id):
     return rooms_collection.find_one({'_id': ObjectId(room_id)})
+
+def get_room_id(room_name):
+    room = rooms_collection.find_one({'name': room_name}, {'_id': 1})
+    return room['_id'] if room else None
 
 def add_room_member(room_id, room_name, username, added_by, is_room_admin=False):
     room_members_collection.insert_one(

@@ -15,12 +15,6 @@
 <h1>Welcome to your dashboard, {{ current_user.username }}!</h1>
 <p>Here you can explore tutors, manage sessions, and more.</p>
 <!-- Add any dashboard-specific content here -->
-<ul>
-    {% for room in rooms %}
-        <li><a href="/rooms/{{ room._id.room_id }}">{{ room.room_name }}</a></li>
-    {% endfor %}
-</ul>
-
 {% endblock %}
 </body>
 </html>

@@ -141,6 +141,7 @@ def add_gig(tutor_id):
         subject= request.form['subject']
         cost= request.form['cost']
         save_or_update_tutor(name, email, subject, cost)
+        #CREATE ROOM FOR NEW COURSE 
         return redirect(url_for('explore', user_id=tutors.id))
 
     #tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
@@ -161,7 +162,7 @@ def subscribed():
     tuition_subject = request.form.get('tuition_subject')
     tutor_email = request.form.get('tutor_email')
     subscribe(username, email, tutor_name, tuition_subject, tutor_email)
-
+    
     return redirect(url_for("display_subscriptions", id=current_user.id))
 
 @app.route('/subscriptions/<string:id>')
