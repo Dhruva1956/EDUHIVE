@@ -1,12 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, flash, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from engineio.payload import Payload
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from pymongo.errors import DuplicateKeyError
 from datetime import datetime
 from cords import crossdomain
+from bson.objectid import ObjectId
 from flask_cors import CORS, cross_origin
-from db import get_subscription_room_id, remove_room_member, un_subscribe, get_all_students, get_all_subscriptions, subscribe, get_tutor_id, get_all_tutors, save_or_update_tutor, get_tutor, get_user, save_user, save_room, add_room_members, get_rooms_for_user, get_room, is_room_member, \
+from db import delete_room, remove_course, get_tutor_list2, get_subscription_room_id, remove_room_member, un_subscribe, get_all_students, get_all_subscriptions, subscribe, get_tutor_id, get_all_tutors, save_or_update_tutor, get_tutor, get_user, save_user, save_room, add_room_members, get_rooms_for_user, get_room, is_room_member, \
     get_room_members, is_room_admin, update_room, remove_room_members, save_message, get_messages
 
 
@@ -207,17 +208,44 @@ def edit_tutor(tutor_id):
     print("RAM RAM")
     print(current_user.username)
     print("RAM RAM")
-    tutors = get_tutor(current_user.username)
+    tutors = get_tutor_list2(current_user.username)
     print("JAI HANUMAN")
-    print(tutors.email)
+    print(tutors)
     
     if request.method == 'POST':
+        username= request.form['username']
         subject = request.form['subject']
         cost = request.form['cost']
-        save_or_update_tutor(tutors.username, tutors.email, subject, cost)
+        tutors= get_tutor(username)
+        save_or_update_tutor(username, tutors.email, subject, cost)
+        tutors = get_tutor_id(tutor_id)
         return render_template('tutorprofile.html', tutors=tutors)
     
-    return render_template('edit_tutor.html', tutors=tutors)
+    return render_template('edit_tutor.html', tutor=tutors)
+
+@app.route('/remove_subject/<username>/<subject>', methods=['POST'])
+def remove_subject(username, subject):
+    # Fetch tutor data based on username
+    tutor_data = get_tutor_list2(username)  # Ensure this function fetches the correct tutor data format
+    
+    if tutor_data:
+        # tutor_data is expected to be a tuple like (ObjectId, username, email, subjects)
+        subjects = tutor_data[3]  # Access the subjects list
+        
+        # Filter out the subject to be removed
+        updated_subjects = [sub for sub in subjects if sub['subject'] != subject]
+        
+        # Update the tutor's subjects in the database
+        remove_course(username, updated_subjects)
+        room_name= f"{username}_{subject}"
+        delete_room(room_name)
+        
+        
+        # Optionally, flash a message to inform the user
+        flash(f'Subject "{subject}" removed successfully!')
+
+    # Redirect back to the tutor's profile page
+    return redirect(url_for('login'))
 
 @app.route("/profile", methods=["GET", "POST"])
 def profile():

@@ -78,6 +78,22 @@ def get_tutor(username):
     ) if tutor_data else None
     #return Tutors(tutor_data['_id'], tutor_data['username'], tutor_data['email'], tutor_data['subject'], tutor_data['cost']) if tutor_data else None
 
+def get_tutor_list2(username):
+    tutor_data = tutors_collection.find_one({'username': username})
+    print("db.py tutors data")
+    print(tutor_data)
+    
+    # Extract subjects as a list of dictionaries
+    subjects_list = tutor_data.get('subjects', []) if tutor_data else []
+    
+    return (
+        tutor_data['_id'],
+        tutor_data['username'],
+        tutor_data['email'],
+        subjects_list  # Pass the subjects list directly
+    ) if tutor_data else None
+
+
 def subscribe(username, email, tutor_name, tuition_subject, tutor_email):
     # Check if the student is already subscribed to this tutor and subject
     existing_subscription = subscriptions_collection.find_one({
@@ -201,9 +217,6 @@ def get_all_tutors():
     return tutor_profiles
 
 
-
-
-
 def save_or_update_tutor(username, email=None, subject=None, cost=None):
     # Fetch tutor based on username
     tutor = tutors_collection.find_one({'username': username})
@@ -246,6 +259,15 @@ def save_or_update_tutor(username, email=None, subject=None, cost=None):
         else:
             print("Insufficient data to create a new tutor profile. Provide all fields.")
 
+def remove_course(username, updated_subjects):
+        tutors_collection.update_one(
+            {'username': username},
+            {'$set': {'subjects': updated_subjects}}
+        )
+
+def delete_room(room_name):
+    rooms_collection.delete_one({'name': room_name})
+    room_members_collection.delete_many({'room_name': room_name})
 
 def save_room(room_name, created_by):
     room_id = rooms_collection.insert_one(
