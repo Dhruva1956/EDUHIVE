@@ -75,14 +75,17 @@ def login():
         if user and user.check_password(password_input):
             login_user(user)
             #print(user.id)
+            flash('Logged In successfully!', 'success')
             return redirect(url_for('tutor_dashboard', tutor_id=user.id) if user.role == 'tutor' else url_for('student_dashboard', student_id=user.id))
         else:
             message = 'Failed to Login!'
+            flash('Failed to Login!')
     return render_template('login.html', message=message)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
+        flash('Authenticated!')
         return redirect(url_for('home'))
     message = ''
     if request.method == 'POST':
@@ -92,9 +95,11 @@ def signup():
         role = request.form.get('role')
         try:
             save_user(username, email, password, role)
+            flash('Signup successfull!')
             return redirect(url_for('login'))
         except DuplicateKeyError:
             message = "User Already Exists!!"
+            flash('User Already Exists!')
     return render_template('signup.html', message=message)
 
 # Tutor dashboard
@@ -106,6 +111,7 @@ def tutor_dashboard(tutor_id):
         rooms = get_rooms_for_user(current_user.username)
         return render_template('tutor_dashboard.html', rooms=rooms, tutor_id=current_user.id)
     else: 
+        flash('Tutor not found!')
         return "Tutor not found"
 
 # Student dashboard
@@ -115,7 +121,7 @@ def student_dashboard(student_id):
     rooms = []
     if current_user.is_authenticated:
         rooms = get_rooms_for_user(current_user.username)
-        print(current_user.username)
+        #print(current_user.username)
         return render_template('student_dashboard.html', rooms=rooms, student_id=current_user.id) 
     else:
         return "Student not found"
@@ -141,6 +147,8 @@ def add_gig(tutor_id):
         cost= request.form['cost']
         save_or_update_tutor(name, email, subject, cost)
         #CREATE ROOM FOR NEW COURSE 
+        flash('Added New Gig!')
+        flash('New chat room created!')
         return redirect(url_for('explore', user_id=tutors.id))
 
     #tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
@@ -149,7 +157,7 @@ def add_gig(tutor_id):
 @app.route("/explore/<string:user_id>", methods=["GET", "POST"])
 def explore(user_id):
     all_tutors = get_all_tutors() # returned list of tutors_collection
-    print(all_tutors)
+    #print(all_tutors)
     return render_template('explore.html', all_tutors=all_tutors, name=current_user.username)
 
 # Route to show the subscribed classes
@@ -161,7 +169,8 @@ def subscribed():
     tuition_subject = request.form.get('tuition_subject')
     tutor_email = request.form.get('tutor_email')
     subscribe(username, email, tutor_name, tuition_subject, tutor_email)
-
+    flash('Subscribed succesfully!')
+    flash('Added into course room!')
     return redirect(url_for("display_subscriptions", id=current_user.id))
 
 @app.route('/subscriptions/<string:id>')
@@ -171,8 +180,8 @@ def display_subscriptions(id):
     if current_user.role=="tutor":
         #all_subscriptions = get_all_subscriptions(current_user.username)
         all_subscriptions = get_all_students(current_user.username)
-    print("qwertty")
-    print(all_subscriptions)
+    #print("qwertty")
+    #print(all_subscriptions)
     return render_template('subscribed.html', subscriptions=all_subscriptions)
 
 @app.route('/unsubscribe', methods=['POST'])
@@ -182,12 +191,13 @@ def unsubscribe():
     subscription_subject = request.form.get('subscription_subject')
     #room_name= f"{subscription_name}_{subscription_subject}"
     subscription_id=get_subscription_room_id(subscription_name, subscription_subject)
-    print("retrieved SUB ID")
-    print(subscription_id)
+    #print("retrieved SUB ID")
+    #print(subscription_id)
     if subscription_id:
-        print("INITIATED UN SUBSCRIBE")
+        #print("INITIATED UN SUBSCRIBE")
         # Code to remove subscription from database
         un_subscribe(subscription_id, subscription_username, subscription_name, subscription_subject)
+    flash('unsubscribed succesfully!')
     return redirect(url_for('display_subscriptions', id=current_user.id))
 
 # Dynamic route to show tutor profile based on ID
@@ -202,12 +212,9 @@ def edit_tutor(tutor_id):
     #tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
     #if not tutor:
      #   return "Tutor not found", 404
-    print("RAM RAM")
-    print(current_user.username)
-    print("RAM RAM")
+    #print(current_user.username)
     tutors = get_tutor_list2(current_user.username)
-    print("JAI HANUMAN")
-    print(tutors)
+    #print(tutors)
     
     if request.method == 'POST':
         username= request.form['username']
@@ -216,6 +223,7 @@ def edit_tutor(tutor_id):
         tutors= get_tutor(username)
         save_or_update_tutor(username, tutors.email, subject, cost)
         tutors = get_tutor_id(tutor_id)
+        flash('Update Succesful!')
         return render_template('tutorprofile.html', tutors=tutors)
     
     return render_template('edit_tutor.html', tutor=tutors)
@@ -252,7 +260,7 @@ def profile():
 def index():
     if request.method == "POST":
         room_id = request.form['room_id']
-        print(room_id)
+        #print(room_id)
         return redirect(url_for("entry_checkpoint", room_id=room_id))
     return render_template("home.html")
 
@@ -289,6 +297,8 @@ def on_join_room(data):
     _name_of_sid[sid] = display_name
 
     print(f"[{room_id}] New member joined: {display_name}< {sid}>")
+    flash(f"[{room_id}] New member joined: {display_name}< {sid}>")
+    
     emit("user-connect", {"sid": sid, "name": display_name}, broadcast=True, include_self=False, room=room_id)
 
     # Maintain user list on server
@@ -307,6 +317,7 @@ def on_disconnect():
     display_name = _name_of_sid[sid]
 
     print(f"[{room_id}] Member left: {display_name}< {sid}>")
+    flash(f"[{room_id}] Member left: {display_name}< {sid}>")
     emit("user-disconnect", {"sid": sid}, broadcast=True, include_self=False, room=room_id)
 
     _users_in_room[room_id].remove(sid)
@@ -336,6 +347,7 @@ def logout():
 @login_required
 def logout():
     logout_user()
+    flash('Logged out successfully!', 'success')
     return redirect(url_for('login'))
 
 #MESSAGES RELATED METHODS BELOW
@@ -437,11 +449,11 @@ def view_room(room_id):
 
 @socketio.on('send_message')
 def handle_send_message_event(data):
-    print("hello boss: AT THE FUNCTION")
+    #print("hello boss: AT THE FUNCTION")
     app.logger.info("{} has sent message to the room {}: {}".format(data['username'],
                                                                     data['room'],
                                                                     data['message']))
-    print("hello boss: "+data['message'])
+    #print("hello boss: "+data['message'])
     data['created_at'] = datetime.now().strftime("%d %b, %H:%M")
     save_message(data['room'], data['message'], data['username'])
     socketio.emit('receive_message', data, room=data['room'])
@@ -469,8 +481,6 @@ def handle_join_room_event(data):
     app.logger.info("{} has joined the room {}".format(data['username'], data['room']))
     join_room(data['room'])
     socketio.emit('join_room_announcement', data)
-
-
 
 @login_manager.user_loader
 def load_user(username):

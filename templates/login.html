@@ -8,9 +8,44 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .alert-custom {
+            background-color: #ffefd5; /* Light peach background */
+            color: #8a2be2; /* Purple text color */
+            border-left: 5px solid #8a2be2; /* Bold left border */
+            border-radius: 4px;
+            padding: 1rem;
+            font-weight: 500;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .alert-custom .close {
+            color: #8a2be2;
+            font-size: 1.2rem;
+        }
+    </style>
     <title>Login</title>
+
 </head>
 <body>
+    <!-- Flash Messages -->
+    <div class="container mt-4">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    
     <div class="container mt-5">
         <div class="card shadow mx-auto" style="max-width: 400px;">
             <div class="card-body">
