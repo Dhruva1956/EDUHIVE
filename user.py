@@ -3,17 +3,17 @@ from werkzeug.security import check_password_hash
 class User:
 
     def __init__(self, id, username, email, password, role):
-        print("SELF DATA")
+        #print("SELF DATA")
         self.id = id
-        print(self.id)
+        #print(self.id)
         self.username = username
-        print(self.username)
+        #print(self.username)
         self.email = email
-        print(self.email)
+        #print(self.email)
         self.password = password
-        print(self.password)
+        #print(self.password)
         self.role = role
-        print(self.role)
+        #print(self.role)
     
     @staticmethod
     def is_authenticated(self):

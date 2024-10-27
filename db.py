@@ -23,7 +23,7 @@ def save_user(username, email, password, role):
 
 def get_user(username):
     user_data = users_collection.find_one({'username': username})
-    print(user_data)
+    #print(user_data)
     return User(user_data['_id'], user_data['username'], user_data['email'], user_data['password'], user_data['role']) if user_data else None
 
 def get_tutor_id(tutor_id):
@@ -54,8 +54,8 @@ def get_tutor_id(tutor_id):
                         'email': str(tutor['email'])
                     })
 
-            print("HANUMAN!!!!!!!")
-            print(tutor_profiles) 
+            #print("HANUMAN!!!!!!!")
+            #print(tutor_profiles) 
             return tutor_profiles
         else:
             print(f"No tutor found with ID: {tutor_id}")
@@ -67,8 +67,8 @@ def get_tutor_id(tutor_id):
    
 def get_tutor(username):
     tutor_data = tutors_collection.find_one({'username': username})
-    print("db.py tutors data")
-    print(tutor_data)
+    #print("db.py tutors data")
+    #print(tutor_data)
     return Tutors(
         tutor_data['_id'],
         tutor_data['username'],
@@ -80,8 +80,8 @@ def get_tutor(username):
 
 def get_tutor_list2(username):
     tutor_data = tutors_collection.find_one({'username': username})
-    print("db.py tutors data")
-    print(tutor_data)
+    #print("db.py tutors data")
+    #print(tutor_data)
     
     # Extract subjects as a list of dictionaries
     subjects_list = tutor_data.get('subjects', []) if tutor_data else []
@@ -145,15 +145,15 @@ def get_all_subscriptions(username):
         return []
     
 def un_subscribe(id, name, tutor_name, tuition_subject):
-    print("SUBSCRIPTION DELETED")
+    #print("SUBSCRIPTION DELETED")
     subscriptions_collection.delete_one({'_id': ObjectId(id)})
-    print("DELETING ROOM")
+    #print("DELETING ROOM")
     room_name= f"{tutor_name}_{tuition_subject}"
     room_id=get_room_id(room_name)
-    print("GOT THE ROOM ID")
-    print(room_id)
+    #print("GOT THE ROOM ID")
+    #print(room_id)
     remove_room_member(room_id, name)
-    print("ROOM DELETED")
+    #print("ROOM DELETED")
 
 def get_subscription_room_id(tutor_name, tuition_subject):
     subscription = subscriptions_collection.find_one(

@@ -4,12 +4,9 @@ from engineio.payload import Payload
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from pymongo.errors import DuplicateKeyError
 from datetime import datetime
-from cords import crossdomain
-from bson.objectid import ObjectId
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from db import delete_room, remove_course, get_tutor_list2, get_subscription_room_id, remove_room_member, un_subscribe, get_all_students, get_all_subscriptions, subscribe, get_tutor_id, get_all_tutors, save_or_update_tutor, get_tutor, get_user, save_user, save_room, add_room_members, get_rooms_for_user, get_room, is_room_member, \
     get_room_members, is_room_admin, update_room, remove_room_members, save_message, get_messages
-
 
 # Set the maximum number of packets to be decoded
 Payload.max_decode_packets = 200
@@ -66,7 +63,7 @@ def login():
     '''
     rooms = []
     if current_user.is_authenticated:
-        print(current_user.username)
+        #print(current_user.username)
         return redirect(url_for('tutor_dashboard', tutor_id=current_user.id) if current_user.role == 'tutor' else url_for('student_dashboard', student_id=current_user.id))
     
     message = ''
@@ -77,7 +74,7 @@ def login():
 
         if user and user.check_password(password_input):
             login_user(user)
-            print(user.id)
+            #print(user.id)
             return redirect(url_for('tutor_dashboard', tutor_id=user.id) if user.role == 'tutor' else url_for('student_dashboard', student_id=user.id))
         else:
             message = 'Failed to Login!'
