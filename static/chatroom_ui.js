@@ -38,7 +38,8 @@ function makeVideoElement(element_id, display_name)
     vid_wrapper.className = "vid-wrapper";
     name_text.className = "display-name";
     
-    vid.autoplay = true;        
+    vid.autoplay = true;  
+    vid.controls = true;        
     name_text.innerText = display_name;
 
     vid_wrapper.appendChild(vid);

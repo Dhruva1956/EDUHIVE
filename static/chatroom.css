@@ -54,6 +54,12 @@
 #local_vid{       
     max-height: 140px;
     object-fit: contain;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
+    display: flex !important;
+    opacity: 1 !important;
+    
 } 
 
 @media only screen and (max-width: 768px) {
@@ -66,3 +72,6 @@
     }
     
 }
+
+
+ 
