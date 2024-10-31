@@ -26,7 +26,7 @@
                         <p><strong>Tutor Email:</strong> {{ sub.tutor_email }}</p>
                         
                         <!-- Unsubscribe Button -->
-                        <form action="{{ url_for('unsubscribe') }}" method="POST" class="mt-2">
+                        <form onsubmit="return confirm('Are you sure?');" action="{{ url_for('unsubscribe') }}" method="POST" class="mt-2">
                             <input type="hidden" name="subscription_id" value="{{ sub.id }}">
                             <input type="hidden" name="subscription_username" value="{{ sub.username }}">
                             <input type="hidden" name="subscription_name" value="{{ sub.tutor_name }}">
