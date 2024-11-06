@@ -92,8 +92,12 @@
             </div>
             <div id="div_local_vid" class="col-5 col-md-4 col-lg-3 video-item ml-auto">
                 <div class="vid-wrapper">
-                    <video id="local_vid" id="myVideo" autoplay muted controls></video>
-                    
+                    <video id="local_vid" id="myVideo" autoplay muted controls>
+                      <!--  <source src="{{ url_for('video_feed') }}" type="video/jpeg">
+                            Your browser does not support the video tag.-->
+                    </video>
+                <!--    <img id="local_vid" src="{{ url_for('video_feed') }}" alt="Live Video Feed"/>
+-->
                 </div>
             </div>
         </div>
