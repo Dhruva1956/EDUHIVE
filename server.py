@@ -506,7 +506,8 @@ flag = 0
 # Function to generate frames
 def generate_frame():
     # Open Camera
-    camera = cv2.VideoCapture(0)
+    #camera = cv2.VideoCapture(0)
+    camera =  cv2.VideoCapture(0,cv2.CAP_DSHOW)
     
     global img, draw, erase, red, thickness, flag
 
