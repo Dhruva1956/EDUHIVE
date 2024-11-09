@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, request, redirect, url_for, session, Response
+from flask import Flask, flash, render_template, request, redirect, url_for, session, Response, jsonify
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from engineio.payload import Payload
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -21,6 +21,8 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
+
+
 
 # Dummy data for tutors and students
 '''
@@ -489,90 +491,180 @@ def load_user(username):
     return get_user(username)
 
 
-# Open Camera
-camera = cv2.VideoCapture(0)
-img = np.zeros((1024, 1024, 3), np.uint8)
-draw = True
-erase = True
-red = True
-thickness = 10  # Thickness of the drawing
-flag = 0
 
-def generate_frames():
-    global draw, erase, red, flag, img
+# Global variables for toggle features
+#draw = True
+#erase = False
+#red = False
+#img = np.zeros((1024, 1024, 3), np.uint8)
+
+# Function to process frames for streaming
+'''def generate_frames():
+    global draw, erase, red, img
+    camera = cv2.VideoCapture(0)  # Use 0 for the default camera
+
     while True:
-        if flag == 0:  # TOGGLES DRAW AND ERASE FOR FIRST TIME AFTER THAT IT DEPENDS ON USER
-            flag = 1
-            draw = not draw
-            erase = not erase
-            red = not red
-
-        ret, frame = camera.read()
-        if not ret:
-            break  # Exit if the camera feed is not retrieved
+        print(f"Draw : {draw}")
+        print(f"erase : {erase}")
+        print(f"red : {red}")
+        success, frame = camera.read()
+        if not success:
+            break
 
         frame = cv2.resize(frame, (1024, 1024))
-        frame = cv2.bilateralFilter(frame, 5, 50, 100)  # Smoothing
-        frame = cv2.flip(frame, 1)  # Horizontal Flip
+        frame = cv2.bilateralFilter(frame, 5, 50, 100)
+        frame = cv2.flip(frame, 1)
 
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         lower = np.array([0, 48, 80], dtype="uint8")
         upper = np.array([20, 255, 255], dtype="uint8")
         skinMask = cv2.inRange(hsv, lower, upper)
 
-        # Getting the contours and convex hull
         skinMask1 = copy.deepcopy(skinMask)
-        contours, hierarchy = cv2.findContours(skinMask1, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        contours, _ = cv2.findContours(skinMask1, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-        if contours:  # If contours are found
-            maxArea = -1
-            ci = 0
-            for i in range(len(contours)):
-                area = cv2.contourArea(contours[i])
-                if area > maxArea:
-                    maxArea = area
-                    ci = i
-
-            res = contours[ci]
+        if contours:
+            res = max(contours, key=cv2.contourArea)
             hull = cv2.convexHull(res)
-
-            # Moments for centroid calculation
             M = cv2.moments(res)
             cX = int(M["m10"] / M["m00"]) if M["m00"] != 0 else 0
             cY = int(M["m01"] / M["m00"]) if M["m00"] != 0 else 0
-
-            # Getting extreme points
-            extLeft = tuple(res[res[:, :, 0].argmin()][0])
-            extRight = tuple(res[res[:, :, 0].argmax()][0])
             extTop = tuple(res[res[:, :, 1].argmin()][0])
-            extBot = tuple(res[res[:, :, 1].argmax()][0])
 
-            # Draw contours and points
-            cv2.drawContours(frame, [res], -1, (0, 255, 0), 2)
-            cv2.drawContours(frame, [hull], -1, (0, 0, 255), 3)
-            cv2.circle(frame, extLeft, 8, (0, 0, 255), -1)
-            cv2.circle(frame, extRight, 8, (0, 255, 0), -1)
-            cv2.circle(frame, extTop, 8, (100, 55, 100), -1)
-            cv2.circle(frame, extBot, 8, (255, 255, 0), -1)
-            cv2.circle(frame, (cX, cY), 7, (255, 255, 255), -1)
-            cv2.putText(frame, "center", (cX - 20, cY - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
-
-            # Draw on the image if drawing is enabled
+            # Draw on the virtual canvas based on toggle states
             if draw:
-                cv2.circle(img, extTop, thickness, (255, 255, 255), -1)  # Draw circle at fingertip position
+                cv2.circle(img, extTop, 10, (255, 255, 255), -1)
             if erase:
-                cv2.circle(img, extTop, thickness, (0, 0, 0), 7)  # Erase
+                cv2.circle(img, extTop, 10, (0, 0, 0), -1)
             if red:
-                cv2.circle(img, extTop, thickness, (0, 0, 255), -1)  # Draw red circle
+                cv2.circle(img, extTop, 10, (0, 0, 255), -1)
 
-        # Combine the canvas with the frame
+        # Blend the original frame with the canvas
         combined_frame = cv2.addWeighted(frame, 0.7, img, 0.3, 0)
-
-        # Encode the frame as JPEG
         ret, buffer = cv2.imencode('.jpg', combined_frame)
         frame = buffer.tobytes()
 
-        # Yield the frame as a response
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+'''
+'''
+states = [
+    {'id': 1, 'state': 'draw', 'active': False},
+    {'id': 2, 'state': 'erase', 'active': False},
+    {'id': 3, 'state': 'red', 'active': False}
+]
+# Global image for drawing
+img = np.zeros((1024, 1024, 3), dtype=np.uint8)
+
+def generate_frames():
+    global states, img
+    camera = cv2.VideoCapture(0)  # Use 0 for the default camera
+
+    while True:
+        # Print current states to debug
+        print(f"Draw: {states[0]['active']}")
+        print(f"Erase: {states[1]['active']}")
+        print(f"Red: {states[2]['active']}")
+
+        success, frame = camera.read()
+        if not success:
+            break
+
+        frame = cv2.resize(frame, (1024, 1024))
+        frame = cv2.bilateralFilter(frame, 5, 50, 100)
+        frame = cv2.flip(frame, 1)
+
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        lower = np.array([0, 48, 80], dtype="uint8")
+        upper = np.array([20, 255, 255], dtype="uint8")
+        skinMask = cv2.inRange(hsv, lower, upper)
+
+        skinMask1 = copy.deepcopy(skinMask)
+        contours, _ = cv2.findContours(skinMask1, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+        if contours:
+            res = max(contours, key=cv2.contourArea)
+            hull = cv2.convexHull(res)
+            M = cv2.moments(res)
+            cX = int(M["m10"] / M["m00"]) if M["m00"] != 0 else 0
+            cY = int(M["m01"] / M["m00"]) if M["m00"] != 0 else 0
+            extTop = tuple(res[res[:, :, 1].argmin()][0])
+
+            # Draw on the virtual canvas based on toggle states
+            if states[0]['active']:  # draw
+                cv2.circle(img, extTop, 10, (255, 255, 255), -1)
+            if states[1]['active']:  # erase
+                cv2.circle(img, extTop, 10, (0, 0, 0), -1)
+            if states[2]['active']:  # red
+                cv2.circle(img, extTop, 10, (0, 0, 255), -1)
+
+        # Blend the original frame with the canvas
+        combined_frame = cv2.addWeighted(frame, 0.7, img, 0.3, 0)
+        ret, buffer = cv2.imencode('.jpg', combined_frame)
+        frame = buffer.tobytes()
+
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+ 
+
+@app.route('/update_state', methods=['POST'])
+def update_state():
+    state_id = int(request.form['id'])
+    new_state = request.form['state']
+    
+    print(f"Received request to toggle: {new_state} (ID: {state_id})")
+
+    # Find the state to update
+    for state in states:
+        if state['id'] == state_id and state['state'] == new_state:
+            state['active'] = not state['active']  # Toggle the state
+            break
+
+    print(f"Updated states: {states}")
+    return jsonify({'states': states})
+'''
+
+'''
+# Video frame generation function
+def generate_frames():
+    global draw, erase, red
+    camera = cv2.VideoCapture(0)
+    img = np.zeros((1024, 1024, 3), dtype=np.uint8)
+
+    while True:
+        success, frame = camera.read()
+        if not success:
+            break
+
+        frame = cv2.resize(frame, (1024, 1024))
+        frame = cv2.flip(frame, 1)
+
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        lower = np.array([0, 48, 80], dtype="uint8")
+        upper = np.array([20, 255, 255], dtype="uint8")
+        skinMask = cv2.inRange(hsv, lower, upper)
+
+        contours, _ = cv2.findContours(skinMask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+        if contours:
+            res = max(contours, key=cv2.contourArea)
+            M = cv2.moments(res)
+            cX = int(M["m10"] / M["m00"]) if M["m00"] != 0 else 0
+            cY = int(M["m01"] / M["m00"]) if M["m00"] != 0 else 0
+            extTop = tuple(res[res[:, :, 1].argmin()][0])
+
+            # Drawing based on current state
+            if draw:
+                cv2.circle(img, extTop, 10, (255, 255, 255), -1)
+            if erase:
+                cv2.circle(img, extTop, 10, (0, 0, 0), -1)
+            if red:
+                cv2.circle(img, extTop, 10, (0, 0, 255), -1)
+
+        combined_frame = cv2.addWeighted(frame, 0.7, img, 0.3, 0)
+        ret, buffer = cv2.imencode('.jpg', combined_frame)
+        frame = buffer.tobytes()
+
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
@@ -580,6 +672,36 @@ def generate_frames():
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/video')
+def video():
+    return render_template('video.html', states=states)
+
+'''
+@socketio.on('connect')
+def handle_connect():
+    print("Client connected!")
+'''
+# Handle WebSocket connection
+
+
+@socketio.on('toggle_draw')
+def toggle_draw(data):
+    global draw
+    draw = data['draw']
+    print(f"Draw state changed: {draw}")
+
+@socketio.on('toggle_erase')
+def toggle_erase(data):
+    global erase
+    erase = data['erase']
+    print(f"Erase state changed: {erase}")
+
+@socketio.on('toggle_red')
+def toggle_red(data):
+    global red
+    red = data['red']
+    print(f"Red state changed: {red}")
+'''
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)

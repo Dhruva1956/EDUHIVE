@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Streaming</title>
+</head>
+<body>
+    <h1>Live Video Stream with Drawing Controls</h1>
+    <video id="videoElement" src="{{ url_for('video_feed') }}" autoplay></video>
+    
+    <button id="toggleDraw" onclick="toggleState(1, 'draw')">Toggle Draw</button>
+    <button id="toggleErase" onclick="toggleState(2, 'erase')">Toggle Erase</button>
+    <button id="toggleRed" onclick="toggleState(3, 'red')">Toggle Red</button>
+
+    <script>
+        // Use the Jinja-generated `states` directly inside the JavaScript code
+        const jinjaStates = {{ states|tojson | safe }};
+        console.log("Current States:", jinjaStates);  // Verify if `jinjaStates` is correctly assigned
+
+        function toggleState(id, state) {
+            console.log(`Toggling state: ${state} (ID: ${id})`);
+
+            // Make a POST request to update the state
+            fetch('/update_state', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `id=${id}&state=${state}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Updated States:", data);  // Log the updated states
+                // Optionally, update button styles here based on the new state
+                updateButtonState();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Function to update button state styles based on active status
+        function updateButtonState() {
+            jinjaStates.forEach(state => {
+                const button = document.getElementById(`toggle${state.state.charAt(0).toUpperCase() + state.state.slice(1)}`);
+                if (state.active) {
+                    button.style.backgroundColor = 'green';  // Active state
+                } else {
+                    button.style.backgroundColor = '';  // Default state
+                }
+            });
+        }
+
+        // Call once on load to update the button states initially
+        updateButtonState();
+    </script>
+</body>
+</html>

@@ -4,6 +4,7 @@
     <!-- icon -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=present_to_all" />
     <!-- socketio -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
     
@@ -28,6 +29,7 @@
         var myName = "{{display_name}}"; 
         var audioMuted = "{{mute_audio}}"=="1";
         var videoMuted = "{{mute_video}}"=="1";
+
         console.log(">> {{mute_audio}}, {{mute_video}}", audioMuted, videoMuted);
 
     </script>
@@ -37,7 +39,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDU-HIVE [{{room_id}}]</title>
+    
     <style>
+        
 
         /* Hide the full-screen button */
         video::-webkit-media-controls-play-button,
@@ -48,6 +52,7 @@
             display: none;
         }
     </style>
+    
 </head>
 <body>
     {% extends 'base.html' %}
@@ -83,24 +88,41 @@
                         videocam
                     </span>
                 </button>
-                
+
+               <!-- <button id="bttn_toggle_feed" class="btn btn-lg btn-outline-secondary rounded-circle">
+                    <span id="toggle_feed_icon" class="material-icons pt-2">image</span>
+                </button>-->
+
+                <button id="bttn_share_screen" class="btn btn-lg btn-outline-secondary rounded-circle">
+                    <span class="material-symbols-outlined">
+                        present_to_all
+                        </span>
+                </button>
+
                 <button id="call_end" class="btn btn-lg btn-danger rounded-circle">
                     <span class="material-icons pt-2">
                         call_end
                     </span>
                 </button>
+
+                
+
+                
+
             </div>
             <div id="div_local_vid" class="col-5 col-md-4 col-lg-3 video-item ml-auto">
                 <div class="vid-wrapper">
-                    <video id="local_vid" id="myVideo" autoplay muted controls>
-                      <!--  <source src="{{ url_for('video_feed') }}" type="video/jpeg">
-                            Your browser does not support the video tag.-->
-                    </video>
-                <!--    <img id="local_vid" src="{{ url_for('video_feed') }}" alt="Live Video Feed"/>
--->
+                   
+                <video id="local_vid" id="myVideo" autoplay muted controls ></video>
+              
                 </div>
+            
             </div>
-        </div>
+
+            
+            <!--
+            <button onclick="window.open('/video', '_blank')">Open Video Stream in New Tab</button>
+        --></div>
     </div>    
     {% endblock %}
 </body>
