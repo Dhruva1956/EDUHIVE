@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Canvas</title>
+    <style>
+        .controls {
+            margin: 10px;
+            padding: 10px;
+            background-color: lightgray;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .video-container {
+            display: grid;
+            place-items: center;
+            height: 80vh; /* Full height of the viewport */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Virtual Canvas</h1>
+
+    <div class="controls">
+        <button onclick="window.history.back()">Go Back</button>
+        <button onclick="toggleOption('draw')">Toggle Draw</button>
+        <button onclick="toggleOption('erase')">Toggle Erase</button>
+        <button onclick="toggleOption('red')">Toggle Red</button>
+        <button onclick="toggleOption('canvas')">Erase Canvas</button>
+    </div>
+
+    <div class="video-container">
+        <img src="{{ url_for('video_feed') }}" width="1000" height="500" />
+    </div>
+
+    <script>
+        function toggleOption(option) {
+            fetch('/toggle_' + option, { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        console.log(option + ' toggled');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+</body>
+</html>
