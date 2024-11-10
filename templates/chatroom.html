@@ -4,10 +4,9 @@
     <!-- icon -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=present_to_all" />
-   
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=screen_share" />
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=brush" />
+    <script src="https://kit.fontawesome.com/8ca0539136.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=brush" />
     <!-- socketio -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
     
@@ -41,6 +40,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                     
     <title>EDU-HIVE [{{room_id}}]</title>
     
     <style>
@@ -96,16 +96,13 @@
                     <span id="toggle_feed_icon" class="material-icons pt-2">image</span>
                 </button>-->
 
-                <button id="bttn_share_screen" class="btn btn-lg  rounded-circle">
-                    <span class="material-symbols-outlined">
-                        screen_share
-                        </span>
+                <button id="bttn_share_screen" class="btn btn-lg btn-outline-secondary rounded-circle">
+                    <i class="fa-regular fa-share-from-square"></i>
+   
                 </button>
 
                 <button id="bttn_canvas" class="btn btn-lg btn-outline-secondary rounded-circle" onclick="window.location.href='https://www.example.com'">
-                    <span class="material-symbols-outlined">
-                        brush
-                        </span>
+                    <i class="fa-solid fa-palette"></i>
                 </button>
 
                 <button id="call_end" class="btn btn-lg btn-danger rounded-circle">
