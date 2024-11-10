@@ -7,7 +7,7 @@ from flask import Flask, render_template, Response, request
 app = Flask(__name__)
 
 # Open Camera
-camera = cv2.VideoCapture(1)
+camera = cv2.VideoCapture(0)
 
 # Initialize variables for drawing, erasing, and color
 img = np.zeros((1024, 1024, 3), np.uint8)
