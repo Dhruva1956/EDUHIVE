@@ -507,8 +507,8 @@ flag = 0
 def generate_frame():
     # Open Camera
     #camera = cv2.VideoCapture(0)
-    camera =  cv2.VideoCapture(0,cv2.CAP_DSHOW)
-    
+    camera =  cv2.VideoCapture('/dev/video0')
+
     global img, draw, erase, red, thickness, flag
 
     while True:
