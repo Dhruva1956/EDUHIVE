@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 
     callEndBttn.addEventListener("click", (event) => {
-        window.location.replace("/");
+        window.location.replace("/login");
     });
 
     shareScreenBttn.addEventListener("click", startScreenShare);
