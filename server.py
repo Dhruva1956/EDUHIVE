@@ -45,9 +45,14 @@ _name_of_sid = {}    # Maps socket IDs to user display names
 def home():
     return "hello home"
 
+@app.route('/landing')
+@app.route("/", methods=["GET", "POST"])
+def landing():
+    return render_template('landing.html')
+
 # Route to login page
 @app.route('/login', methods=['GET', 'POST'])
-@app.route("/", methods=["GET", "POST"])
+#@app.route("/", methods=["GET", "POST"])
 def login():
     '''
     if request.method == 'POST':

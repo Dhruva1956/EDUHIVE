@@ -29,6 +29,7 @@
             color: #8a2be2;
             font-size: 1.2rem;
         }
+  
     </style>
     <title>Login</title>
 
@@ -61,7 +62,14 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </form>
+<br>
+                <a class="btn btn-primary btn-block" href="{{ url_for('signup') }}">Signup</a>
+                <br>              
+                <a class="btn btn-primary btn-block" href="{{ url_for('landing') }}">Home Page</a>
+<!--
                 <a style="justify-content: center;" href="{{ url_for('signup') }}" >Signup</a>
+                <a style="justify-content: center;" href="{{ url_for('landing') }}" >Home</a>
+    -->
             </div>
         </div>
         
