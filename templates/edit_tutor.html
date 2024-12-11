@@ -52,13 +52,20 @@
                         <label hidden for="email" class="mr-2"><strong>Email:</strong></label>
                         <input hidden type="text" name="email" class="form-control" value="{{ tutor[2] }}" required >
                         
-                        <label for="about" class="mr-2"><strong>About:</strong></label>
-                        <input type="text" name="about" class="form-control" value="{{ tutor[3] }}" required>
+                        
+                        <label for="about" class="mr-2"><strong>About:</strong> </label>
+                        
+
+                        <input type="text" size="40" name="about" class="form-control" value="{{ tutor[3] }}" required>
     
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
         </ul>
+        
+        <small class="form-text text-muted">
+            You can add details about your expertise or link your LinkedIn profile to help students understand more about you.
+        </small>
 
         <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
     </div>

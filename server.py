@@ -133,6 +133,7 @@ def student_dashboard(student_id):
 @app.route('/addgig/<string:tutor_id>', methods=['GET', 'POST'])
 def add_gig(tutor_id):
     tutors = get_tutor(current_user.username)
+
     if request.method == 'POST':
         '''
         new_course = {
@@ -149,7 +150,8 @@ def add_gig(tutor_id):
         subject= request.form['subject']
         cost= request.form['cost']
         about= request.form['about']
-        print(about)
+        #print(about)
+        
         new_save_or_update_tutor(name, email, subject, cost, about)
         #CREATE ROOM FOR NEW COURSE 
         flash('Added New Gig!')
@@ -168,6 +170,11 @@ def explore(user_id):
 # Route to show the subscribed classes
 @app.route('/subscribed', methods=["GET", "POST"])
 def subscribed():
+
+    if current_user.role == 'tutor':
+        flash('Subscription is unavailable for tutors. Please switch to a student profile!')
+        return redirect(url_for("display_subscriptions", id=current_user.id))
+
     username = request.form.get('username')
     email = request.form.get('email')
     tutor_name = request.form.get('tutor_name')
@@ -269,7 +276,7 @@ def remove_subject(username, subject):
     
     if tutor_data:
         # tutor_data is expected to be a tuple like (ObjectId, username, email, subjects)
-        subjects = tutor_data[3]  # Access the subjects list
+        subjects = tutor_data[4]  # Access the subjects list
         
         # Filter out the subject to be removed
         updated_subjects = [sub for sub in subjects if sub['subject'] != subject]
