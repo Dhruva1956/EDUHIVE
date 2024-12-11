@@ -31,11 +31,12 @@
             <!-- Tutor Card -->
             <div class="col-md-4 mb-4">
                 <div class="card shadow">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Tutor Image">
+                   <!-- <img src="https://via.placeholder.com/300" class="card-img-top" alt="Tutor Image">-->
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ tutor.username }}</h5>
                         <p class="card-text">Subject: {{ tutor.subject }}</p>
                         <p class="card-text">Cost: {{ tutor.cost }}</p>
+                        <p class="card-text">About: {{ tutor.about }}</p>
                         <a href="{{ url_for('tutor_profile', tutor_id=tutor.id) }}" class="btn btn-primary">Know More</a>
                     </div>
                 </div>

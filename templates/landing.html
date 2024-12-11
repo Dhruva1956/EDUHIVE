@@ -1,12 +1,3 @@
-<!--
-____   ____ ___  ____  ____ ___ ___  _   _
-/ ___| / ___/ _ \|  _ \|  _ \_ _/ _ \| \ | |
-\___ \| |  | | | | |_) | |_) | | | | |  \| |
-___) | |__| |_| |  _ <|  __/| | |_| | |\  |
-|____/ \____\___/|_| \_\_|  |___\___/|_| \_|
-www.dhiren.pro
--->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -364,395 +355,6 @@ p:last-child{
   overflow: scroll;
   border: 1px solid #ccc;
 }
-/*-----FLIP TIMER-----*/
-/*.example {
-  font-family: 'Roboto', sans-serif;
-  width: 750px;
-  height: 200px;
-  margin: auto;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.example .flipdown {
-  margin: auto;
-}
-
-.example h1 {
-  text-align: center;
-  font-weight: 100;
-  font-size: 3em;
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.example p {
-  text-align: center;
-  font-weight: 100;
-  margin-top: 0;
-  margin-bottom: 35px;
-}
-
-.example .buttons {
-  width: 100%;
-  height: 50px;
-  margin: 50px auto 0px auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.example .buttons p {
-  height: 50px;
-  line-height: 50px;
-  font-weight: 400;
-  padding: 0px 25px 0px 0px;
-  color: #333;
-  margin: 0px;
-}
-
-.example .button {
-  display: inline-block;
-  height: 50px;
-  box-sizing: border-box;
-  line-height: 46px;
-  text-decoration: none;
-  color: #333;
-  padding: 0px 20px;
-  border: solid 2px #333;
-  border-radius: 4px;
-  text-transform: uppercase;
-  font-weight: 700;
-  transition: all .2s ease-in-out;
-}
-
-.example .button:hover {
-  background-color: #333;
-  color: #FFF;
-}
-
-.example .button i {
-  margin-right: 5px;
-}
-
-@media(max-width: 550px) {
-  .example {
-    width: 100%;
-    height: 362px;
-  }
-
-  .example h1 {
-    font-size: 2.5em;
-  }
-
-  .example p {
-    margin-bottom: 25px;
-  }
-
-  .example .buttons {
-    width: 100%;
-    margin-top: 25px;
-    text-align: center;
-    display: block;
-  }
-
-  .example .buttons p,
-  .example .buttons a {
-    float: none;
-    margin: 0 auto;
-  }
-
-  .example .buttons p {
-    padding-right: 0px;
-  }
-
-  .example .buttons a {
-    display: inline-block;
-  }
-}*/
-
-
-/* THEMES */
-
-/********** Theme: dark **********/
-/* Font styles */
-/*.flipdown.flipdown__theme-dark {
-  font-family: sans-serif;
-  font-weight: bold;
-}*/
-/* Rotor group headings */
-/*.flipdown.flipdown__theme-dark .rotor-group-heading:before {
-  color: #09122b;
-}*/
-/* Delimeters
-.flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):before,
-.flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-  background-color: #09122b;
-}*/
-/* Rotor tops */
-/*.flipdown.flipdown__theme-dark .rotor,
-.flipdown.flipdown__theme-dark .rotor-top,
-.flipdown.flipdown__theme-dark .rotor-leaf-front {
-  color: #dec463;
-  background-color: #09122b;
-}*/
-/* Rotor bottoms */
-/*.flipdown.flipdown__theme-dark .rotor-bottom,
-.flipdown.flipdown__theme-dark .rotor-leaf-rear {
-  color: #dec463;
-  background-color: #09122b;
-}*/
-/* Hinge */
-/*.flipdown.flipdown__them*/
-
-/********** Theme: light **********/
-/* Font styles */
-/*.flipdown.flipdown__theme-light {
-  font-family: sans-serif;
-  font-weight: bold;
-}*/
-/* Rotor group headings */
-/*.flipdown.flipdown__theme-light .rotor-group-heading:before {
-  color: #dec463;
-}*/
-/* Delimeters */
-/*.flipdown.flipdown__theme-light .rotor-group:nth-child(n+2):nth-child(-n+3):before,
-.flipdown.flipdown__theme-light .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-  background-color: #DDDDDD;
-}*/
-/* Rotor tops */
-/*.flipdown.flipdown__theme-light .rotor,
-.flipdown.flipdown__theme-light .rotor-top,
-.flipdown.flipdown__theme-light .rotor-leaf-front {
-  color: #09122b;
-  background-color: #DDDDDD;
-}*/
-/* Rotor bottoms */
-/*.flipdown.flipdown__theme-light .rotor-bottom,
-.flipdown.flipdown__theme-light .rotor-leaf-rear {
-  color: #333333;
-  background-color: #EEEEEE;
-}*/
-/* Hinge */
-/*.flipdown.flipdown__theme-light .rotor:after {
-  border-top: solid 1px #dec463;
-}*/
-
-/* END OF THEMES */
-/*
-.flipdown {
-  overflow: visible;
-  width: 575px;
-  height: 110px;
-}
-
-.flipdown .rotor-group {
-  position: relative;
-  float: left;
-  padding-right: 30px;
-}
-
-.flipdown .rotor-group:last-child {
-  padding-right: 0;
-}
-
-.flipdown .rotor-group-heading:before {
-  display: block;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-}
-
-.flipdown .rotor-group:nth-child(1) .rotor-group-heading:before {
-  content: attr(data-before);
-}
-
-.flipdown .rotor-group:nth-child(2) .rotor-group-heading:before {
-  content: attr(data-before);
-}
-
-.flipdown .rotor-group:nth-child(3) .rotor-group-heading:before {
-  content: attr(data-before);
-}
-
-.flipdown .rotor-group:nth-child(4) .rotor-group-heading:before {
-  content: attr(data-before);
-}
-
-.flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
-  content: '';
-  position: absolute;
-  bottom: 20px;
-  left: 115px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-  content: '';
-  position: absolute;
-  bottom: 50px;
-  left: 115px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.flipdown .rotor {
-  position: relative;
-  float: left;
-  width: 50px;
-  height: 80px;
-  margin: 0px 5px 0px 0px;
-  border-radius: 4px;
-  font-size: 4rem;
-  text-align: center;
-  perspective: 200px;
-}
-
-.flipdown .rotor:last-child {
-  margin-right: 0;
-}
-
-.flipdown .rotor-top,
-.flipdown .rotor-bottom {
-  overflow: hidden;
-  position: absolute;
-  width: 50px;
-  height: 40px;
-}
-
-.flipdown .rotor-leaf {
-  z-index: 1;
-  position: absolute;
-  width: 50px;
-  height: 80px;
-  transform-style: preserve-3d;
-  transition: transform 0s;
-}
-
-.flipdown .rotor-leaf.flipped {
-  transform: rotateX(-180deg);
-  transition: all 0.5s ease-in-out;
-}
-
-.flipdown .rotor-leaf-front,
-.flipdown .rotor-leaf-rear {
-  overflow: hidden;
-  position: absolute;
-  width: 50px;
-  height: 40px;
-  margin: 0;
-  transform: rotateX(0deg);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.flipdown .rotor-leaf-front {
-  line-height: 80px;
-  border-radius: 4px 4px 0px 0px;
-}
-
-.flipdown .rotor-leaf-rear {
-  line-height: 0px;
-  border-radius: 0px 0px 4px 4px;
-  transform: rotateX(-180deg);
-}
-
-.flipdown .rotor-top {
-  line-height: 80px;
-  border-radius: 4px 4px 0px 0px;
-}
-
-.flipdown .rotor-bottom {
-  bottom: 0;
-  line-height: 0px;
-  border-radius: 0px 0px 4px 4px;
-}
-
-.flipdown .rotor:after {
-  content: '';
-  z-index: 2;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 50px;
-  height: 40px;
-  border-radius: 0px 0px 4px 4px;
-}
-
-@media (max-width: 550px) {
-
-  .flipdown {
-    width: 312px;
-    height: 70px;
-  }
-
-  .flipdown .rotor {
-    font-size: 2.2rem;
-    margin-right: 3px;
-  }
-
-  .flipdown .rotor,
-  .flipdown .rotor-leaf,
-  .flipdown .rotor-leaf-front,
-  .flipdown .rotor-leaf-rear,
-  .flipdown .rotor-top,
-  .flipdown .rotor-bottom,
-  .flipdown .rotor:after {
-    width: 30px;
-  }
-
-  .flipdown .rotor-group {
-    padding-right: 20px;
-  }
-
-  .flipdown .rotor-group:last-child {
-    padding-right: 0px;
-  }
-
-  .flipdown .rotor-group-heading:before {
-    font-size: 0.8rem;
-    height: 20px;
-    line-height: 20px;
-  }
-
-  .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before,
-  .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-    left: 69px;
-  }
-
-  .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
-    bottom: 13px;
-    height: 8px;
-    width: 8px;
-  }
-
-  .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-    bottom: 29px;
-    height: 8px;
-    width: 8px;
-  }
-
-  .flipdown .rotor-leaf-front,
-  .flipdown .rotor-top {
-    line-height: 50px;
-  }
-
-  .flipdown .rotor-leaf,
-  .flipdown .rotor {
-    height: 50px;
-  }
-
-  .flipdown .rotor-leaf-front,
-  .flipdown .rotor-leaf-rear,
-  .flipdown .rotor-top,
-  .flipdown .rotor-bottom,
-  .flipdown .rotor:after {
-    height: 25px;
-  }
-}*/
 /*flip timer 2*/
 .tick {
         padding-bottom: 1em;
@@ -785,26 +387,19 @@ p:last-child{
     <div class="container d-flex align-items-center justify-content-between">
 
       <div class="logo">
-        <!--<h1><a href="index.html">SMARTDSC-2022</a></h1>
-         Uncomment below if you prefer to use an image logo -->
-        <!--<a href="index.html"><img src="static/img/springer.png" alt="" class="img-fluid"></a>-->
-        <!--<h1><a href="#hero">S.R.C.C.F</a></h1>-->
+        <!--<h1><a href="index.html">2024</a></h1>
+         Uncomment below if you prefer to use an image logo 
+        <a href="index.html"><img src="static/img/logo.png" alt="" class="img-fluid"></a>-->
+        <h1><a href="#hero">EDU-NET</a></h1>
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <!--<li><a class="nav-link scrollto" href="#groups">Groups</a></li>-->
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#features">Getting Started</a></li>
           <li><a class="nav-link scrollto" href="#vision ">Vision</a></li>
-          
-          <!--<li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#keyd">Key Dates</a></li>
-          <li><a class="nav-link scrollto" href="#pricing">Register</a></li>-->
           <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
-
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a href="{{ url_for('login') }}">Login</a></li>
           <!--<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
@@ -824,9 +419,6 @@ p:last-child{
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>-->
-          <!--<li><a class="nav-link scrollto" href="#contact">Contact</a></li>-->
-
-          <!--<li><a class="nav-link scrollto" href="#map">Map</a></li>-->
         </ul>
         
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -842,9 +434,6 @@ p:last-child{
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <!--<h1></h1>
-          <br><br><br><br><br><br><br>-->
-
           <h1 style="color:rgba(222,196,99,255);font-size:25px;">EDU-NET</h1>
           <div>
             <h2>Bridging Knowledge, Connecting Minds.</h2>
@@ -852,26 +441,13 @@ p:last-child{
               <a href="{{ url_for('login') }}" class="btn-get-started scrollto">Sign Up</a>
             </div>
           </div>
-
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
-          <!--Logo-removebg-preview style="width:350px;height:350px;"
-            <br><br><br>-->
           <br><br>
-
           <img src="static/img/logo.png" style="width:450px;height:450px;" class="img-fluid animated" alt="" >
         </div>
       </div>
     </div>
-
-     <!-- <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
-      </a>
-
-      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
-      </a>-->
-
     </div>
 
     <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
@@ -897,93 +473,6 @@ p:last-child{
     <section id="about" class="about">
       <div class="container">
         <div class="section-title" data-aos="zoom-out">
-     <!--<br><br>-->
-          <!-- ======= FLIP TIMER PRAC ======= -->
-           <!-- <div class="example">
-              <div id="flipdown" class="flipdown"></div>
-              <p>MARK YOUR CALENDARS</p>
-            </div>-->
-           <!--
-            <p style="text-align: center;">Event to be Announced</p>
-            <div class="tick"
-              data-did-init="handleTickInit">
-              <div data-repeat="true"
-                data-layout="horizontal center fit"
-                data-transform="preset(d, h, m, s) -> delay">
-                <div class="tick-group">
-                  <div data-key="value"
-                   data-repeat="true"
-                   data-transform="pad(00) -> split -> delay">
-                   <span data-view="flip"></span>
-                  </div>
-                    <span data-key="label"
-                    data-view="text"
-                    class="tick-label">
-                    </span>
-                  </div>
-                </div>
-              </div>
--->
-          <!-- ======= FLIP TIMER END======= -->
-          <!--
-          <section id="groups" class="services">
-      <div class="container">
-        <div class="section-title" data-aos="zoom-out">
-          <p>New Groups</p>
-        </div>
-<table id="customers" style="text-align: center">
-          <thead>
-            <tr >-->
-              <!--<th scope="col">
-                <label class="control control--checkbox">
-                  <input type="checkbox"  class="js-check-all"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>-->
-            <!--  <th scope="col" style="text-align:center;">Chit Value (Rs)</th>
-              <th scope="col" style="text-align:center;">Duration (Months)</th>
-              <th scope="col" style="text-align:center;">Monthly Subscription (Rs)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>500000</td>
-              <td>50</td>
-              <td>10000</td>
-            </tr>
-            <tr>
-              <td>1000000</td>
-              <td>50</td>
-              <td>20000</td>
-            </tr>
-            <tr>
-              <td>2000000</td>
-              <td>50</td>
-              <td>40000</td>
-            </tr>
-
-            <tr>
-              <td>500000</td>
-              <td>25</td>
-              <td>20000</td>
-            </tr>
-            <tr>
-              <td>100000</td>
-              <td>25</td>
-              <td>4000</td>
-            </tr>
-            <tr>
-              <td>300000</td>
-              <td>30</td>
-              <td>10000</td>
-            </tr>-->
-            <!--<tr>
-              <td colspan="2" style="text-align:center;">But are not limited to...</td>
-            </tr>-->
-        <!--  </tbody>
-        </table>
-</div></section>-->
-
           <h2>About</h2>
           <p>EDU-NET</p>
         </div>
@@ -1001,11 +490,7 @@ p:last-child{
           <div class="col-lg-6 pt-4 pt-lg-0">
             <ul>
               <p>At EduNet, we’re committed to breaking barriers in education, empowering learners, and fostering connections. Join us to experience the future of learning!</p>
-            <!--
-              <li><i class="ri-check-double-line"></i>We are built upon a foundation of trust which has been created over the years while working with many satisfied customers.</li>
-              <li><i class="ri-check-double-line"></i>We also tend to provide prompt service and speedy disbursals of payments.</li>
-              <li><i class="ri-check-double-line"></i>We believe that trust is the most valuable thing and hence we are all geared to rejuvenate the industry with innovative and enterprising solutions, adding fresh perspective and providing new directions to increase market share.</li>  
-            -->
+            
             </ul>
           </div>
         </div>
@@ -1013,34 +498,6 @@ p:last-child{
     </section>
     <!-- End About Section -->
 
-    <!-- ======= How Chits Work Section ======= -->
-    <!--<section id="about" class="about">
-      <div class="container">
-        <div class="section-title" data-aos="zoom-out">
-          <h2>Working Procedure</h2>
-          <p>How Chits Work</p>
-        </div>
-        <div class="row content" data-aos="fade-up" style="text-align: justify;">
-          <div class="col-lg-6">
-            <p>
-            </p>
-            <ul>
-              <li><i class="ri-check-double-line"></i>International Conference on Smart Technologies in Data Science and Communication aims to bring together leading research scientists, academicians, researchers and research scholars to exchange and share their experiences and research findings on all aspects of Data Science and Communication. </li>
-              <li><i class="ri-check-double-line"></i>It also provides a premier interdisciplinary platform for researchers, Practitioners and educators to present and discuss the most recent innovations, trends, and concerns as well as practical challenges encountered and solutions adopted in the fields of Data Science and Communication.</li>
-              <li><i class="ri-check-double-line"></i>This will be purely research oriented conference.
-              Maximum of 6 pages to be submitted by the Author through Springer OCS</li>
-            </ul>
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0">
-            <p>
-              We believe that just because something works doesn't mean it can't be improved and use Design Thinking as a Strategy for Innovation. We work hard to leverage our skills as well as tend to decipher your issues.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </section>-->
-    <!-- End Call for paper Section -->
     <!-- ======= Special theme Section ======= -->
     <section id="cta" class="cta">
       <div class="container">
@@ -1051,11 +508,7 @@ p:last-child{
             <br>
             <h3> – Phil Collins</h3>
           </div>
-          <!--<div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="#">Call To Action</a>
-          </div>-->
         </div>
-
       </div>
     </section>
     <!-- Special theme End -->
@@ -1092,7 +545,7 @@ p:last-child{
           <li class="nav-item col-3" data-aos="zoom-in" data-aos-delay="300">
             <a class="nav-link" data-bs-toggle="tab" style="pointer-events: none;">
               <i class="ri-store-line"></i>
-              <h4 class="d-none d-lg-block">We can help you with Spreadsheet Work and Data Analysis</h4>
+              <h4 class="d-none d-lg-block">We can help you with...</h4>
             </a>
           </li>-->
         </ul>
@@ -1101,18 +554,8 @@ p:last-child{
           <div class="tab-pane active show" id="tab-1">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <!--<h3>Chit value:</h3>-->
                 <p class="fst-italic">
                   Create your account and set up your profile. Whether you're a tutor or a student, our intuitive onboarding helps you get started in no time. Add your expertise or learning goals, and let EduNet tailor the experience for you.</p>
-                <ul>
-                  <!--<li><i class="ri-check-double-line"></i>
-                  Consider there is a new chit group that is commencing. The value of the chit is 500,000. This amount is known as the Chit Value.
-                </li>-->
-                <!--<a href="https://www.springer.com/series/15179" target="_blank" rel="noopener noreferrer">
-                  https://www.springer.com/series/15179
-                </a>-->
-                 <!-- <li><i class="ri-check-double-line"></i> Proposal submitted to springer</li>-->
-                </ul>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
                 <img src="static/img/FEATURES-1.gif" style="width:350px;height:350px;" alt="" class="img-fluid">
@@ -1122,8 +565,7 @@ p:last-child{
           <div class="tab-pane" id="tab-2">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0" style="text-align: justify;">
-               <!-- <h3>Chit period:</h3>-->
-                <ul>
+               <ul>
                   <li><i class="ri-check-double-line"></i> 
                     Explore a diverse pool of tutors or students through our user-friendly dashboard. Use tools like Air Canvas, video conferencing, and chat to engage in real-time and enhance your learning or teaching sessions.</ul>
                 </div>
@@ -1135,7 +577,6 @@ p:last-child{
           <div class="tab-pane" id="tab-3">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <!--<h3>Subscribers:</h3>-->
                 <ul>
                   <li><i class="ri-check-double-line"></i>
                     Track your progress, receive personalized insights, and celebrate milestones. With EduNet, you’re not just learning or teaching—you’re building connections and paving the way for future success.
@@ -1146,53 +587,11 @@ p:last-child{
               </div>
             </div>
           </div>
-           <!--<div class="tab-pane" id="tab-4">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Omnis fugiat ea explicabo sunt dolorum asperiores sequi inventore rerum</h3>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/features-4.png" alt="" class="img-fluid">
-              </div>-->
             </div>        
           </div>
         </div>
       </div>
     </section><!-- End Features Section -->
-
-
-
-    <!-- ======= Cta Section ======= -->
-    <!--<section id="cta" class="cta">
-      <div class="container">
-
-        <div class="row" data-aos="zoom-out">
-          <div class="col-lg-9 text-center text-lg-start">
-            <h3>“It is only when they go wrong that machines remind you how powerful they are.”</h3>
-            <p>-Clive James, Broadcaster and Journalist.</p>
-          </div>-->
-          <!--<div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="#">Call To Action</a>
-          </div>-->
-        <!--</div>
-
-      </div>
-    </section>-->
-    <!-- End Cta Section -->
 
     <!-- ======= Services Section ======= -->
     <section id="vision" class="services">
@@ -1254,535 +653,6 @@ p:last-child{
       </div>
     </section>
     <!-- End Services Section -->
-    <!--LIST-->
-    <!--
-    <div class="content">
-    <div class="container">
-      <h2 class="mb-5"></h2>
-      <div class="section-title" data-aos="zoom-out">
-          <p>Topics</p>
-        <table id="customers">
-          <thead>
-            <tr>-->
-
-              <!--<th scope="col">
-                <label class="control control--checkbox">
-                  <input type="checkbox"  class="js-check-all"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-
-              <th scope="col">Order</th>
-
-              <th scope="col">Name</th>
-              <th scope="col">Occupation</th>
-              <th scope="col">Contact</th>
-              <th scope="col">Education</th>-->
-            <!--</tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Artificial Neural Networks and Fuzzy Logic</td>
-              <td>Optimization Methods and Solutions</td>
-            </tr>
-            <tr>
-              <td>Cloud Computing</td>
-              <td>Evolutionary Algorithms and Computation</td>
-            </tr>
-            <tr>
-              <td>Machine Learning</td>
-              <td>Hybrid Models and Fuzzy Systems</td>
-            </tr>
-            <tr>
-              <td>Networking, Sensor, Security and WSN</td>
-              <td>Data Science</td>
-            </tr>
-            <tr>
-              <td>Meta Heuristics and Swarm Intelligence</td>
-              <td>Multi-Model Problems and Spatial Distribution</td>
-            </tr>
-            <tr>
-              <td>Neuro Fuzzy System</td>
-              <td>Non-Linear Separation</td>
-            </tr>
-            <tr>
-              <td colspan="2" style="text-align:center;">But are not limited to...</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </div>-->
-    <!--END LIST-->
-
-    <!--KEY DATES-->
-<!--
-    <section id="keyd" class="keyd">
-      <div class="container">
-    <div class="section-title" data-aos="zoom-out">
-          <p>Key Dates</p>
-        </div>
-      </div>
-    </div>
-    <div class="page">
-  <div class="timeline">
-    <div class="timeline__group">-->
-
-      <!--<span class="timeline__year time">May 10, 2022</span>-->
-     <!-- <div class="timeline__cards">
-        <div class="timeline__card card">
-          <header class="card__header">
-            <time class="time" datetime="2022-05-10" style="float: right;">
-
-              <span class="time__month">May 10, 2022</span>
-            </time>
-            <h3 class="card__title r-title">Paper Submission Deadline.</h3>
-          </header>-->
-          <!--<div class="card__content">
-            <p>Paper Submission Deadline.</p>
-          </div>-->
-        <!--
-        </div>
-       
-       <div class="timeline__card card">
-          <header class="card__header">
-            <time class="time" datetime="2008-06-05">
-              <span class="time__day">5</span>
-              <span class="time__month">June</span>
-            </time>
-            <h3>Acceptance Notification.</h3>
-          </header>
-           <div class="card__content">
-            <p>Started from University of Pennsylvania. This is an important stage of my career. Here I worked in the local magazine. The experience greatly affected me</p>
-          </div>
-        </div>
-         <div class="timeline__card card">
-          <header class="card__header">
-            <time class="time" datetime="2008-06-15">
-              <span class="time__day">15</span>
-              <span class="time__month">June</span>
-            </time>
-            <h3 class="card__title r-title">Submission Deadline for revised papers</h3>
-          </header>
-           <div class="card__content">
-            <p>Started from University of Pennsylvania. This is an important stage of my career. Here I worked in the local magazine. The experience greatly affected me</p>
-          </div>
-        </div>
-        <div class="timeline__card card">
-          <header class="card__header">
-            <time class="time" datetime="2008-06-25">
-              <span class="time__day">25</span>
-              <span class="time__month">June</span>
-            </time>
-            <h3 class="card__title r-title">Author Registration Deadline</h3>
-          </header>
-          <div class="card__content">
-            <p>Started from University of Pennsylvania. This is an important stage of my career. Here I worked in the local magazine. The experience greatly affected me</p>
-          </div>
-        </div>-->
-      <!--
-      </div>
-    </div>
-    <div class="timeline__group">-->
-      <!--<span class="timeline__year time" aria-hidden="true" >June 5, 2022</span>-->
-     <!-- <div class="timeline__cards">
-        <div class="timeline__card card">
-          <header class="card__header">
-            <time class="time" datetime="2022-06-15" style="float: right;">
-              <span class="time__month">June 15, 2022</span>
-            </time>
-            <h3 class="card__title r-title">Acceptance Notification.</h3>
-          </header>-->
-          <!--<div class="card__content">
-            <p>Travels to France, Italy, Spain, and Peru. After completing fashion editorial in Lima, prolongs stay to make portraits of local people in a daylight studio</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="timeline__group">-->
-      <!--<span class="timeline__year time" aria-hidden="true">June 15, 2022</span>-->
-      <!--<div class="timeline__cards">
-        <div class="timeline__card card">
-          <header class="card__header">
-            <time class="time" datetime="2008-08-18" style="float: right;">
-              <span class="time__month">June 15, 2022</span>
-            </time>
-            <h3 class="card__title r-title">Submission deadline for revised papers.</h3>
-          </header>-->
-          <!--<div class="card__content">
-            <p>Upon moving to Brooklyn that summer, I began photographing weddings in Chicago</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="timeline__group">-->
-      <!--<span class="timeline__year time" aria-hidden="true">June 25, 2022</span>-->
-      <!--<div class="timeline__cards">
-        <div class="timeline__card card">
-          <header class="card__header">
-            <time class="time" datetime="2022-06-15" style="float: right;">
-              <span class="time__month">June 15, 2022</span>
-            </time>
-            <h3 class="card__title r-title">Author Registration Deadline.</h3>
-          </header>-->
-          <!--<div class="card__content">
-            <p>Travels to France, Italy, Spain, and Peru. After completing fashion editorial in Lima, prolongs stay to make portraits of local people in a daylight studio</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="timeline__group">-->
-      <!--<span class="timeline__year time" aria-hidden="true">July 21-22, 2022</span>-->
-      <!--<div class="timeline__cards">
-        <div class="timeline__card card">
-          <header class="card__header">
-            <time class="time" datetime="2022-06-15" style="float: right;">
-              <span class="time__month">July 21-22, 2022</span>
-            </time>
-            <h3 class="card__title r-title">Conference Dates</h3>
-          </header>-->
-          <!--<div class="card__content">
-            <p>Travels to France, Italy, Spain, and Peru. After completing fashion editorial in Lima, prolongs stay to make portraits of local people in a daylight studio</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>-->
-
-    <!--END key dates-->
-
-    <!-- ======= Portfolio Section ======= -->
-   <!-- <section id="portfolio" class="portfolio">
-      <div class="container">
-
-        <div class="section-title" data-aos="zoom-out">
-          <h2>Portfolio</h2>
-          <p>What we've done</p>
-        </div>
-
-        <ul id="portfolio-flters" class="d-flex justify-content-end" data-aos="fade-up">
-          <li data-filter="*" class="filter-active">All</li>
-          <li data-filter=".filter-app">App</li>
-          <li data-filter=".filter-card">Card</li>
-          <li data-filter=".filter-web">Web</li>
-        </ul>
-
-        <div class="row portfolio-container" data-aos="fade-up">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>-->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section =======
-    <section id="testimonials" class="testimonials">
-      <div class="container">
-
-        <div class="section-title" data-aos="zoom-out">
-          <h2>Testimonials</h2>
-          <p>What they are saying about us</p>
-        </div>
-
-        <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">-->
-
-           <!-- <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-              </div>
-            </div> End testimonial item
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-              </div>
-            </div>--><!-- End testimonial item -->
-
-           <!-- <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Thanks a lot for all you do!
-                  Our success depends on people like you, whose skills and positive energy make great things happen. By stepping up every task with enthusiasm and determination, you earn our gratitude and praise. Your star quality in making the video of the Mega Diabetic Camp at Sanjivani Hospital, Kuchipudi is outstanding and it makes bright each day when we play it for our patients and employees.
-                  Once again we highly appreciate all your support and help.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>-->
-                <!--<img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">-->
-               <!-- <h3>Vasu Kudupudi</h3>
-                <h4>Chief Operating< Officer</h4>
-              </div>
-            </div>-->
-            <!-- End testimonial item -->
-
-           <!-- <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  These people helped me alot in Automating Excel data records. The best thing about this team is their delivery of work within time and the way they keep confidentiality of work. Keep it up. God bless you.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>-->
-                <!--<img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">-->
-               <!-- <h3>Sai Kumar</h3>
-                <h4>Private school Principal</h4>
-              </div>
-            </div>-->
-            <!-- End testimonial item -->
-
-           <!-- <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  You guys did a great job. You made me an Hospital Management system within 3 days. It helped me a lot.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>-->
-                <!--<img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">-->
-                <!--<h3>Ram</h3>
-                <h4>Student & Freelancer</h4>
-              </div>
-            </div>-->
-            <!-- End testimonial item -->
-
-        <!--  </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section>-->
-    <!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!--<section id="pricing" class="pricing">
-      <div class="container">
-
-        <div class="section-title" data-aos="zoom-out">-->
-      <!--
-          <h2>REGISTRATIONS</h2>
-          <h3>
-          <ul>
-                  <li><i class="ri-check-double-line"></i>All authors can participate</li>
-                  <li><i class="ri-check-double-line"></i> We give an opportunity to all
-          authors those they have limited budget and from far countries
-          to choose virtual registration.</li>
-                  <li><i class="ri-check-double-line"></i> Alternatively, you may send your Paper(s) to the following mail
-          id: smartdsc2022@gmail.com
-          </li>
-          <li><i class="ri-check-double-line"></i>
-          Submit your abstract(s) to : smartdsc2022@gmail.com
-          </li>
-          <li><i class="ri-check-double-line"></i>
-          Submit your full length paper to :
-          "TO BE UPDATED"</li>
-                </ul>
-              </h3>-->
-          
-
-         <!-- <p>Registration Fee</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-            <div class="box featured" data-aos="zoom-in">
-              <h3>Academician:</h3>
-              <br>
-              <h4><sup>₹</sup>5000<span> - INDIAN</span></h4>
-              <h4><sup>$</sup>200<span> - FOREIGNER </span></h4>-->
-              <!--<ul>
-                <li>Front End</li>
-                <li>BackEnd Connected</li>
-                <li>Dynamic Website</li>
-                <li>Free Domain</li>
-                <li class="na">Testing</li>
-                <li class="na">PPT</li>
-                <li class="na">Article</li>
-                <li class="na">Logo</li>
-              </ul>-->
-              <!--<div class="btn-wrap">
-                <a href="#" class="btn-buy">Register</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-            <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
-              <h3>Students (UG, PG, Ph.D. Research Scholars):</h3>
-              <h4><sup>₹</sup>4000<span> - INDIAN </span></h4>
-              <h4><sup>$</sup>200<span> - FOREIGNER </span></h4>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Register</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-            <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
-              <h3>Industry Participants:</h3>
-              <br>
-              <h4><sup>₹</sup>6000<span> - INDIAN </span></h4>
-              <h4><sup>$</sup>250<span> - FOREIGNER </span></h4>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Register</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-            <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
-              <h3>Only Participation:</h3>
-              <br>
-              <h4><sup>₹</sup>3000<span> - INDIAN </span></h4>
-              <h4><sup>$</sup>150<span> - FOREIGNER </span></h4>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Register</a>
-              </div>
-            </div>
-          </div>-->
-
-          <!--<div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-            <div class="box" data-aos="zoom-in" data-aos-delay="200">
-              <h3>Creative Works</h3>
-              <h4><sup>₹</sup>1500<span> / video editing</span></h4>
-              <h4><sup>₹</sup>399<span> / Logo</span></h4>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-            <div class="box" data-aos="zoom-in" data-aos-delay="300">
-              <span class="advanced">Advanced</span>
-              <h3>Web Development</h3>
-              <h4><sup>₹</sup>6599<span> / project</span></h4>
-              <ul>
-                <li>Front End</li>
-                <li>BackEnd Connected</li>
-                <li>Dynamic Website</li>
-                <li>Testing</li>
-                <li>Free Domain</li>
-                <li>PPT</li>
-                <li>Article</li>
-                <li>Logo</li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>-->
-    <!-- End Pricing Section -->
 
     <!-- ======= F.A.Q Section ======= -->
     <section id="faq" class="faq">
@@ -1892,12 +762,6 @@ p:last-child{
                 <div class="social">
                     <a href="https://www.linkedin.com/in/ddommeti"><i class="bi bi-award-fill"></i></a>
                 </div>
-                <!--<div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>-->
               </div>
               <div class="member-info">
                 <h4>Dhiren Dommeti</h4>
@@ -1920,103 +784,8 @@ p:last-child{
               </div>
             </div>
           </div>
-<!--
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up">
-              <div class="member-img">
-                <img src="static/img/team/team-1.jpg" class="img-fluid" alt="" style="width:350px;height:250px;">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Name-3</h4>
-                <span>Designation</span>
-              </div>
-            </div>
-          </div>-->
     </section>
-    <!-- ======= End Committee Section ======= -->    
-    <!-- ======= Contact Section ======= -->
-    <!--
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title" data-aos="zoom-out">
-          <h2>Contact</h2>
-          <p>Contact</p>
-        </div>
-        <div class="row mt-5">
-          <div class="col-lg-4" data-aos="fade-right">
-            <div class="info">
-             <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>Boston, MA</p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>ask@edunet.com</p>
-              </div>
--->
-              <!--<div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+1 9640524999</p>
-              </div>-->
-<!--
-            </div>
-
-          </div>-->
-<!--
-          <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
-
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-    -->
-    <!-- End Contact Section -->
-   <!-- <section id="map" class="contact">
-      <div class="container">-->
-    <!--MAP-->
-    <!--<iframe width="1500" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=79.97608602046968%2C14.441231110384255%2C79.97797429561616%2C14.442815556440616&amp;layer=mapnik" style="border: 3px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/14.44202/79.97703">View Larger Map</a></small>-->
-  <!--  <iframe width="1200" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=80.63093394041063%2C16.512851890096922%2C80.6328195333481%2C16.51442054996869&amp;layer=mapnik&amp;marker=16.513636221624388%2C80.63187539577484" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=16.51364&amp;mlon=80.63188#map=19/16.51364/80.63188&amp;layers=N">View Larger Map</a></small>
-    -->
-  <!--END MAP-->
-<!--</div></section>
-  </main>
--->
+    
   <!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -2024,13 +793,6 @@ p:last-child{
     <div class="container" style="text-align:center;">
       <h3>EDU-NET</h3>
       <p style="color:rgba(222,196,99,255);">"Bridging Knowledge, Connecting Minds."</p>
-      <div class="social-links" style="text-align:center;">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
      <div class="copyright" style="color:rgba(222,196,99,255);text-align:center;">
         &copy; Copyright <strong><span>S.I.A</span></strong>. All Rights Reserved
       </div>
@@ -2429,10 +1191,6 @@ function handleTickInit(tick) {
 
 /* eslint-disable */
 
-/*
- * @pqina/flip v1.8.0 - A Beautifully Animated Flip Clock
- * Copyright (c) 2020 PQINA - https://pqina.nl/flip/
- */
 !function(){"use strict";function c(t){return"function"==typeof t||"[object Function]"===e.call(t)}function f(t){var e,n=(e=Number(t),isNaN(e)?0:0!==e&&isFinite(e)?(0<e?1:-1)*Math.floor(Math.abs(e)):e);return Math.min(Math.max(n,0),r)}var e,r,i,o,a,u;Array.prototype.fill||Object.defineProperty(Array.prototype,"fill",{value:function(t){if(null==this)throw new TypeError("this is null or not defined");for(var e=Object(this),n=e.length>>>0,r=arguments[1]>>0,i=r<0?Math.max(n+r,0):Math.min(r,n),o=arguments[2],a=void 0===o?n:o>>0,u=a<0?Math.max(n+a,0):Math.min(a,n);i<u;)e[i]=t,i++;return e}}),Array.prototype.find||Object.defineProperty(Array.prototype,"find",{value:function(t){if(null==this)throw new TypeError("Array.prototype.find called on null or undefined");if("function"!=typeof t)throw new TypeError("predicate must be a function");for(var e=Object(this),n=e.length>>>0,r=arguments[1],i=0;i!==n;i++)if(t.call(r,this[i],i,e))return this[i]}}),Array.from||(Array.from=(e=Object.prototype.toString,r=Math.pow(2,53)-1,function(t,e,n){var r=Object(t);if(null==t)throw new TypeError("Array.from requires an array-like object - not null or undefined");var i,o=1<arguments.length?e:void 0;if(void 0!==o){if(!c(o))throw new TypeError("Array.from: when provided, the second argument must be a function");2<arguments.length&&(i=n)}for(var a,u=f(r.length),l=c(this)?Object(new this(u)):new Array(u),s=0;s<u;)a=r[s],l[s]=o?void 0===i?o(a,s):o.call(i,a,s):a,s+=1;return l.length=u,l})),Array.prototype.includes=Array.prototype.includes||function(t,e){if(!this)throw new TypeError("Array.prototype.includes called on null or undefined");if(void 0===e){for(var n=this.length;n--;)if(this[n]===t)return!0}else{n=e;for(var r=this.length;n++!==r;)if(this[n]===t)return!0}return!1},"function"!=typeof Object.assign&&(Object.assign=function(t,e){if(null==t)throw new TypeError("Cannot convert undefined or null to object");for(var n=Object(t),r=1;r<arguments.length;r++){var i=arguments[r];if(null!=i)for(var o in i)Object.prototype.hasOwnProperty.call(i,o)&&(n[o]=i[o])}return n}),Object.keys||(Object.keys=(i=Object.prototype.hasOwnProperty,o=!{toString:null}.propertyIsEnumerable("toString"),u=(a=["toString","toLocaleString","valueOf","hasOwnProperty","isPrototypeOf","propertyIsEnumerable","constructor"]).length,function(t){if("object"!=typeof t&&("function"!=typeof t||null===t))throw new TypeError("Object.keys called on non-object");var e,n,r=[];for(e in t)i.call(t,e)&&r.push(e);if(o)for(n=0;n<u;n++)i.call(t,a[n])&&r.push(a[n]);return r}))}(),function(t){"use strict";t.Tick||(t.Tick=[]),t.Tick.push(["view","flip",function(){if(!t)var t={};"function"==typeof Symbol&&Symbol.asyncIterator&&(e.prototype[Symbol.asyncIterator]=function(){return this}),e.prototype.next=function(t){return this._invoke("next",t)},e.prototype.throw=function(t){return this._invoke("throw",t)},e.prototype.return=function(t){return this._invoke("return",t)};function s(t){this.value=t}function e(i){var o,a;function u(t,e){try{var n=i[t](e),r=n.value;r instanceof s?Promise.resolve(r.value).then(function(t){u("next",t)},function(t){u("throw",t)}):l(n.done?"return":"normal",n.value)}catch(t){l("throw",t)}}function l(t,e){switch(t){case"return":o.resolve({value:e,done:!0});break;case"throw":o.reject(e);break;default:o.resolve({value:e,done:!1})}(o=o.next)?u(o.key,o.arg):a=null}this._invoke=function(r,i){return new Promise(function(t,e){var n={key:r,arg:i,resolve:t,reject:e,next:null};a?a=a.next=n:(o=a=n,u(r,i))})},"function"!=typeof i.return&&(this.return=void 0)}var v=function(t,e,n){return e&&r(t.prototype,e),n&&r(t,n),t};function r(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return t.exports=function(t){function n(o){if(o.isInitialValue()){o.root.textContent="",o.spacer=s.create("span","tick-flip-spacer"),o.root.appendChild(o.spacer);var t=s.create("span","tick-flip-shadow-top tick-flip-shadow tick-flip-front"),e=s.create("span","tick-flip-shadow-bottom tick-flip-shadow tick-flip-back");o.root.appendChild(t),o.root.appendChild(e),o.shadowCard=s.create("span","tick-flip-card-shadow"),o.root.appendChild(o.shadowCard)}if(o.spacer.textContent=o.value,o.isInitialValue()||s.visible(o.root)){var n=o.cards[o.cards.length-1];if(n&&(n.waiting=!1,n.offset=l(),n.back=o.value),o.isInitialValue()){var r=new h;r.back=o.value,r.offset=null,r.progress=1,o.root.insertBefore(r.root,o.root.firstChild),o.cards.push(r)}var i=new h;if(i.offset=null,i.progress=0,i.visual_progress=0,i.waiting=!0,i.front=o.value,i.rotate(0),o.root.insertBefore(i.root,o.root.firstChild),o.cards.push(i),!o.animating){o.animating=!0;var a=u.getExtension(u.Type.EASING_FUNCTION,o.style.flipEasing);!function t(){var r=o.cards.filter(function(t){return!t.done&&!t.waiting});if(0!==r.length){r.forEach(function(t){null!==t.offset&&(t.progress=(l()-t.offset)/o.style.flipDuration),1<=t.progress&&(t.progress=1,t.done=!0),t.visual_progress=a(t.progress)});r.reverse().forEach(function(t,e){var n=r[e-1];n&&t.visual_progress<=n.visual_progress&&(t.visual_progress=n.visual_progress+.01)}),r.reverse(),o.cards.forEach(function(t,e){var n=1-2*Math.abs(t.visual_progress-.5),r=1-(t.visual_progress-.5)/.5;t.shadowFront=n,t.highlightBack=r;var i=o.cards[e+1];i&&.5<t.visual_progress&&0<t.visual_progress&&(t.shadowBack=f(i.visual_progress))}),r.forEach(function(t,e){var n=t.visual_progress;.5<n&&!t.done?t.root.style.zIndex=10+e:t.root.style.removeProperty("z-index"),t.rotate(-180*n)});var n=0,i=1;r.forEach(function(t){var e=Math.abs(t.visual_progress-.5);e<i&&(i=e,n=t.visual_progress)});var e=d(n<.5?n/.5:(1-n)/.5);o.shadowCard.style.opacity=e,s.transform(o.shadowCard,"scaleY",e),o.cards.filter(function(t){return t.done}).slice(0,-1).forEach(function(e){o.cards=o.cards.filter(function(t){return t!==e}),e.root.parentNode&&o.root.removeChild(e.root)}),requestAnimationFrame(t)}else o.animating=!1}()}}else o.cards.forEach(function(t){t.back=o.value,t.front=o.value})}var s=t.DOM,u=(t.Animation.animate,t.Extension),l=t.Date.performance,e=t.View,r=e.rooter,i=e.destroyer,o=e.drawer,a=e.updater,c=e.styler,f=u.getExtension(u.Type.EASING_FUNCTION,"ease-out-cubic"),d=u.getExtension(u.Type.EASING_FUNCTION,"ease-out-sine"),h=(v(p,[{key:"rotate",value:function(t){this._front.style.transform="rotateX("+t+"deg)",this._back.style.transform="rotateX("+(-180+t)+"deg)"}},{key:"root",get:function(){return this._root}},{key:"front",set:function(t){this._frontValue=t,this._textFront.textContent=t},get:function(){return this._frontValue}},{key:"back",set:function(t){this._backValue=t,this._textBack.textContent=t},get:function(){return this._backValue}},{key:"highlightBack",set:function(t){this._highlightBack.style.opacity=t}},{key:"shadowBack",set:function(t){this._shadowBack.style.opacity=t}},{key:"shadowFront",set:function(t){this._shadowFront.style.opacity=t}}]),p);function p(){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,p),this._root=s.create("span","tick-flip-card");var t=s.create("span","tick-flip-panel-front tick-flip-front tick-flip-panel"),e=s.create("span","tick-flip-panel-front-text"),n=s.create("span","tick-flip-panel-text-wrapper");e.appendChild(n);var r=s.create("span","tick-flip-panel-front-shadow");t.appendChild(e),t.appendChild(r);var i=s.create("span","tick-flip-panel-back tick-flip-back tick-flip-panel"),o=s.create("span","tick-flip-panel-back-text"),a=s.create("span","tick-flip-panel-text-wrapper");o.appendChild(a);var u=s.create("span","tick-flip-panel-back-highlight"),l=s.create("span","tick-flip-panel-back-shadow");i.appendChild(o),i.appendChild(u),i.appendChild(l),this._root.appendChild(t),this._root.appendChild(i),this._front=t,this._back=i,this._shadowFront=r,this._shadowBack=l,this._highlightBack=u,this._textBack=a,this._textFront=n,this._frontValue=null,this._backValue=null}return function(t){var e={cards:[],lastCard:null,initialCard:null,shadowAbove:null,shadowBelow:null,shadowCard:null,currentValue:null,lastValue:null,front:null,back:null};return Object.assign({},r(e,t,"flip"),a(e),c(e,{flipDuration:800,flipEasing:"ease-out-bounce"}),o(e,n),i(e))}},t.exports.identifier={name:"flip",type:"view"},t.exports}()])}(window),function(t,e,cn){"use strict";if(t&&"MutationObserver"in t&&"requestAnimationFrame"in t){var n=function(){if(!t)var t={};var s={FONT:"font",VIEW:"view",TRANSFORM:"transform",EASING_FUNCTION:"easing-function",TRANSITION:"transition"},r={};r[s.FONT]={},r[s.VIEW]={},r[s.TRANSFORM]={},r[s.EASING_FUNCTION]={},r[s.TRANSITION]={};function e(t,e){if(r[t])for(var n in e)if(e.hasOwnProperty(n)){if(r[t][n])return;r[t][n]=e[n]}}function i(t,e,n){if(!r[t])throw"Can't add extension with type of \""+t+'", "'+t+'" is not a valid extension type. The following types are valid: '+Ne(r);if(!/^[-a-z]+$/.test(e))throw"Can't add extension with name \""+e+'", "'+e+'" is contains invalid characters. Only lowercase alphabetical characters and dashes are allowed.';if(r[t][e])throw"Can't add extension with name \""+e+'", "'+e+'" is already added.';r[t][e]=n}function c(t,e){if(!r[t])throw"Can't get extension with type of \""+t+'", "'+t+'" is not a valid extension type. The following types are available: '+Ne(r);if(!r[t][e])throw"Can't get extension with name \""+e+'", "'+e+'" is not available. The following extensions are available: '+Ne(r[t]);return r[t][e]}var h={Week:6048e5,Day:864e5,Hour:36e5,Minute:6e4,Second:1e3,Millisecond:1,Month:2628e6,Year:31536e6},n=["Januari","Februari","March","April","May","June","July","August","September","October","November","December"];for(var o in h)if(h.hasOwnProperty(o)){var a=h[o];1===a?(h.mi=a,h.ms=a):2628e6===a?h.M=a:h[o.charAt(0).toLowerCase()]=a,h[o.toLowerCase()]=a,h[o.toLowerCase()+"s"]=a}function u(t){return t instanceof Date}function f(t,e){var n=e-t.getDay();return t.setDate(t.getDate()+n),t}function d(t,e){var n=N(t.getMonth()+1,t.getFullYear());return e="last"===e?n:Math.max(1,Math.min(n,e)),t.setDate(e),t}function p(t,e){return t.setMonth(n.map(function(t){return t.toLowerCase()}).indexOf(e)),t}function v(t){return new Date(Date.now()+t)}function m(t,e){return t.toDateString()===e.toDateString()}function l(t){return t.match(/(Z)|([+\-][0-9]{2}:?[0-9]*$)/g)?new Date(t):(t+=-1!==t.indexOf("T")?"Z":"",I(new Date(t)))}function g(r,t){return t.map(function(t){var e=h[t],n=Math.max(0,Math.floor(r/e));return r%=e,n})}function y(t,e,n){var i=e-t,r=!1;if(i<0){i=t-e;var o=[e,t];t=o[0],e=o[1],r=!0}var a=(n=n||["d","h","m"]).indexOf("m");0<=a&&("y"===n[a-1]||"d"===n[a+1])&&(n[a].key="M");var u=void 0,l=void 0,s=void 0,c=n.includes("y"),f=n.includes("M");(f||c)&&(u=new Date(t.valueOf()+i),l=T(u,t),s=f?Math.floor(l):12*Math.floor(l/12),i=u.valueOf()-S(O(t),s).valueOf());var d=n.map(function(t){if("y"===t||"M"===t){var e=Math.max(0,Math.floor(l/D[t]));return l-=e*D[t],e}var n=h[t],r=Math.max(0,Math.floor(i/n));return i%=n,r});return r?d.map(function(t){return 0<t?-t:t}):d}function w(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];if("number"!=typeof e[0]||"string"!=typeof e[1])return u(e[0])?y.apply(cn,e):"number"==typeof e[0]&&Array.isArray(e[1])?g.apply(cn,e):null;if(!h[e[1]])throw'"'+e[1]+'" is not a valid amount.';return e[0]*h[e[1]]}function b(){return new Date}function _(t){return{destroy:function(){t.destroyed=!0,t.frame&&cancelAnimationFrame(t.frame),t.styleObserver&&t.styleObserver.disconnect(),t.didResizeWindow&&window.removeEventListener("resize",t.didResizeWindow),t.root&&t.root.parentNode&&t.root.parentNode.removeChild(t.root)}}}function A(r){var t=1<arguments.length&&arguments[1]!==cn?arguments[1]:document.createElement("span"),e=2<arguments.length&&arguments[2]!==cn?arguments[2]:null;return r.root=t,r.aligned=null,r.destroyed=!1,t&&e&&(r.root.classList.add("tick-"+e),r.root.setAttribute("data-view",e)),t&&t.dataset.layout&&(r.align=(t.dataset.layout.match(/left|right|center/)||[])[0]||"left"),{appendTo:function(t,e){var n=1<arguments.length&&e!==cn?e:"last";!r.root||r.root&&r.root.parentNode||("last"!==n?("first"===n&&(0===t.childNodes.length?t.appendChild(r.root):0===t.children.length&&t.childNodes.length?t.insertBefore(r.root,t.childNodes[t.childNodes.length-1]):t.insertBefore(r.root,t.children[0])),"string"!=typeof n&&t.insertBefore(r.root,n)):t.childNodes.length&&t.childNodes[t.childNodes.length-1].nodeType===Node.TEXT_NODE?t.insertBefore(r.root,t.childNodes[t.childNodes.length-1]):t.appendChild(r.root))}}}function k(e,t){return e.definition=t,{setDefinition:function(t){e.definition=t}}}function E(t,e,n,r){return{draw:function(){if(t.dirty)return e(t,r),R(t),!(t.dirty=!1);n&&n(t)&&R(t);return!1}}}function M(e){return e.dirty=!0,e.value=null,e.valueUpdateCount=0,e.isInitialValue=function(){return e.valueUpdateCount<=1},{reset:function(){e.dirty=!0,e.value=null,e.valueUpdateCount=0},update:function(t){Me(e.value,t)||(e.value=t,e.valueUpdateCount++,e.dirty=!0)}}}function x(t){t.didResizeWindow=function(){t.dirty=!0},window.addEventListener("resize",t.didResizeWindow)}var C={Monday:1,Tuesday:2,Wednesday:3,Thursday:4,Friday:5,Saturday:6,Sunday:0},D={M:1,y:12},N=function(t,e){return new Date(e,t,0).getDate()},I=function(t){return new Date(t.getTime()+6e4*t.getTimezoneOffset())},O=function(t){return new Date(t.valueOf())},S=function(t,e){return t.setMonth(t.getMonth()+e),t},T=function(t,e){var n=12*(e.getFullYear()-t.getFullYear())+(e.getMonth()-t.getMonth()),r=S(O(t),n);return-(n+(e-r<0?(e-r)/(r-S(O(t),n-1)):(e-r)/(S(O(t),1+n)-r)))},R=function(t){if(!t.fit){if(!t.root||!(t.root.getAttribute("data-layout")||"").match(/fit/))return void(t.fit=!1);var e=window.getComputedStyle(t.root,null);t.fit=!0,t.fitInfo={currentFontSize:parseInt(e.getPropertyValue("font-size"),10)}}t.fitInfo.availableWidth=t.root.parentNode.clientWidth,t.fitInfo.currentWidth=t.root.scrollWidth;var n=Math.min(Math.max(4,t.fitInfo.availableWidth/t.fitInfo.currentWidth*t.fitInfo.currentFontSize),1024);Math.abs(n-t.fitInfo.currentFontSize)<=1||(t.fitInfo.currentFontSize=n,t.root.style.fontSize=t.fitInfo.currentFontSize+"px")},L="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};"function"==typeof Symbol&&Symbol.asyncIterator&&(F.prototype[Symbol.asyncIterator]=function(){return this}),F.prototype.next=function(t){return this._invoke("next",t)},F.prototype.throw=function(t){return this._invoke("throw",t)},F.prototype.return=function(t){return this._invoke("return",t)};function U(t){this.value=t}function F(i){var o,a;function u(t,e){try{var n=i[t](e),r=n.value;r instanceof U?Promise.resolve(r.value).then(function(t){u("next",t)},function(t){u("throw",t)}):l(n.done?"return":"normal",n.value)}catch(t){l("throw",t)}}function l(t,e){switch(t){case"return":o.resolve({value:e,done:!0});break;case"throw":o.reject(e);break;default:o.resolve({value:e,done:!1})}(o=o.next)?u(o.key,o.arg):a=null}this._invoke=function(r,i){return new Promise(function(t,e){var n={key:r,arg:i,resolve:t,reject:e,next:null};a?a=a.next=n:(o=a=n,u(r,i))})},"function"!=typeof i.return&&(this.return=cn)}var P=function(t,e,n){return e&&z(t.prototype,e),n&&z(t,n),t};function z(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}function j(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return Array.from(t)}function q(e,n){var t=(e.definition||[]).concat();"right"===e.align&&t.reverse();var r=Array.isArray(e.value)?e.value.concat():"object"===L(e.value)?_e(e.value):e.value;t.forEach(function(t){if(!t.presenter){if(e.update=n(t),!t.presenter)return;t.presenter.appendTo(e.root)}}),t.filter(function(t){return t.presenter!==cn}).forEach(function(t){Array.isArray(r)&&e.valueMapping?e.update(t,"indexes"===e.valueMapping?"right"===e.align?r.pop():r.shift():r):t.key&&r[t.key]!==cn?e.update(t,r[t.key]):e.update(t,r)}),e.views=t,ot(e)}function G(r,i){var t=Ae(Array.isArray(r.value)?r.value:(r.value+"").split(""));if("right"===r.align&&t.reverse(),r.definitions.length>t.length)for(;r.definitions.length>t.length;){r.definitions.pop().presenter.destroy()}t.forEach(function(t,e){var n=r.definitions[e];n||(n=r.definitions[e]=ie(r.definition),r.update=i(n),n.presenter.appendTo(r.root,"right"===r.align?"first":"last"))}),t.forEach(function(t,e){return r.update(r.definitions[e],t)}),r.views=t,at(r)}function W(t,e){var n=document.createElement(t);return e&&(n.className=e),n}function Y(n,r,i){var t=new MutationObserver(function(e){r.forEach(function(t){e.filter(function(t){return r.includes(t.attributeName)}).length&&i(n.getAttribute(t))})});return t.observe(n,{attributes:!0}),t}function V(t){return t instanceof HTMLElement}function B(t,e,n,r){var i=3<arguments.length&&r!==cn?r:"";t.transforms||(t.transforms=[]);var o=t.transforms.find(function(t){return t.name===e});o?o.value=n:t.transforms.push({name:e,value:n,unit:i}),lt(t,t.transforms)}function H(t){var e=t.getBoundingClientRect();return!(e.bottom<0)&&!(e.top>window.scrollY+window.innerHeight)}function $(t){return t.trim()}function X(t,e){var n=e.toString();return st[n]||(st[n]={}),st[n][t]||(st[n][t]=e(t)),st[n][t]}function Z(t){return t?parseFloat(t)*(/ms$/.test(t)?1:1e3):0}function J(t){return t.match(/[a-z]+(?:\(.*?\))?\s?(?:origin\(.*?\))?\s?(?:[a-z]+\(.*?\))?[ .a-z-0-9]*/g).map(wt)}function K(t){var e=t.match(/follow-gradient|horizontal-gradient|vertical-gradient/)[0];return{type:e,colors:t.substr(e.length).match(/(?:transparent|rgb\(.*?\)|hsl\(.*?\)|hsla\(.*?\)|rgba\(.*?\)|[a-z]+|#[abcdefABCDEF\d]+)\s?(?:[\d]{1,3}%?)?/g).map(_t)}}function Q(t){return"string"!=typeof t?t:t.match(/([-.\d]+(?:%|ms|s|deg|cm|em|ch|ex|q|in|mm|pc|pt|px|vh|vw|vmin|vmax)?)|[%#A-Za-z0-9,.()]+/g)}function tt(t){return t.trim().split("-").map(function(t,e){return 0<e?(n=t).charAt(0).toUpperCase()+n.slice(1):t;var n}).join("")}function et(t){var e,n,r,i,o=t.split(":").map($),a=tt(o[0]),u=(e=o[1],n=o[0],ft.test(e)?"string"==typeof(r=e)?"true"===r:r:ct.test(e)?parseInt(e,10):dt.test(e)?parseFloat(e):yt.test(e)?1===(i=e.match(/url\((.*?)\)/g).map(function(t){return t.substring(4,t.length-1)})).length?i[0]:i:ht.test(n)?vt.test(e)?X(e,K):X(e,Et):pt.test(n)?X(e,Q):gt.test(n)&&"none"!==e?X(e,J):e);return a&&null!=u?{property:a,value:u}:null}function nt(t){return t}function rt(t){return t<.5?2*t*t:(4-2*t)*t-1}var it=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(t[r]=n[r])}return t},ot=function(t){var e=!1;return t.views.filter(function(t){return t.presenter!==cn}).forEach(function(t){t.presenter.draw()&&(e=!0)}),e},at=function(n){var r=!1;return n.views.forEach(function(t,e){n.definitions[e].presenter.draw()&&(r=!0)}),r},ut="undefined"==typeof document?null:function(){for(var t=["webkit","Moz","ms","O"],e=0,n=t.length,r=document.createElement("div").style;e<n;e++)if(t[e]+"Transform"in r)return t[e];return null}(),lt=function(t,e){t.style.transform=e.map(function(t){return t.name+"("+t.value+t.unit+")"}).join(" ")},st={},ct=new RegExp("^[0-9]+$"),ft=new RegExp("^(true|false)$"),dt=new RegExp("^[0-9.]+$"),ht=new RegExp("color"),pt=new RegExp("shadow"),vt=new RegExp("^(follow-gradient|horizontal-gradient|vertical-gradient)"),mt=new RegExp("^[.0-9]+(?:ms|s){1}$"),gt=new RegExp("^transition-?(?:in|out)?$"),yt=new RegExp("^url\\("),wt=function(t){var e=t.match(/([a-z]+(?:\(.*?\))?)\s?(?:origin\((.*?)\))?\s?([a-z]+(?:\(.*?\))?)?\s?(?:([.0-9ms]+)?\s?(?:(ease-[a-z-]+))?\s?([.0-9ms]+)?)?/),n=se(e[1]),r=cn,i=cn,o=cn,a=cn,u=cn;return e.slice(2).filter(function(t){return void 0!==t}).forEach(function(t){mt.test(t)?void 0===i?i=Z(t):a=Z(t):/ /.test(t)?r=t:/^ease-[a-z-]+$/.test(t)?o=t:/^[a-z]+/.test(t)&&(u=se(t))}),u&&(o=i=cn),{name:n.name,parameters:n.parameters,duration:i,ease:o,delay:a,origin:r,resolver:u}},bt=/\s([\d]{1,3})%?$/,_t=function(t){var e=t.match(bt);return{offset:e?parseFloat(e[1])/100:null,value:Et(t.replace(bt,""))}},At=[],kt="undefined"==typeof document?function(t){return 0}:function(t){var e,n,r,i,o=1<arguments.length&&arguments[1]!==cn?arguments[1]:document.body,a=2<arguments.length&&arguments[2]!==cn?arguments[2]:null;if(0==t)return 0;if(a){var u=(i=o,(At[r=a]?At[r].find(function(t){return t.node.parentNode===i}):null)||{});return u.node||(u.node=document.createElement("span"),u.node.style.cssText="position:absolute;padding:0;visibility:hidden;",o.appendChild(u.node)),u.node.style.marginTop=t,u.style||(u.style=window.getComputedStyle(u.node)),n=u,At[e=a]||(At[e]=[]),At[e].push(n),parseInt(u.style.marginTop,10)}var l=document.createElement("span");return l.style.cssText="position:absolute;padding:0;visibility:hidden;margin-top:"+t,o.appendChild(l),requestAnimationFrame(function(){l.parentNode.removeChild(l)}),parseInt(window.getComputedStyle(l).marginTop,10)},Et="undefined"==typeof document?function(t){return t}:function(t){if("transparent"===t)return"rgba(0,0,0,0)";var e=document.createElement("span");return e.style.cssText="position:absolute;visibility:hidden;color:"+t,document.body.appendChild(e),requestAnimationFrame(function(){e.parentNode.removeChild(e)}),window.getComputedStyle(e).getPropertyValue("color")},Mt={"ease-linear":nt,"ease-in-sine":function(t){return-1*Math.cos(t*(Math.PI/2))+1},"ease-out-sine":function(t){return Math.sin(t*(Math.PI/2))},"ease-in-out-sine":function(t){return-.5*(Math.cos(Math.PI*t)-1)},"ease-in-cubic":function(t){return t*t*t},"ease-out-cubic":function(t){var e=t-1;return e*e*e+1},"ease-in-out-cubic":function(t){return t<.5?4*t*t*t:(t-1)*(2*t-2)*(2*t-2)+1},"ease-in-circ":function(t){var e=+t;return-1*(Math.sqrt(1-e*t)-1)},"ease-out-circ":function(t){var e=t-1;return Math.sqrt(1-e*e)},"ease-in-out-circ":function(t){var e=2*t,n=e-2;return e<1?-.5*(Math.sqrt(1-e*e)-1):.5*(Math.sqrt(1-n*n)+1)},"ease-in-quad":function(t){return t*t},"ease-out-quad":function(t){return t*(2-t)},"ease-in-out-quad":rt,"ease-in-quart":function(t){return t*t*t*t},"ease-out-quart":function(t){return 1- --t*t*t*t},"ease-in-out-quart":function(t){return t<.5?8*t*t*t*t:1-8*--t*t*t*t},"ease-in-expo":function(t){return 0===t?0:Math.pow(2,10*(t-1))},"ease-out-expo":function(t){return 1===t?1:1-Math.pow(2,-10*t)},"ease-in-out-expo":function(t){if(0===t||1===t)return t;var e=2*t,n=e-1;return e<1?.5*Math.pow(2,10*n):.5*(2-Math.pow(2,-10*n))},"ease-in-back":function(t,e){var n=1<arguments.length&&e!==cn?e:1.70158,r=+t;return r*r*((n+1)*r-n)},"ease-out-back":function(t,e){var n=1<arguments.length&&e!==cn?e:1.70158,r=t-1;return r*r*((n+1)*r+n)+1},"ease-in-out-back":function(t,e){var n=2*t,r=n-2,i=1.525*(1<arguments.length&&e!==cn?e:1.70158);return n<1?.5*n*n*((1+i)*n-i):.5*(r*r*((1+i)*r+i)+2)},"ease-out-elastic":function(t,e){var n=1-(1<arguments.length&&e!==cn?e:.7),r=2*t;if(0===t||1===t)return t;var i=n/(2*Math.PI)*Math.asin(1);return Math.pow(2,-10*r)*Math.sin((r-i)*(2*Math.PI)/n)+1},"ease-out-bounce":function(t){var e=+t;if(e<1/2.75)return 7.5625*e*e;if(e<2/2.75){var n=e-1.5/2.75;return 7.5625*n*n+.75}if(e<2.5/2.75){var r=e-2.25/2.75;return 7.5625*r*r+.9375}var i=e-2.625/2.75;return 7.5625*i*i+.984375}};e(s.EASING_FUNCTION,Mt);function xt(e,t,n,r,i){var o=3<arguments.length&&r!==cn?r:nt;return Tt(function(t){e(o(t))},t,2<arguments.length&&n!==cn?n:500,4<arguments.length&&i!==cn?i:0)}function Ct(t){for(var e=arguments.length,n=Array(1<e?e-1:0),r=1;r<e;r++)n[r-1]=arguments[r];var a,u,i=(u={velocity:0,origin:0,position:0,destination:1},{getPosition:function(){return u.position},cancel:l,translate:function(r,t,e,i){l(),null===e?u.destination=t:(u.position=t,u.destination=e,u.velocity=0),u.origin=u.position;var o=null;!function t(e){a=requestAnimationFrame(t);var n=e-(o=o||e);n<=1e3/24||(o=e-n%(1e3/24),i(u,l),r(u.position))}(ke())}});function l(){cancelAnimationFrame(a)}var o={update:a=null,cancel:i.cancel,getPosition:i.getPosition};return"arrive"===t?o.update=Rt.apply(cn,[i.translate].concat(n)):"spring"===t?o.update=Ut.apply(cn,[i.translate].concat(n)):"step"===t&&(o.update=Lt.apply(cn,[i.translate].concat(n))),o}function Dt(t){var o=t.map(function(t){return zt(Pt(t.name,t.parameters,t.ease),t.origin,t.duration,t.delay)});return function(e,n,r){if(!V(e))return!1;var i=o.length;o.forEach(function(t){t(e,n,function(){!--i&&r&&r(e)})})}}function Nt(e){var n=1<arguments.length&&arguments[1]!==cn?arguments[1]:{};return e.lastAppliedStyles=null,jt(e,n,e.root.dataset.style),e.styleObserver=Y(e.root,["data-style"],function(t){jt(e,n,t)}),{setStyle:function(t){jt(e,n,t)}}}function It(t){return t[ut+"BackingStorePixelRatio"]||t.backingStorePixelRatio||1}function Ot(){return window.devicePixelRatio||1}function St(t){t.getContext("2d").clearRect(0,0,t.width,t.height)}var Tt=function(n,t,e,r){var i=1<arguments.length&&t!==cn?t:null,o=2<arguments.length&&e!==cn?e:500,a=3<arguments.length&&r!==cn?r:0;if(!n)return null;var u=null,l=void 0,s=null;return function t(e){if(null===u&&(u=e),(l=e-u-a)<o)return n(0<=l?l/o:0),s=requestAnimationFrame(t),null;n(1),i&&i()}(ke()),function(){cancelAnimationFrame(s)}},Rt=function(e,t,n){var i=1<arguments.length&&t!==cn?t:1,o=2<arguments.length&&n!==cn?n:.01;return function(t){e(t,1<arguments.length&&arguments[1]!==cn?arguments[1]:null,2<arguments.length&&arguments[2]!==cn?arguments[2]:null,function(t,e){var n=t.destination-t.position,r=t.origin+.5*(t.destination-t.origin);t.velocity+=2*(-(r-t.origin)+n)*o,t.position+=t.velocity<0?Math.max(t.velocity,-i):Math.min(t.velocity,i),(t.origin<t.destination&&t.position>=t.destination||t.origin>=t.destination&&t.position<=t.destination)&&(e(),t.velocity=0,t.position=t.destination)})}},Lt=function(e,t){var n=1<arguments.length&&t!==cn?t:.01;return function(t){e(t,1<arguments.length&&arguments[1]!==cn?arguments[1]:null,2<arguments.length&&arguments[2]!==cn?arguments[2]:null,function(t,e){t.velocity=n,t.position+=t.velocity,(t.origin<t.destination&&t.position>=t.destination||t.origin>=t.destination&&t.position<=t.destination)&&(e(),t.velocity=0,t.position=t.destination)})}},Ut=function(e,t,n,r){var i=1<arguments.length&&t!==cn?t:.5,o=2<arguments.length&&n!==cn?n:.75,a=3<arguments.length&&r!==cn?r:10;return function(t){e(t,1<arguments.length&&arguments[1]!==cn?arguments[1]:null,2<arguments.length&&arguments[2]!==cn?arguments[2]:null,function(t,e){var n=-(t.position-t.destination)*i;t.velocity+=n/a,t.position+=t.velocity,t.velocity*=o,Ft(t.position,t.destination,t.velocity)&&(e(),t.position=t.destination,t.velocity=0)})}},Ft=function(t,e,n,r){var i=3<arguments.length&&r!==cn?r:.001;return Math.abs(t-e)<i&&Math.abs(n)<i},Pt=function(t,r,e){var i=e?c(s.EASING_FUNCTION,e):e,o=c(s.TRANSITION,t);return function(t,e,n){o.apply(cn,[t,n,e,i].concat(j(r)))}},zt=function(i,t,e,n){var o=1<arguments.length&&t!==cn?t:"50% 50% 0",a=2<arguments.length&&e!==cn?e:500,u=n;return function(e){var t,n=1<arguments.length&&arguments[1]!==cn?arguments[1]:1,r=arguments[2];t=o,e.style.transformOrigin=t,Tt(function(t){i(e,n,t)},r,a,u)}},jt=function(t,e,n){if(t.lastAppliedStyles!==n){t.lastAppliedStyles=n,t.style=n?we(e,n.split(";").filter(function(t){return t.trim().length}).map(et).filter(function(t){return null!==t}).reduce(function(t,e){return t[e.property]=e.value,t},{})):e;var r=[],i=[];t.style.transitionIn&&t.style.transitionIn.length?(r=t.style.transitionIn,i=t.style.transitionOut):t.style.transition&&"none"!==t.style.transition&&t.style.transition.forEach(function(t){var e,n=(e=t,c(s.TRANSITION,e.name).apply(cn,j(e.parameters||[])));r=r.concat(n.intro),i=i.concat(n.outro)}),r&&i&&(t.transitionIn=Dt(r),t.transitionOut=Dt(i),t.skipToTransitionInEnd=Dt(r.map(qt)),t.skipToTransitionOutEnd=Dt(i.map(qt))),t.dirty=!0}},qt=function(t){var e=_e(t);return e.duration=0,e.delay=0,e},Gt={text:function(){return function(t){var e={};return Object.assign({},A(e,t,"text"),M(e),E(e,function(t){var e,n,r;t.root.setAttribute("data-value",t.value),e=t.root,n=t.value,(r=e.childNodes[0])?n!==r.nodeValue&&(r.nodeValue=n):(r=document.createTextNode(n),e.appendChild(r))}),_(e))}}};e(s.VIEW,Gt);function Wt(t,e,n){return function(t,e,n){var r={valueMapping:null};if(t&&t.dataset.valueMapping){var i=t.dataset.valueMapping;r.valueMapping=-1!==["none","indexes"].indexOf(i)?i:null}return Object.assign({},A(r,t),x(r),M(r),k(r,e),E(r,q,ot,n),_(r))}(t,e,n)}function Yt(t,e,n){return r=t,i=e,o=n,a={definitions:[]},Object.assign({},A(a,r),M(a),k(a,i),E(a,G,at,o),_(a));var r,i,o,a}function Vt(t,e,n){var r=c(s.VIEW,t);return r?r({Extension:{Type:s,getExtension:c},Utils:{toPixels:kt,toColor:Et},Canvas:{clear:St,getDevicePixelRatio:Ot,getBackingStoreRatio:It},DOM:{visible:H,create:W,transform:B},Animation:{animate:xt},Data:{request:Ee},Date:{performance:ke},View:{rooter:A,drawer:E,updater:M,styler:Nt,grouper:k,resizer:x,destroyer:_}})(e,n):null}function Bt(t){return 0!==t.trim().length}function Ht(t,e){return t.push(e.trim())}function $t(t,e){return Bt(e)?(Ht(t,e),""):e}function Xt(t,e){return t.length&&e.push(1<t.length?t.concat():t[0]),[]}function Zt(t){var e=[];return function t(e,n,r){for(var i,o,a,u="",l=[],s=null,c=!1;e<n.length;){var f=n[e];if("("===f){c=!1;var d=[u.trim()];f=n[e=t(e+1,n,d)],l.push(d),u=""}else{if(")"===f)return c&&u.trim().length&&(l.push([u.trim()]),u="",c=!1),Bt(u)&&Ht(l,u),l=Xt(l,r),e+1;null!==s&&f!==s?u+=f:f===s?(l.push(u),u="",s=null):"'"===(a=f)||'"'===a?(u="",s=f):"-"===(i=n)[o=e]&&">"===i[o+1]?(c=!0,u.trim().length&&(l.push([u.trim()]),u=""),e+=2):","===f?(c&&u.trim().length&&(l.push([u.trim()]),u="",c=!1),l=Xt(l,r),u=$t(r,u)):u+=f,e++}}return(c&&u.trim().length||!c&&u.trim().length&&!l.length)&&(l.push([u.trim()]),u=""),Xt(l,r),$t(r,u),e}(0,t,e),e}function Jt(a){function u(e,t){e.transform(t,function(t){e.presenter.update(t)},a),n||(n=!0,r())}var n=!1,r=function t(){a.baseDefinition.presenter.draw(),requestAnimationFrame(t)};return function t(e){var n,r,i,o;return e.presenter=(r=t,o=void 0,(n=e).repeat?o=Yt(n.root,n.repeat,r):"string"==typeof n.view?o=Vt(n.view,n.root,n.style):(i=n).children&&i.children.length&&(o=Wt(n.root,n.children,r)),o),e.transform=ue(e.transform,a),u}(a.baseDefinition)}function Kt(i){for(var t=arguments.length,o=Array(1<t?t-1:0),e=1;e<t;e++)o[e-1]=arguments[e];return function(t,r){!function t(e,n){o.length<=e?r(n):o[e](n,ae(t,[e+1]),i)}(0,t)}}function Qt(t){return t.substring(1,t.length-1)}function te(t){var e=(t+"").match(/(-?[.\d]+)(%|ms|s|deg|cm|em|ch|ex|q|in|mm|pc|pt|px|vh|vw|vmin|vmax)?/);return{value:parseFloat(e[1]),units:e[2]}}function ee(t){var n=window,r=t.split(".");return r.forEach(function(t,e){n[r[e]]&&(n=n[r[e]])}),n!==window?n:null}function ne(t){return/^(?:[\w]+\s?:\s?[\w.]+,\s?)+(?:[\w]+\s?:\s?[\w.]+)$/g.test(t)?t.match(/(?:(\w+)\s?:\s?([\w.]+))/g).reduce(function(t,e){var n=e.split(":");return t[n[0]]=ye(n[1]),t},{}):ye(t)}function re(t){return parseInt(t,10)}var ie=function t(e){var n={};for(var r in e)e.hasOwnProperty(r)&&(n[r]="root"!==r?"children"!==r?"repeat"!==r?e[r]:null===e[r]?null:t(e[r]):null===e[r]?null:e[r].map(t):e[r].cloneNode());return n.presenter=null,n},oe={root:null,key:null,view:null,overlay:null,presenter:null,transform:null,layout:null,style:null,repeat:null,children:null,className:null},ae=function(e,t,n){var r=1<arguments.length&&t!==cn?t:[],i=n;return function(){var t=Array.from(r);return Array.prototype.push.apply(t,arguments),e.apply(i,t)}},ue=function(t,e){if(!t)return function(t,e){return e(t)};if("function"==typeof t)return t;var n=Zt("transform("+(/^[a-z]+$/.test(t)?t+"()":t)+")");return le(n,e)},le=function i(t,o){var e=t.map(function(t){var e=t.shift(),n=c(s.TRANSFORM,e)||function(t,e,n){e(t)},r=t.map(function(t){return Array.isArray(t)?"string"==typeof t[0]?i([t],o):i(t,o):ye(t)});return n.apply(cn,j(r))});return Kt.apply(cn,[o].concat(j(e)))},se=function(t){var e=t.match(/[a-z]+/)[0];return{name:e,parameters:ce(t.substring(e.length))}},ce=function(t){return(t.match(/('.+?')|(".+?")|(\[.+?])|([.:\-\d\sa-zA-Z]+%?)/g)||[]).map(be).filter(function(t){return t.length}).map(ye)},fe=/^([\d]{4}-[\d]{1,2}-[\d]{1,2})/,de=/^(true|false)$/,he=/^[\a-zA-Z]+$/,pe=/^0[\d]+/,ve=/^('|")/,me=/^-?(?:\d+)?(?:\.|0\.)?[\d]+$/,ge=/^(\[)/,ye=function(t){return de.test(t)?"true"===t:ge.test(t)?ce(Qt(t)):fe.test(t)?l(t):ve.test(t)?Qt(t):!he.test(t)&&!pe.test(t)&&me.test(t)?parseFloat(t):t},we=function(t,e){var n=1<arguments.length&&e!==cn?e:{},r=void 0,i={};for(r in t)t.hasOwnProperty(r)&&(i[r]=void 0===n[r]?t[r]:n[r]);return i},be=function(t){return t.trim()},_e=function(t){return"object"===(void 0===t?"undefined":L(t))&&null!==t?JSON.parse(JSON.stringify(t)):t},Ae=function(t){return t.slice()},ke=function(){return window.performance.now()},Ee=function(t,e,n,r){var i=new XMLHttpRequest;r&&r(i),i.open("GET",t,!0),i.onload=function(){e(i.response)},n&&(i.onerror=function(){n(i,i.status)}),i.send()},Me=function(t,e){return xe(t)?Ce(t,e):Array.isArray(t)?De(t,e):t===e},xe=function(t){return t===Object(t)},Ce=function(t,e){for(var n in t)if(!e.hasOwnProperty(n)||t[n]!==e[n])return!1;return!0},De=function(t,n){return t.length==n.length&&t.every(function(t,e){return t===n[e]})},Ne=function(t){return Object.keys(t).map(function(t){return'"'+t+'"'}).join(", ")},Ie=(P(Oe,[{key:"isRootElement",value:function(t){return this._element===t}},{key:"setConstant",value:function(t,e){this._constants[t]=e}},{key:"getConstants",value:function(){return this._constants}},{key:"getConstant",value:function(t){return this._constants[t]}},{key:"setPreset",value:function(t,e){this._presets[t]=e}},{key:"getPreset",value:function(t){return this._presets[t]}},{key:"destroy",value:function(){this._willDestroy(this),this._observer.disconnect(),this.baseDefinition.presenter.destroy(),this._didDestroy(this)}},{key:"redraw",value:function(){this.baseDefinition&&this.baseDefinition.presenter&&(this.baseDefinition.presenter.reset(),this.baseDefinition.presenter.draw(),this._updater(this.baseDefinition,this._value))}},{key:"_init",value:function(){var e=this;if(this._viewDefinition=this._options.view,this._willDestroy=this._options.willDestroy,this._didDestroy=this._options.didDestroy,this._didInit=this._options.didInit,this._didUpdate=this._options.didUpdate,this._value=this._options.value,this._presets=this._options.presets,this._constants=this._options.constants,this._credits=this._options.credits,this._element.classList.contains("tick")||this._element.classList.add("tick"),this._observer=Y(this._element,["data-value"],function(t){e.value=t}),this._viewDefinition.root!==this._element&&(Array.from(this._viewDefinition.root.children).forEach(function(t){e._element.appendChild(t)}),this._viewDefinition.root=this._element),this._viewDefinition.view||this._viewDefinition.children||(this._viewDefinition.view="text"),this._updater=Jt(this),null!==this.value&&this._update(this.value),this._element.dataset.state="initialised",this._didInit(this,this.value),this._credits){var t=document.createElement("a");t.className="tick-credits",t.href=this._credits.url,t.tabindex=-1,t.target="_blank",t.rel="noopener noreferrer",t.textContent=this._credits.label,this._element.appendChild(t)}}},{key:"_update",value:function(t){this._updater(this.baseDefinition,t),this._didUpdate(this,t)}},{key:"baseDefinition",get:function(){return this._viewDefinition}},{key:"root",get:function(){return this._element}},{key:"value",get:function(){return this._value},set:function(t){this._value="string"==typeof t?ne(t):t,this._update(t)}}],[{key:"options",value:function(){return{constants:Ve(),presets:Be(),value:null,view:null,didInit:function(){},didUpdate:function(){},willDestroy:function(){},didDestroy:function(){},credits:{label:"",url:""}}}}]),Oe);function Oe(){var t=0<arguments.length&&arguments[0]!==cn?arguments[0]:{},e=1<arguments.length&&arguments[1]!==cn?arguments[1]:document.createElement("div");!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,Oe),this._options=we(Oe.options(),t),this._element=e,this._value=null,this._observer=null,this._viewDefinition=null,this._constants=null,this._presets=null,this._updater=null,this._credits=null,this._didInit=null,this._didDestroy=null,this._willDestroy=null,this._didUpdate=null,this._init()}function Se(t,e,n,r){return{label:1===t?e:n,progress:t/r,value:t}}function Te(e){var t=Ye.filter(function(t){return t.isRootElement(e)});return t?t[0]:null}function Re(t){return function(){setTimeout(t,0)}}function Le(){return Date.now()}function Ue(r,t,e){function n(){return m}function i(){return null!==d}function o(){return document.hidden}function a(){var t=Le(),e=f-t,n=s+e;f=t+n,r(t-d-p+e),g=setTimeout(a,n)}function u(){n()?y():i()||(d=Le(),setTimeout(function(){r(0)},0),k(),o()?_():(f=Le()+s,g=setTimeout(function(){a()},s)))}function l(){clearTimeout(g),p=0,v=h=f=d=g=null,m=!1,A()}var s=1<arguments.length&&t!==cn?t:1e3,c=we({autostart:!0},2<arguments.length&&e!==cn?e:{}),f=null,d=null,h=null,p=0,v=null,m=!1,g=null,y=function(){n()&&i()&&!o()&&(m=!1,k(),b())},w=function(){clearTimeout(g),h=Le(),v=f-h},b=function(){p+=Le()-h,h=null,f=Le()+v,g=setTimeout(function(){a()},v)},_=function(){w()},A=function(){document.removeEventListener("visibilitychange",E)},k=function(){document.addEventListener("visibilitychange",E)},E=function(){o()?_():i()&&b()};return c.autostart&&u(),{start:u,stop:Re(l),reset:Re(function(){l(),u()}),pause:Re(function(){i()&&!o()&&(m=!0,A(),w())}),resume:y}}function Fe(t){/^[\d]+/.test(t)||(t="1 "+t);var e=t.split(" ");return parseFloat(e[0])*h[e[1].toLowerCase()]}function Pe(t,e){return n=t,r=e.split(":").map(re),n.setHours(r[0]||0,r[1]||0,r[2]||0,r[3]||0),n;var n,r}function ze(r,e){var t=e.match(/(?:mon|tues|wednes|thurs|fri|satur|sun)day|at\s[\d]+(?::[\d]+)?(?::[\d]+)?/g);if(1<t.length){var n="";t.forEach(function(t){n=e.split(t)[1]||""});var i=n.trim().match(/wait\s[\d]+\s[a-z]+/);i&&t.push(i[0])}var o=t.reduce(function(t,e){var n;return/(?:mon|tues|wednes|thurs|fri|satur|sun)day/.test(e)&&(t.day=C[(n=e).charAt(0).toUpperCase()+n.slice(1)]),/^at/.test(e)?t.time=Pe(O(r),e.substr(3)):/wait/.test(e)&&(t.idle=Fe(e.substr(5))),t},{idle:null,day:null,time:null,date:null,dist:null,wait:!1});if(o.time){o.time=f(o.time,o.day);var a=o.time-r;if(a<0&&(o.time.setDate(o.time.getDate()+7),a=o.time-r),null!==o.idle&&a>=h.Week-o.idle)return o.wait=!0,o;o.dist=a}else{o.time=f(O(r),o.day);var u=Je(o.time,e);if(u.wait)return o;o.time=O(m(r,o.time)&&u.date?u.date:u.from);var l=o.time-r;l<0&&o.time.setDate(o.time.getDate()+7),o.dist=l}return o.date=O(o.time),o}function je(t,e){return/januari|februari|march|april|may|june|july|august|september|october|november|december/.test(e)?function(n,e){var t=e.match(/januari|februari|march|april|may|june|july|august|september|october|november|december|[\d]+th|\dst|\dnd|first|last|at\s[\d]+(?::[\d]+)?(?::[\d]+)?/g);if(1<t.length){var r="";t.forEach(function(t){r=e.split(t)[1]||""});var i=r.trim().match(/wait\s[\d]+\s[a-z]+/);i&&t.push(i[0])}var o=t.reduce(function(t,e){return/([\d]+th|\dst|\dnd|first|last)/.test(e)&&(t.day=/^[\d]/.test(e)?parseInt(e,10):"first"===e?1:e),/^at/.test(e)?t.time=Pe(O(n),e.substr(3)):/wait/.test(e)?t.idle=Fe(e.substr(5)):/^[\a-zA-Z]+$/.test(e)&&(t.month=e),t},{idle:null,day:null,month:null,time:null,date:null,dist:null,wait:!1});if(o.time){o.time.setDate(1),o.time=p(o.time,o.month),o.time=d(o.time,o.day);var a=o.time-n,u=0;if(a<0&&(u=a,o.time.setFullYear(o.time.getFullYear()+1),a=o.time-n),null!==o.idle&&0<u+o.idle)return o.wait=!0,o;o.dist=a}else{o.time=O(n),o.time.setDate(1),o.time=p(o.time,o.month),o.time=d(o.time,o.day);var l=Je(o.time,e);if(l.wait)return o;o.time=O(m(n,o.time)&&l.date?l.date:l.from);var s=o.time-n;s<0&&(o.time=O(l.from),o.time.setFullYear(o.time.getFullYear()+1),s=o.time-n),o.dist=s}return o.date=O(o.time),o}(t,e):/month/.test(e)?function(n,e){var t=e.match(/[\d]+th|\dst|\dnd|first|last|at\s[\d]+(?::[\d]+)?(?::[\d]+)?/g);if(1<t.length){var r="";t.forEach(function(t){r=e.split(t)[1]||""});var i=r.trim().match(/wait\s[\d]+\s[a-z]+/);i&&t.push(i[0])}var o=t.reduce(function(t,e){return/([\d]+th|\dst|\dnd|first|last)/.test(e)&&(t.day=/^[\d]/.test(e)?parseInt(e,10):"first"===e?1:e),/^at/.test(e)?t.time=Pe(O(n),e.substr(3)):/wait/.test(e)&&(t.idle=Fe(e.substr(5))),t},{idle:null,day:null,time:null,date:null,dist:null,wait:!1});if(o.time){o.time=d(o.time,o.day);var a=o.time-n,u=0;if(a<0&&(u=a,o.time.setDate(1),o.time.setMonth(o.time.getMonth()+1),d(o.time,o.day),a=o.time-n),null!==o.idle&&0<u+o.idle)return o.wait=!0,o;o.dist=a}else{o.time=d(O(n),o.day);var l=Je(o.time,e);if(l.wait)return o;o.time=O(m(n,o.time)&&l.date?l.date:l.from);var s=o.time-n;s<0&&(o.time=O(l.from),o.time.setDate(1),o.time.setMonth(o.time.getMonth()+1),d(o.time,o.day),s=o.time-n),o.dist=s}return o.date=O(o.time),o}(t,e):/(?:mon|tues|wednes|thurs|fri|satur|sun)day/.test(e)?ze(t,e):/day at/.test(e)||/^at /.test(e)?(n=t,r=e.match(/([\d]+(?::[\d]+)?(?::[\d]+)?)|(wait\s[\d]+\s[a-z]+)/g).reduce(function(t,e){return/^[\d]/.test(e)?t.time=Pe(O(n),e):/wait/.test(e)&&(t.idle=Fe(e.substr(5))),t},{idle:null,time:null,date:null,wait:!1,dist:null}),(i=r.time-n)<0&&(r.time.setDate(r.time.getDate()+1),i=r.time-n),null!==r.idle&&i>=h.Day-r.idle?r.wait=!0:(r.dist=i,r.date=O(r.time)),r):/hours|hour|minutes|minute|seconds|second/.test(e)?Je(t,e):null;var n,r,i}function qe(t,e){if(!0===t)return n=function(t){e(t.getTime()-b().getTime())},r=new XMLHttpRequest,i=Date.now(),r.open("HEAD",window.location+"?noCache="+i),r.setRequestHeader("Content-Type","text/html"),r.setRequestHeader("Cache-Control","no-cache"),r.onload=function(){var t=.5*(i-Date.now()),e=new Date(r.getResponseHeader("Date"));n(new Date(e.getTime()+t))},void r.send();var n,r,i;"string"!=typeof t?setTimeout(function(){e(0)},0):setTimeout(function(){e(l(t).getTime()-b().getTime())},0)}function Ge(t){return it({complete:!1,offset:null,value:null,timer:null,onload:function(){},onupdate:function(){}},t)}function We(){var n=0<arguments.length&&arguments[0]!==cn?arguments[0]:0,r=1<arguments.length&&arguments[1]!==cn?arguments[1]:100;return function(t,e){return e((parseFloat(t)-n)/(r-n))}}var Ye=[],Ve=function(){return He},Be=function(){return $e},He={YEAR_PLURAL:"Years",YEAR_SINGULAR:"Year",MONTH_PLURAL:"Months",MONTH_SINGULAR:"Month",WEEK_PLURAL:"Weeks",WEEK_SINGULAR:"Week",DAY_PLURAL:"Days",DAY_SINGULAR:"Day",HOUR_PLURAL:"Hours",HOUR_SINGULAR:"Hour",MINUTE_PLURAL:"Minutes",MINUTE_SINGULAR:"Minute",SECOND_PLURAL:"Seconds",SECOND_SINGULAR:"Second",MILLISECOND_PLURAL:"Milliseconds",MILLISECOND_SINGULAR:"Millisecond"},$e={y:function(t,e){return Se(t,e.YEAR_SINGULAR,e.YEAR_PLURAL,10)},M:function(t,e){return Se(t,e.MONTH_SINGULAR,e.MONTH_PLURAL,12)},w:function(t,e){return Se(t,e.WEEK_SINGULAR,e.WEEK_PLURAL,52)},d:function(t,e){return Se(t,e.DAY_SINGULAR,e.DAY_PLURAL,365)},h:function(t,e){return Se(t,e.HOUR_SINGULAR,e.HOUR_PLURAL,24)},m:function(t,e){return Se(t,e.MINUTE_SINGULAR,e.MINUTE_PLURAL,60)},s:function(t,e){return Se(t,e.SECOND_SINGULAR,e.SECOND_PLURAL,60)},mi:function(t,e){return Se(t,e.MILLISECOND_SINGULAR,e.MILLISECOND_PLURAL,1e3)}},Xe={value:ne,didInit:ee,didUpdate:ee,didDestroy:ee,willDestroy:ee},Ze=function(t,e){var n=0<arguments.length&&t!==cn?t:cn,r=1<arguments.length&&e!==cn?e:cn;if(n&&!V(n)&&(r=n,n=cn),!n||!Te(n)){r&&r.view&&(r.view=function t(e){return e.map(function(e){return"string"==typeof(e=we(oe,e)).root?e.root=document.createElement(e.root):e.root=document.createElement("span"),e.transform&&(e.root.dataset.transform=e.transform),e.className&&(e.root.className=e.className),e.overlay&&(e.root.dataset.overlay=e.overlay),e.view?(e.root.dataset.view=e.view,e.style&&(e.root.dataset.style=e.style),e.repeat=null):(e.layout&&(e.root.dataset.layout=e.layout),e.repeat?(e.root.dataset.repeat=!0,e.repeat=t(e.children).pop()):e.children&&(e.children=t(e.children),e.children.forEach(function(t){e.root.appendChild(t.root)}))),e})}([r.view])[0]),!r&&n&&(r=function(t,e,n){var r=1<arguments.length&&e!==cn?e:{},i=2<arguments.length&&n!==cn?n:{},o=t.dataset,a={meta:{}};for(var u in o)if(o.hasOwnProperty(u)){var l=r[u],s=o[u];l&&(s=null===(s=l(s))?_e(i[u]):s,a[u]=s)}return"false"===o.credits&&(a.credits=!1),a}(n,Xe,it({},Ie.options(),{constants:it({},He),presets:it({},$e)}))),n&&((r=r||{}).view||(r.view=function r(t){return Array.from(t).map(function(t){var e=we(oe,{root:t});for(var n in t.dataset)t.dataset.hasOwnProperty(n)&&void 0!==e[n]&&(e[n]=t.dataset[n]);return e.repeat?(e.repeat=r(t.children).pop(),Array.from(t.children).forEach(function(t){t.parentNode.removeChild(t)})):t.children.length&&(e.children=r(t.children)),e})}([n])[0]));var i=new Ie(r,n);return Ye.push(i),i}},Je=function(t,e){var n=e.match(/((?:[\d]+\s)?(?:hours|hour|minutes|minute|seconds|second))|((?:from|till)\s[\d]+(?::[\d]+)?(?::[\d]+)?)|(wait\s[\d]+\s[a-z]+)/g).reduce(function(t,e){return/from/.test(e)?t.from=Pe(t.from,e.split(" ")[1]):/till/.test(e)?t.till=Pe(t.till,e.split(" ")[1]):/wait/.test(e)?t.idle=Fe(e.substr(5)):/hours|hour|minutes|minute|seconds|second/.test(e)&&(t.interval=Fe(e)),t},{idle:null,interval:null,date:null,dist:null,wait:!1,from:Pe(O(t),"0"),till:Pe(O(t),"23:59:59:999")});if(t<n.from||t>=n.till)return n;if(n.interval>n.till-n.from)return n;var r=t-n.from,i=n.interval-r%n.interval;return null!==n.idle&&i>=n.interval-n.idle?n.wait=!0:(n.dist=i,n.date=new Date(t.getTime()+n.dist)),n},Ke={format:["d","h","m","s"],cascade:!0,server:null,interval:1e3},Qe=function(t,e,n,r){e[t]=n[t],r(Ae(e))},tn={ascii:function(){return function(t,e){return e((t+"").charCodeAt(0))}},char:function(t){var r=1<arguments.length&&arguments[1]!==cn?arguments[1]:"",i=t?new RegExp("[^"+t+"]","g"):null;return function(t,e){var n=String.fromCharCode(t);i&&(n=n.replace(i,r)),e(n)}},tween:function(i){var t=1<arguments.length&&arguments[1]!==cn?arguments[1]:"ease-linear",o=arguments[2];i=Z(i);var a=c(s.EASING_FUNCTION,t),u=null,l=null;return function(t,e){if(t=parseFloat(t),u&&u(),null!==l&&t!==l){var n=l,r=t-n;u=xt(function(t){e(n+t*r)},function(){u=null},i,a,o),l=t}else e(l=t)}},value:function(n){return function(t,e){return e(n)}},input:function(){return function(t,e){return e(t)}},rotate:function(){for(var t=arguments.length,a=Array(t),e=0;e<t;e++)a[e]=arguments[e];return function(t,n){var r=Array.isArray(t)?t:[t],i=[],o=a.length;r.forEach(function(t,e){a[e%o](t,function(t){i[e]=t,e===r.length-1&&n(i)})})}},map:function(o){return function(t,n){var r=[],i=t;i.forEach(function(t,e){o(t,function(t){r[e]=t,e===i.length-1&&n(r.concat())})})}},transform:function(){for(var t=arguments.length,o=Array(t),e=0;e<t;e++)o[e]=arguments[e];return function(t,n){var r=[],i=t;o.forEach(function(t,e){t(i,function(t){r[e]=t,e===o.length-1&&n(1===r.length?r[0]:r)})})}},upper:function(){return function(t,e){return e((t+"").toUpperCase())}},lower:function(){return function(t,e){return e((t+"").toLowerCase())}},abs:function(){return function(t,e){return e(Math.abs(t))}},add:function(n){return function(t,e){return e(t+n)}},subtract:function(n){return function(t,e){return e(t-n)}},modulus:function(n){return function(t,e){return e(t%n)}},pad:function(){var n=0<arguments.length&&arguments[0]!==cn?arguments[0]:"",r=1<arguments.length&&arguments[1]!==cn?arguments[1]:"left";return function(t,e){return e(n.length>(""+t).length?"left"===r?(""+n+t).slice(-n.length):(""+t+n).substring(0,n.length):t)}},number:function(){var r=0<arguments.length&&arguments[0]!==cn?arguments[0]:".",i=1<arguments.length&&arguments[1]!==cn?arguments[1]:",",n=2<arguments.length&&arguments[2]!==cn?arguments[2]:2;return function(t,e){e((t<0?"-":"")+parseFloat(Math.abs(t)).toFixed(n).replace(/./g,function(t,e,n){return"."===t?r:e&&(n.length-e)%3==0?i+t:t}))}},replace:function(n,r){return function(t,e){return e((t+"").replace(new RegExp("."===n?"\\"+n:n,"g"),r))}},round:function(){var n=0<arguments.length&&arguments[0]!==cn?arguments[0]:0;return function(t,e){return e(n?t.toFixed(n):Math.round(t))}},ceil:function(){return function(t,e){return e(Math.ceil(t))}},floor:function(){return function(t,e){return e(Math.floor(t))}},fraction:We,percentage:function(){var n=We(0<arguments.length&&arguments[0]!==cn?arguments[0]:0,1<arguments.length&&arguments[1]!==cn?arguments[1]:100);return function(t,e){n(t,function(t){e(100*t)})}},multiply:function(n){return function(t,e){return e(t*n)}},divide:function(n){return function(t,e){return e(t/n)}},split:function(){var n=0<arguments.length&&arguments[0]!==cn?arguments[0]:"";return function(t,e){return e((t+"").split(n))}},format:function(n){return function(t,e){return e(n.replace(/\$0/gi,t))}},plural:function(n,r){return function(t,e){return e(1===t?n:r)}},limit:function(){var n=0<arguments.length&&arguments[0]!==cn?arguments[0]:0,r=1<arguments.length&&arguments[1]!==cn?arguments[1]:1;return function(t,e){return e(Math.min(Math.max(t,n),r))}},reverse:function(){return function(t,e){return e(Array.isArray(t)?t.reverse():(t+"").split("").reverse().join(""))}},arrive:function(n,r){var i=2<arguments.length&&arguments[2]!==cn&&arguments[2],o=!(3<arguments.length&&arguments[3]!==cn)||arguments[3],a=null,u=null,l=null;return function(t,e){if(t=parseFloat(t),null!==a){if(i&&null!==u&&a===t&&(l.cancel(),l=null),o&&null!==u&&1<t-l.getPosition())return l.cancel(),u=l=null,void e(a=t);l?l.update(e,t):(l=Ct("arrive",n,r)).update(e,a,t),u=t}else e(a=t)}},spring:function(n,r,i){var o=null,a=null;return function(t,e){t=parseFloat(t),null!==o?a?a.update(e,t):(a=Ct("spring",n,r,i)).update(e,o,t):e(o=t)}},delay:function(){var t=0<arguments.length&&arguments[0]!==cn?arguments[0]:"rtl",i=1<arguments.length&&arguments[1]!==cn?arguments[1]:50,o=2<arguments.length&&arguments[2]!==cn?arguments[2]:50,a=null;return function(e,n){if(!a)return a=Ae(e),void n(Ae(a));a="rtl"===t?a.slice(a.length-e.length,a.length):a.slice(0,e.length);var r=function(t){for(var e=[],n=0;n<t;n++)e.push(n);return e}(e.length);"random"===t&&function(t){for(var e=t.length;e;e--){var n=Math.floor(Math.random()*e),r=[t[n],t[e-1]];t[e-1]=r[0],t[n]=r[1]}}(r),"rtl"===t&&r.reverse();!function t(){Qe(r.shift(),a,e,n),r.length&&setTimeout(t,function(t,e){var n=0<arguments.length&&t!==cn?t:0,r=1<arguments.length&&e!==cn?e:1;return n+Math.random()*(r-n)}(i,o))}()}},step:function(n){var r=null,i=null,o=null;return function(t,e){t=parseFloat(t),null!==r?(null!==i&&r===t&&(o.cancel(),o=null),o?o.update(e,t):(o=Ct("step",n)).update(e,r,t),i=t):e(r=t)}},keys:function(){for(var t=arguments.length,r=Array(t),e=0;e<t;e++)r[e]=arguments[e];return function(t,e){var n={};t.forEach(function(t,e){n[r[e]]=t}),e(n)}},duration:function(){for(var t=arguments.length,n=Array(t),e=0;e<t;e++)n[e]=arguments[e];return function(t,e){return e(g(t,n))}},substring:function(n,r){return function(t,e){return e((t+"").substring(n,r))}},preset:function(){for(var t=arguments.length,r=Array(t),e=0;e<t;e++)r[e]=arguments[e];return function(t,e,n){return e(t.map(function(t,e){return n.getPreset(r[e])(t,n.getConstants(),n)}))}}};e(s.TRANSFORM,tn);function en(t,e,n){return t+(e-t)*n}var nn={x:"translateX",y:"translateY",z:"translateZ"},rn={x:"rotateX",y:"rotateY",z:"rotateZ"},on={both:"scale",x:"scaleX",y:"scaleY"},an={fade:function(t,e,n,r,i,o){var a=3<arguments.length&&r!==cn?r:rt,u=4<arguments.length&&i!==cn?i:0,l=5<arguments.length&&o!==cn?o:1;if(n<0){var s=[l,u];u=s[0],l=s[1]}t.style.opacity=en(u,l,a(e))},move:function(t,e,n,r,i,o,a){var u=3<arguments.length&&r!==cn?r:rt,l=4<arguments.length&&i!==cn?i:"0",s=5<arguments.length&&o!==cn?o:"100%",c=6<arguments.length&&a!==cn?a:"y";if(n<0){var f=[s,l];l=f[0],s=f[1]}var d=X(l,te),h=X(s,te);B(t,nn[c],en(d.value,h.value,u(e)),d.units||h.units)},rotate:function(t,e,n,r,i,o,a){var u=3<arguments.length&&r!==cn?r:rt,l=4<arguments.length&&i!==cn?i:"0",s=5<arguments.length&&o!==cn?o:"90deg",c=6<arguments.length&&a!==cn?a:"x";if(n<0){var f=[s,l];l=f[0],s=f[1]}var d=X(l,te),h=X(s,te);B(t,rn[c],en(d.value,h.value,u(e)),d.units||h.units)},scale:function(t,e,n,r,i,o,a){var u=4<arguments.length&&i!==cn?i:0,l=5<arguments.length&&o!==cn?o:1;if(n<0){var s=[l,u];u=s[0],l=s[1]}B(t,on[6<arguments.length&&a!==cn?a:"both"],en(u,l,(3<arguments.length&&r!==cn?r:rt)(e)))},crossfade:function(){var t=0<arguments.length&&arguments[0]!==cn?arguments[0]:1,e=arguments[2];return{intro:[{name:"fade",parameters:[0,1],duration:1e3*t,delay:Z(arguments[1])}],outro:[{name:"fade",parameters:[1,0],duration:1e3*t,delay:Z(e)}]}},swap:function(){var t=0<arguments.length&&arguments[0]!==cn?arguments[0]:"y",e=1<arguments.length&&arguments[1]!==cn?arguments[1]:1,n=2<arguments.length&&arguments[2]!==cn?arguments[2]:1,r=arguments[4];return{intro:[{name:"move",parameters:[""+100*-e,"0%",t],duration:1e3*n,delay:Z(arguments[3])}],outro:[{name:"move",parameters:["0%",""+100*e,t],duration:1e3*n,delay:Z(r)}]}},revolve:function(){var t=0<arguments.length&&arguments[0]!==cn?arguments[0]:"y",e=1<arguments.length&&arguments[1]!==cn?arguments[1]:1,n=2<arguments.length&&arguments[2]!==cn?arguments[2]:1,r=arguments[4];return{intro:[{name:"rotate",parameters:[90*-e+"deg","0deg",t],duration:1e3*n,delay:Z(arguments[3])}],outro:[{name:"rotate",parameters:["0deg",90*e+"deg",t],duration:1e3*n,delay:Z(r)}]}},zoom:function(){var t=0<arguments.length&&arguments[0]!==cn?arguments[0]:0,e=1<arguments.length&&arguments[1]!==cn?arguments[1]:1,n=arguments[3];return{intro:[{name:"scale",parameters:[t,1],duration:1e3*e,delay:Z(arguments[2])}],outro:[{name:"scale",parameters:[1,t],duration:1e3*e,delay:Z(n)}]}}};e(s.TRANSITION,an);function un(n){if(!s.hasOwnProperty(n))return"continue";ln.plugin[("add-"+s[n]).replace(/-./g,function(t){return t.charAt(1).toUpperCase()})]=function(t,e){i(s[n],t,e)}}var ln={supported:function(){var e=window;if(void 0===e)return!1;var t=e.CSS&&e.CSS.supports,n=!!e.MSInputMethodContext&&!!document.documentMode,r=t&&CSS.supports("transform","translateX(0)");return n||t&&r&&!!["MutationObserver","requestAnimationFrame"].filter(function(t){return t in e}).length}(),options:{setConstant:function(t,e){He[t]=e},setPreset:function(t,e){$e[t]=e}},helper:{interval:Ue,date:function(t){return t?l(t):b()},duration:w},data:{request:Ee,poll:function(t,e,n){return Ue(function(){Ee(t,e)},2<arguments.length&&n!==cn?n:6e4)}},DOM:{create:Ze,destroy:function(t){var e=function(t,e){for(var n=0,r=t.length;n<r;n++)if(t[n].isRootElement(e))return n;return-1}(Ye,t);return!(e<0)&&(Ye[e].destroy(),Ye.splice(e,1),!0)},parse:function(t){var e,n=void 0,r=void 0,i=[];for(r=(e=t.querySelectorAll(".tick:not([data-state])")).length;r--;)n=e[r],i.push(Ze(n));return i},find:Te},count:{down:function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];if("number"!=typeof e[0]||"string"!=typeof e[1])return"string"==typeof e[0]||u(e[0])?function(t,e){var n=1<arguments.length&&e!==cn?e:{};if(void 0===t)throw'Can\'t start counter, the "due" parameter is required';n=we(Ke,n);var r=u(t)?t:l(t),i=Ge({due:O(r),onended:function(){}});return qe(n.server,function(e){i.offset=e;i.timer=Ue(function(){var t=v(e);if(r-t<=0)return i.value=new Array(n.format.length).fill(0),i.onupdate(i.value),i.timer.stop(),void i.onended();i.value=y(t,r,n.format,n.cascade),i.onupdate(i.value)},n.interval,{autostart:!1}),i.complete=!0,i.onload(),i.timer.start()}),i}.apply(cn,e):null;var r=e[0],i=e[1].toLowerCase();return e.shift(),e[0]=w(r,i),e[1]=e[1]||{},e[1].units=i,function(e,t){var n=1<arguments.length&&t!==cn?t:{};if("number"!=typeof e)throw'Can\'t start counter, the "milliseconds" parameter is required';var r=(n=we({units:"seconds",target:0,amount:1e3,interval:1e3},n)).target,i=e,o=Ge({target:r,onended:function(){}});return setTimeout(function(){o.timer=Ue(function(t){if((i=e-t/n.interval*n.amount)<=r)return o.value=n.target,o.onupdate(o.value/h[n.units]),o.timer.stop(),void o.onended();o.value=i,o.onupdate(o.value/h[n.units])},n.interval,{autostart:!1}),o.complete=!0,o.onload(),o.timer.start()},0),o}.apply(cn,e)},up:function(t,e){var n=1<arguments.length&&e!==cn?e:{};if(void 0===t)throw'Can\'t start counter, the "since" parameter is required';n=we(Ke,n);var r=u(t)?t:l(t),i=Ge({since:O(r)});return qe(n.server,function(e){i.offset=e;i.timer=Ue(function(){var t=v(e);i.value=y(r,t,n.format,n.cascade),i.onupdate(i.value)},n.interval,{autostart:!1}),i.complete=!0,i.onload(),i.timer.start()}),i},schedule:function(i,t){var o=1<arguments.length&&t!==cn?t:{};if("string"!=typeof i)throw'Can\'t start scheduler, "schedule" is a required parameter';var a=(o=we(it({},Ke,{timezone:null}),o)).timezone?function(t){var e=6e4*(new Date).getTimezoneOffset();if("Z"===t)return e;var n=t.match(/\+|-|[\d]{2}|[\d]{2}/g);return("-"===n.shift()?-1:1)*(36e5*parseInt(n[0],10)+6e4*parseInt(n[1],10))+e}(o.timezone):null,u=Ge({waiting:null,nextScheduledDate:null,previouslyScheduledDate:null,onrepeat:function(){},onresume:function(){},onwait:function(){}}),l=cn,s=null;return qe(o.server,function(r){u.offset=r;u.timer=Ue(function(){var t,e,n=v(r);if(null!==a&&(t=a,n=new Date(n.getTime()+t)),s=function(e,t){for(var n=t.split(",").map(be).map(function(t){return je(e,t)}),r=null,i=0;i<n.length;i++){var o=n[i];if(null===r&&o.wait)return null;(null===r||null===r.dist&&null!==o.dist||null!==o.dist&&o.dist<r.dist)&&(r=o)}return r.date}(n,i),u.waiting=null===s,u.waiting)return l===cn&&(l=null),u.value=new Array(o.format.length).fill(0),u.nextScheduledDate&&(u.previouslyScheduledDate=O(u.nextScheduledDate)),u.nextScheduledDate=null===s?null:O(s),void u.onwait(u.previouslyScheduledDate?O(u.previouslyScheduledDate):null);u.nextScheduledDate=O(s),null===l&&u.onresume(O(s)),(null===l||l!==cn&&(e=s,l.getTime()!==e.getTime()))&&(u.onrepeat(O(s),l?O(l):null),l&&(u.previouslyScheduledDate=O(l))),l=O(s),u.value=y(n,s,o.format,o.cascade),u.onupdate(u.value)},o.interval,{autostart:!1}),u.complete=!0,u.onload(),u.timer.start()}),u}},plugin:{add:function(t,e,n){if("function"!=typeof t)return i(t,e,n);return i(t.identifier.type,t.identifier.name,t)}}};for(var sn in s)un(sn);return t.exports=ln,t.exports}();n.push=r,e.forEach(r),t.Tick=n,"loading"!==document.readyState?setTimeout(function(){i()},0):document.addEventListener("DOMContentLoaded",i)}function r(t){n.plugin.add.apply(null,t)}function i(){n.DOM.parse(document)}}(window,window.Tick||[]);
 
 </script>

@@ -38,7 +38,7 @@
                 <li><a href="{{ url_for('tutor_dashboard', tutor_id=current_user.id) }}">Dashboard</a></li>
                 <li><a href="{{ url_for('add_gig', tutor_id=current_user.id) }}">Add Gig</a></li>
                 <li><a href="{{ url_for('edit_tutor', tutor_id=current_user.id) }}">Edit Profile</a></li>
-                <li><a href="{{ url_for('display_subscriptions', id=current_user.id) }}">View All Subscriptions</a></li>
+                <li><a href="{{ url_for('display_subscriptions', id=current_user.id) }}">View All Subscribers</a></li>
             {% elif current_user.role == 'student' %}
                 <li><a href="{{ url_for('display_subscriptions', id=current_user.id) }}">View All Subscriptions</a></li>
                 <li><a href="{{ url_for('student_dashboard', student_id=current_user.id) }}">Dashboard</a></li>

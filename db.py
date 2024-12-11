@@ -25,7 +25,7 @@ def get_user(username):
     user_data = users_collection.find_one({'username': username})
     #print(user_data)
     return User(user_data['_id'], user_data['username'], user_data['email'], user_data['password'], user_data['role']) if user_data else None
-
+'''
 def get_tutor_id(tutor_id):
     # Convert the string ID to ObjectId
     try:
@@ -53,8 +53,6 @@ def get_tutor_id(tutor_id):
                         'id': str(tutor['_id']),               # Include the tutor's unique ID for profile linking
                         'email': str(tutor['email'])
                     })
-
-            #print("HANUMAN!!!!!!!")
             #print(tutor_profiles) 
             return tutor_profiles
         else:
@@ -64,7 +62,47 @@ def get_tutor_id(tutor_id):
     except Exception as e:
         print(f"An error occurred: {e}")
         return None
-   
+'''
+def get_tutor_id(tutor_id):
+    # Convert the string ID to ObjectId
+    try:
+        tutor = tutors_collection.find_one({'_id': ObjectId(tutor_id)})
+
+        if tutor:
+            # Extract the subjects list from the tutor document
+            subjects = tutor.get('subjects', [])
+            about = tutor.get('about', '')  # Retrieve the 'about' field with a default empty string
+            tutor_profiles = []
+
+            if not subjects:  # No subjects at all
+                tutor_profiles.append({
+                    'username': tutor['username'],
+                    'subject': tutor.get('subject', ''),  # Handle case with no subjects
+                    'cost': tutor.get('cost', 0),         # Handle case with no subjects
+                    'id': str(tutor['_id']),              # Include the tutor's unique ID for profile linking
+                    'email': tutor['email'],
+                    'about': about                        # Include the 'about' field
+                })
+            else:  # There are subjects
+                for subject_entry in subjects:
+                    tutor_profiles.append({
+                        'username': tutor['username'],
+                        'subject': subject_entry['subject'],  # Subject name from the subject object
+                        'cost': subject_entry['cost'],        # Cost from the subject object
+                        'id': str(tutor['_id']),              # Include the tutor's unique ID for profile linking
+                        'email': tutor['email'],
+                        'about': about                       # Include the 'about' field
+                    })
+
+            return tutor_profiles
+        else:
+            print(f"No tutor found with ID: {tutor_id}")
+            return None
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
 def get_tutor(username):
     tutor_data = tutors_collection.find_one({'username': username})
     #print("db.py tutors data")
@@ -74,6 +112,7 @@ def get_tutor(username):
         tutor_data['username'],
         tutor_data['email'],
         tutor_data.get('subject', ''),  # Default to an empty string if 'subject' is missing
+        tutor_data.get('about', ''),
         tutor_data.get('cost', 0)       # Default to 0 if 'cost' is missing
     ) if tutor_data else None
     #return Tutors(tutor_data['_id'], tutor_data['username'], tutor_data['email'], tutor_data['subject'], tutor_data['cost']) if tutor_data else None
@@ -90,6 +129,7 @@ def get_tutor_list2(username):
         tutor_data['_id'],
         tutor_data['username'],
         tutor_data['email'],
+        tutor_data['about'],
         subjects_list  # Pass the subjects list directly
     ) if tutor_data else None
 
@@ -188,7 +228,7 @@ def get_all_students(username):
     except Exception as e:
         print("Error fetching subscriptions:", str(e))
         return []
-
+'''
 def get_all_tutors():
     # Retrieve all tutors from the database
     tutors = tutors_collection.find()
@@ -214,6 +254,39 @@ def get_all_tutors():
                     'id': str(tutor['_id'])
                 })
     
+    return tutor_profiles
+'''
+
+def get_all_tutors():
+    # Retrieve all tutors from the database
+    tutors = tutors_collection.find()
+    tutor_profiles = []
+    
+    for tutor in tutors:
+        # Extract the subjects list from the tutor document
+        subjects = tutor.get('subjects', [])
+        about = tutor.get('about', '')  # Retrieve the 'about' field with a default empty string
+        email = tutor.get('email', '')
+        if not subjects:  # No subjects at all
+            tutor_profiles.append({
+                'username': tutor.get('username', 'Unknown'),   # Default to 'Unknown' if username is missing
+                'subject': tutor.get('subject', ''),            # Default to empty string if subject is missing
+                'cost': tutor.get('cost', 0),                   # Default to 0 if cost is missing
+                'id': str(tutor['_id']),                        # Include the tutor's unique ID for profile linking
+                'about': about,                                  # Include the 'about' field
+                'email': email
+            })
+        else:  # There are subjects
+            for subject_entry in subjects:
+                tutor_profiles.append({
+                    'username': tutor.get('username', 'Unknown'),
+                    'subject': subject_entry.get('subject', ''),  # Subject name with default empty string
+                    'cost': subject_entry.get('cost', 0),         # Cost with default 0
+                    'id': str(tutor['_id']),
+                    'about': about,                                # Include the 'about' field
+                    'email': email
+                })
+
     return tutor_profiles
 
 
@@ -258,6 +331,114 @@ def save_or_update_tutor(username, email=None, subject=None, cost=None):
             tutors_collection.insert_one(tutor_data)
         else:
             print("Insufficient data to create a new tutor profile. Provide all fields.")
+
+def new_save_or_update_tutor(username, email=None, subject=None, cost=None, about=None):
+    # Fetch tutor based on username
+    tutor = tutors_collection.find_one({'username': username})
+
+    if tutor:
+        # Tutor exists, update their profile
+        found_subject = False
+        subjects = tutor.get('subjects', [])
+
+        for subj in subjects:
+            if subj['subject'] == subject:
+                # Update the cost if the subject already exists
+                subj['cost'] = cost
+                found_subject = True
+                break
+
+        if not found_subject and subject and cost is not None:
+            # Subject does not exist; add it to the subjects list
+            subjects.append({'subject': subject, 'cost': cost})
+            
+            # Add room for every new subject
+            room_name = f"{username}_{subject}"
+            room_id = save_room(room_name, username)
+
+        # Update the tutor's profile with new subjects and about field
+        update_data = {'subjects': subjects}
+        if about:
+            update_data['about'] = about
+
+        tutors_collection.update_one(
+            {'username': username},
+            {'$set': update_data}
+        )
+
+    else:
+        # If the tutor does not exist, create a new profile
+        if username and email and subject and cost is not None:
+            tutor_data = {
+                'username': username,
+                'email': email,
+                'about': about if about else "",  # Include the about field
+                'subjects': [{'subject': subject, 'cost': cost}]
+            }
+            tutors_collection.insert_one(tutor_data)
+        else:
+            print("Insufficient data to create a new tutor profile. Provide all fields.")
+
+
+def new_save_or_update_tutor_username(username, email=None, subject=None, cost=None, about=None):
+    # Fetch tutor based on email
+    tutor = tutors_collection.find_one({'email': email})
+
+    if tutor:
+        print("tutor exists")
+        # Tutor exists, update their profile
+        update_data = {}
+
+        # Update username, email, and about fields
+        #if username:
+        #    update_data['username'] = username
+        if email:
+            update_data['email'] = email
+        if about:
+            update_data['about'] = about
+
+        # Keep existing subjects and update cost if the subject exists
+        if subject and cost is not None:
+            found_subject = False
+            subjects = tutor.get('subjects', [])
+            
+            for subj in subjects:
+                if subj['subject'] == subject:
+                    # Update the cost if the subject already exists
+                    subj['cost'] = cost
+                    found_subject = True
+                    break
+
+            if not found_subject:
+                # Subject does not exist; add it to the subjects list
+                subjects.append({'subject': subject, 'cost': cost})
+
+                # Add room for every new subject
+                room_name = f"{username}_{subject}"
+                room_id = save_room(room_name, username)
+
+            # Update the tutor's subjects list
+            update_data['subjects'] = subjects
+
+        # Perform the update with the new data
+        tutors_collection.update_one(
+            {'email': email},  # Update based on email since we are passing email
+            {'$set': update_data}
+        )
+
+    else:
+        # If the tutor does not exist, create a new profile
+        if username and email and about:
+            tutor_data = {
+                'username': username,
+                'email': email,
+                'about': about if about else "",  # Include the about field
+                'subjects': []  # Start with no subjects
+            }
+            tutors_collection.insert_one(tutor_data)
+        else:
+            print("Insufficient data to create a new tutor profile. Provide all fields.")
+
 
 def remove_course(username, updated_subjects):
         tutors_collection.update_one(
@@ -331,7 +512,6 @@ def remove_room_member(room_id, username):
 
 def get_room_members(room_id):
     return list(room_members_collection.find({'_id.room_id': ObjectId(room_id)}))
-
 
 def get_rooms_for_user(username):
     return list(room_members_collection.find({'_id.username': username}))

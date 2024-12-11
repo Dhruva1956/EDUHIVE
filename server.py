@@ -6,7 +6,7 @@ from pymongo.errors import DuplicateKeyError
 from datetime import datetime
 from flask_cors import CORS
 from db import delete_room, remove_course, get_tutor_list2, get_subscription_room_id, remove_room_member, un_subscribe, get_all_students, get_all_subscriptions, subscribe, get_tutor_id, get_all_tutors, save_or_update_tutor, get_tutor, get_user, save_user, save_room, add_room_members, get_rooms_for_user, get_room, is_room_member, \
-    get_room_members, is_room_admin, update_room, remove_room_members, save_message, get_messages
+    get_room_members, is_room_admin, update_room, remove_room_members, save_message, get_messages, new_save_or_update_tutor, new_save_or_update_tutor_username
 import cv2
 import numpy as np
 import copy
@@ -54,22 +54,6 @@ def landing():
 @app.route('/login', methods=['GET', 'POST'])
 #@app.route("/", methods=["GET", "POST"])
 def login():
-    '''
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        user = next((user for user in tutors + students if user['username'] == username and user['password'] == password), None)
-
-        if user:
-            session['username'] = user['username']
-            session['role'] = 'tutor' if user in tutors else 'student'
-            session['id'] = user['id']
-
-            return redirect(url_for('tutor_dashboard', tutor_id=user['id']) if session['role'] == 'tutor' else url_for('student_dashboard', student_id=user['id']))
-        else:
-            return "Invalid username or password", 401
-    '''
     rooms = []
     if current_user.is_authenticated:
         #print(current_user.username)
@@ -98,10 +82,20 @@ def signup():
         return redirect(url_for('home'))
     message = ''
     if request.method == 'POST':
+        all_tutors = get_all_tutors() # returned list of tutors_collection
+        
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
         role = request.form.get('role')
+        for tutor in all_tutors:
+            if tutor['username'] == username:
+                flash('Update Unsuccessful. The username already exists!')
+                return render_template('signup.html')
+            if tutor['email'] == email:
+                flash('Update Unsuccessful. The email already exists!')
+                return render_template('signup.html')
+            
         try:
             save_user(username, email, password, role)
             flash('Signup successfull!')
@@ -154,7 +148,9 @@ def add_gig(tutor_id):
         email= tutors.email
         subject= request.form['subject']
         cost= request.form['cost']
-        save_or_update_tutor(name, email, subject, cost)
+        about= request.form['about']
+        print(about)
+        new_save_or_update_tutor(name, email, subject, cost, about)
         #CREATE ROOM FOR NEW COURSE 
         flash('Added New Gig!')
         flash('New chat room created!')
@@ -166,7 +162,7 @@ def add_gig(tutor_id):
 @app.route("/explore/<string:user_id>", methods=["GET", "POST"])
 def explore(user_id):
     all_tutors = get_all_tutors() # returned list of tutors_collection
-    #print(all_tutors)
+    print(all_tutors)
     return render_template('explore.html', all_tutors=all_tutors, name=current_user.username)
 
 # Route to show the subscribed classes
@@ -189,7 +185,6 @@ def display_subscriptions(id):
     if current_user.role=="tutor":
         #all_subscriptions = get_all_subscriptions(current_user.username)
         all_subscriptions = get_all_students(current_user.username)
-    #print("qwertty")
     #print(all_subscriptions)
     return render_template('subscribed.html', subscriptions=all_subscriptions)
 
@@ -200,8 +195,6 @@ def unsubscribe():
     subscription_subject = request.form.get('subscription_subject')
     #room_name= f"{subscription_name}_{subscription_subject}"
     subscription_id=get_subscription_room_id(subscription_name, subscription_subject)
-    #print("retrieved SUB ID")
-    #print(subscription_id)
     if subscription_id:
         #print("INITIATED UN SUBSCRIBE")
         # Code to remove subscription from database
@@ -213,16 +206,14 @@ def unsubscribe():
 @app.route('/tutor/<string:tutor_id>')
 def tutor_profile(tutor_id):
     tutors = get_tutor_id(tutor_id)
+    print(tutors)
     return render_template('tutorprofile.html', tutors=tutors) 
 
 # Route to edit tutor profile
 @app.route('/tutor/edit/<string:tutor_id>', methods=['GET', 'POST'])
 def edit_tutor(tutor_id):
-    #tutor = next((tutor for tutor in tutors if tutor['id'] == tutor_id), None)
-    #if not tutor:
-     #   return "Tutor not found", 404
-    #print(current_user.username)
     tutors = get_tutor_list2(current_user.username)
+    
     #print(tutors)
     
     if request.method == 'POST':
@@ -236,6 +227,40 @@ def edit_tutor(tutor_id):
         return render_template('tutorprofile.html', tutors=tutors)
     
     return render_template('edit_tutor.html', tutor=tutors)
+
+# Route to edit core tutor profile
+@app.route('/tutor/edit/core/<string:tutor_id>', methods=['GET', 'POST'])
+def edit_core_tutor(tutor_id):
+    tutors = get_tutor_list2(current_user.username)
+    all_tutors = get_all_tutors() # returned list of tutors_collection
+    if request.method == 'POST':
+        tutors = get_tutor_list2(current_user.username)
+        all_tutors = get_all_tutors() # returned list of tutors_collection
+   
+        username = request.form['username']
+        email = request.form['email']
+        about = request.form['about']
+
+        # Check if the data already exists in the tutors list
+        for tutor in all_tutors:
+            
+            if tutor['about'] == about:
+                flash('Update Unsuccessful. The data already exists!')
+                return render_template('edit_tutor.html', tutor=tutors)
+
+        # Proceed with saving or updating the tutor
+        
+        new_save_or_update_tutor_username(username, email, "","",about)
+        #core_save_or_update_tutor(username, email, about)
+
+        # Refresh tutor data
+        tutors = get_tutor_id(tutor_id)
+        get_tutor(username)
+        flash('Update Successful!')
+        return render_template('tutorprofile.html', tutors=tutors)
+    
+    return render_template('edit_tutor.html', tutor=tutors)
+
 
 @app.route('/remove_subject/<username>/<subject>', methods=['POST'])
 def remove_subject(username, subject):
@@ -345,13 +370,7 @@ def on_data(data):
         print('{} message from {} to {}'.format(data["type"], sender_sid, target_sid))
 
     socketio.emit("data", data, room=target_sid)
-'''
-# Route to logout
-@app.route('/logout')
-def logout():
-    session.clear()
-    return redirect(url_for('login'))
-'''
+
 @app.route("/logout/")
 @login_required
 def logout():
@@ -455,14 +474,11 @@ def view_room(room_id):
         return "Room Not Found", 404
 '''
 
-
 @socketio.on('send_message')
 def handle_send_message_event(data):
-    #print("hello boss: AT THE FUNCTION")
     app.logger.info("{} has sent message to the room {}: {}".format(data['username'],
                                                                     data['room'],
                                                                     data['message']))
-    #print("hello boss: "+data['message'])
     data['created_at'] = datetime.now().strftime("%d %b, %H:%M")
     save_message(data['room'], data['message'], data['username'])
     socketio.emit('receive_message', data, room=data['room'])

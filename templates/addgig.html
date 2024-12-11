@@ -30,6 +30,16 @@
                 <label for="cost">Cost (e.g. 30 if $30/hour)</label>
                 <input type="number" class="form-control" id="cost" name="cost" required>
             </div>
+
+            <div class="form-group">
+                <label for="about">About Tutor/Subject 
+                    <small class="form-text text-muted">
+                        You can add details about your expertise or link your LinkedIn profile to help students understand more about you.
+                    </small>
+                </label>
+                <input type="text" class="form-control" value="{{ tutor.about}}" id="about" name="about" required>
+            </div>
+            
             <button type="submit" class="btn btn-primary">Add Gig</button>
         </form>
     </div>
