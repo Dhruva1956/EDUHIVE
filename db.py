@@ -129,7 +129,7 @@ def get_tutor_list2(username):
         tutor_data['_id'],
         tutor_data['username'],
         tutor_data['email'],
-        tutor_data['about'],
+        tutor_data.get('about', ''),
         subjects_list  # Pass the subjects list directly
     ) if tutor_data else None
 
