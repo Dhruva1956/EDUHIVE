@@ -99,7 +99,7 @@ We welcome contributions to enhance EduHive! Here's how you can contribute:
 1. Fork the repository:
 
     ```bash
-    git fork https://github.com/yourusername/eduhive.git
+    git fork https://github.com/dhruva1956/eduhive.git
     ```
 
 2. Create a new branch:
